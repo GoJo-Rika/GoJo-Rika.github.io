@@ -1,0 +1,386 @@
+{
+  "name": "Mit Patel",
+  "label": "Lecturer",
+  "image_path": "portfolio_media/photo_2.jpg",
+  "contact": {
+    "email": "patel.m9521@gmail.com",
+    "location": "Dublin, Ireland"
+  },
+  "summary": "Highly experienced and results-oriented lecturer with 7 years of expertise in educating and guiding students in mathematics, statistics, and programming. Possessing a Master's degree in Data Analytics and a strong foundation in Information Technology, I have successfully developed and delivered comprehensive curricula in core subjects such as Machine Learning, Data Analysis, and Python. Proven ability to simplify complex concepts, enhance student performance, and foster a positive learning environment. Driven to leverage my analytical, problem-solving, and programming skills, coupled with continuous upskilling in cutting-edge AI/ML technologies (including LLMs and MLOps), to contribute to innovative solutions in the Data Science domain, developing and implementing advanced machine learning models to solve complex business problems.",
+  "tldr": ["8+ years educator & AI/ML developer • 300+ students taught • 95% prediction accuracy on production ML systems • MLOps & Cloud Architecture expert • 15+ AI/ML projects deployed",
+  "Educator-turned-ML Engineer • Production MLOps systems • AWS/Serverless expert • Multi-agent AI systems • Teaching 300+ students while building cutting-edge AI solutions"],
+  "base_url": "127.0.0.1:5500",
+  "social_links": [
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/mitcpatel",
+      "svg_path": "img/linkedin.svg"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/GoJo-Rika",
+      "svg_path": "img/github.svg"
+    },
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/u/mitpatel_27/",
+      "svg_path": "img/leetcode.svg"
+    },
+    {
+      "label": "HackerRank",
+      "url": "https://www.hackerrank.com/profile/patel_m9521",
+      "svg_path": "img/leetcode2.svg"
+    }
+  ],
+  "about_me": [
+    "I'm an educator and technologist who's spent the last 8 years building bridges between complex technical concepts and real-world applications. What started as a passion for teaching mathematics and IT fundamentals has evolved into a comprehensive expertise in data science, machine learning, and software development.",
+    "My journey began in 2017 at The SCIENCE Channel, where I discovered my knack for making abstract mathematical concepts click for students. I wasn't just teaching formulas – I was showing students how binary systems connect to everyday computing, how algorithmic thinking solves real problems, and how mathematical foundations power the technology around us. Those early years of mentoring students through competitive exams like GRE and JEE taught me that the best learning happens when you can connect theory to something tangible.",
+    "In 2021, I stepped into the industry as a Backend Developer Intern at Prelax InfoTech. This experience was a game-changer – I got to build actual products that people would use. I developed RESTful APIs that powered mobile apps, optimized database queries that made systems 40% faster, and even prototyped an e-commerce recommendation engine. Working with cross-functional teams, participating in code reviews, and seeing how my backend work directly impacted user experience gave me a whole new perspective on what it means to create meaningful technology.",
+    "Since 2022, I've been combining both worlds as an Assistant Lecturer at Dorset College. This role has let me channel my industry experience into teaching the next generation of developers. I've guided over 300 students through Python, machine learning, and data analysis, watching them grow from theoretical understanding to building real applications. There's something incredibly rewarding about seeing a student successfully deploy their first Flask web application or train their first machine learning model.",
+    "What drives me is this intersection of education and innovation. I don't just teach Python – I help students understand why certain design patterns matter. I don't just explain machine learning algorithms – I show students how to evaluate whether their model is actually solving the right problem. My approach has consistently achieved 92-96% project completion rates because I focus on making complex topics accessible and immediately applicable.",
+    "Today, I'm passionate about the evolving landscape of AI and machine learning. I've been diving deep into MLOps, exploring generative AI applications, and staying current with tools like LangChain, AWS services, and modern deployment practices. My technical toolkit spans from traditional backend development (Python, Flask, PostgreSQL) to cutting-edge AI/ML frameworks (PyTorch, TensorFlow, Scikit-learn), but what really excites me is using these tools to solve meaningful problems.",
+    "Whether I'm debugging a student's code, optimizing a database query, or experimenting with the latest AI models, I'm always thinking about how technology can create better learning experiences and more efficient solutions. That's what you'll find throughout this portfolio – a blend of technical depth, educational insight, and a genuine enthusiasm for building things that matter."
+  ],
+  "core_competencies": [
+    {
+      "title": "End-to-End ML Systems Architecture",
+      "description": "Proven ability to architect, build, and deploy entire machine learning solutions, taking projects from initial concept to production-ready applications."
+    },
+    {
+      "title": "MLOps & Production Pipelines",
+      "description": "Hands-on experience building modern, automated MLOps pipelines using tools like MLflow, Docker, and CI/CD for data validation, experiment tracking, and robust deployment."
+    },
+    {
+      "title": "Cloud Engineering (AWS)",
+      "description": "Strong command of core AWS services (SageMaker, Lambda, S3, EC2) to build, deploy, and manage scalable cloud infrastructure for AI/ML applications."
+    },
+    {
+      "title": "Full-Stack AI Application Development",
+      "description": "Skilled in building complete, user-facing products by integrating complex AI backends with interactive web frontends using frameworks like Streamlit and Flask."
+    },
+    {
+      "title": "AI Agent & Multimodal Systems",
+      "description": "Advanced experience in designing complex systems that integrate multiple AI models and tools to process and understand diverse data types including text, images, and video."
+    },
+    {
+      "title": "Applied Natural Language Processing (NLP)",
+      "description": "Deep, practical experience in applying NLP to solve diverse business problems, from text summarization with Transformers to building numerous RAG applications."
+    }
+  ],
+  "work_experience": [
+    {
+      "company": "Dorset College",
+      "position": "Assistant Lecturer",
+      "url": "https://dorset.ie/",
+      "start_date": "2022",
+      "end_date": "Present",
+      "summary": "Taught 300+ undergraduate students across Python, Data Analysis, Machine Learning, and Statistics, achieving 92-96% project completion rates and 88-90% course pass rates through practical, student-focused pedagogy.",
+      "highlights": [
+        "Designed and delivered industry-aligned curricula, regularly updating modules to reflect modern trends while ensuring accessibility for diverse academic backgrounds.",
+        "Led comprehensive Python and web development sessions using Flask, guiding students through building real applications (blog platform, banking system) covering environment setup, routing, templating, database integration with SQLAlchemy, and authentication.",
+        "Created structured project-based learning flow from theoretical foundation to hands-on implementation, integrating Git/GitHub for version control and culminating in end-to-end capstone projects that simulate real-world development workflows.",
+        "Conducted ML training sessions emphasizing classical algorithms, evaluation metrics, and real-world applications using Scikit-learn, Pandas, NumPy, and PyTorch, supporting students through guided statistical modeling projects.",
+        "Initiated cloud technology exposure through AWS Educate classes and integrated external platforms like DataCamp to enhance independent skill development beyond classroom instruction.",
+        "Mentored students on industry best practices including modular coding, documentation, reproducibility, and professional communication while promoting code clarity and testing without overwhelming beginners.",
+        "Integrated external learning platforms like DataCamp into the curriculum to support independent skill development and hands-on practice beyond classroom instruction.",
+        "Collaborated on curriculum development to ensure courses remained current and pedagogically sound. Balanced technical rigor with approachability to support both beginners and advanced learners."
+      ]
+    },
+    {
+      "company": "Prelax InfoTech",
+      "position": "Backend Developer Intern",
+      "url": "https://prelax.in/",
+      "start_date": "2021",
+      "end_date": "2021",
+      "summary": "Developed and maintained RESTful APIs using Flask to support Android and iOS applications, enabling secure user authentication and fast, consistent data exchange; improved API response times by 30%.",
+      "highlights": [
+        "Optimized SQL queries and managed MySQL databases, achieving 40-50% reduction in query execution time while improving data retrieval performance and system scalability.",
+        "Built and tested prototype e-commerce platform with recommendation engine using user behavior and purchase history to personalize suggestions, improving engagement by 25% in internal testing.",
+        "Documented backend features, API specifications, and database schemas using Swagger and Markdown, improving onboarding speed for new developers and ensuring consistent communication with front-end and QA teams.",
+        "Utilized comprehensive development toolkit including Postman for API testing, Git & GitHub for version control, and Docker for containerizing backend services for local testing and deployment simulation.",
+        "Participated in agile development processes including code reviews, sprint planning, and bug tracking while collaborating cross-functionally with front-end and product teams."
+      ]
+    },
+    {
+      "company": "The SCIENCE Channel",
+      "position": "Lecturer in Mathematics & IT",
+      "url": null,
+      "start_date": "2017",
+      "end_date": "2021",
+      "summary": "Designed and delivered modern curriculum for Mathematics and IT subjects, integrating digital tools like GeoGebra and Desmos to enhance visualization, interactive learning, and student engagement.",
+      "highlights": [
+        "Introduced students to foundational computing concepts including logic gates, binary and number system conversions, programming fundamentals, and basic networking, providing early exposure to computer science principles.",
+        "Taught essential problem-solving and algorithmic thinking, reinforcing skills that connect mathematics to real-world technology applications such as data processing, automation, and systems design.",
+        "Mentored students for competitive entrance exams (GRE, Cambridge, CAT, JEE, CET, CPT), creating structured study plans and mock exams that led to successful outcomes in higher education admissions.",
+        "Assessed student progress using diverse evaluation methods including assignments, projects, and oral reviews to ensure understanding and retention while providing individualized academic support.",
+        "Contributed to educational innovation by participating in federal proposal drafting to advocate for technology integration in mathematics education and student-centered, adaptive teaching approaches."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Network Security System - MLOps Project",
+      "summary": "Built **production-ready MLOps pipeline** achieving **automated threat detection** for phishing URLs and malicious network traffic through **end-to-end ML lifecycle management**. Implemented **modular pipeline architecture** with **real-time prediction API**, **automated data validation**, and **drift detection capabilities** using **Python**, **scikit-learn**, **FastAPI**, and **MLflow**. Deployed scalable system on **AWS** with **CI/CD automation** via **GitHub Actions**, **ECR containerization**, and **S3 storage**, enabling **automated model retraining** and serving production traffic with **experiment tracking** and **schema validation**.",
+      "url": "https://github.com/GoJo-Rika/Network-Security-System-MLOps-Project",
+      "technologies": ["MLflow", "Dagshub", "AWS (EC2, ECR, S3)", "MongoDB", "CI/CD automation", "Schema Validation", "Experiment Tracking", "FastAPI", "Modular Pipeline Architecture", "Production-ready MLOps Pipeline", "Automated Threat Detection", "End-to-End ML Lifecycle Management", "Real-Time Prediction API", "Docker", "Drift Detection Capabilities", "Automated Model Retraining"],
+      "highlights": [],
+      "images": []
+    },
+    {
+      "title": "AWS SageMaker Machine Learning Pipeline - Mobile Price Classification System",
+      "summary": "Achieved **95% prediction accuracy** by engineering **production-ready ML pipeline** using **AWS SageMaker** and **Random Forest classification** for mobile price category prediction. Implemented **cloud-native architecture** integrating **S3 data lakes**, **IAM security policies**, and **CloudWatch monitoring** with **automated model deployment workflows**. Demonstrated **MLOps best practices** through **local-to-cloud development patterns**, **comprehensive error handling**, and **model versioning**, delivering enterprise-grade solution for **ML Engineering**, **Cloud Architecture**, and **Data Science** applications.",
+      "url": "https://github.com/GoJo-Rika/aws-sagemaker",
+      "technologies": ["AWS SageMaker", "S3", "IAM", "Boto3", "Python", "CloudWatch", "scikit-learn", "Pandas", "Joblib", "Jupyter Notebooks", "Cloud-native Architecture", "MLOps Best Practices", "Model Versioning", "Model Registry"],
+      "highlights": [],
+      "images": []
+    },
+    {
+      "title": "Multi-Agent Financial AI System",
+      "summary": "**Reduced manual research time by 95%** by building **multi-agent AI system** using **Python**, **Groq AI models**, and **Agno framework** for automated stock analysis. Orchestrated **specialized AI agents** with **Yahoo Finance API integration** and **web search capabilities**, implementing **agent coordination patterns** and **task distribution algorithms**. Developed **interactive Streamlit interface** delivering **real-time market data**, **analyst recommendations**, and **sentiment analysis** with **comprehensive financial insights** and **automated report generation**.",
+      "url": "https://github.com/GoJo-Rika/financial-ai-analyst",
+      "technologies": ["Python", "Agno", "Groq", "DuckDuckGoTools", "YFinanceTools", "Streamlit", "Google API", "Multi-Agent AI System", "Specialized AI Agents", "Agent Coordination Patterns", "Task Distribution Algorithms", "Financial Data Analysis", "Automated Report Generation"],
+      "highlights": [],
+      "images": []
+    },
+    {
+      "title": "Text Summarizer Using HuggingFace Transformers",
+      "summary": "Achieved **ROUGE-optimized summarization performance** by developing **production-ready text summarization system** processing conversational data and meeting transcripts. Implemented **end-to-end ML pipeline** with **HuggingFace Transformers (Pegasus model)**, **data ingestion/transformation pipelines**, and **fine-tuning on SAMSum dataset** via **Google Colab GPU**. Deployed **RESTful API** with **FastAPI**, **Docker containerization**, **Weights & Biases experiment tracking**, and **comprehensive logging**, delivering **scalable ML service** with **automated pipeline stages** and **seamless deployment capabilities**.",
+      "url": "https://github.com/GoJo-Rika/Text-Summarizer",
+      "technologies": ["HuggingFace Transformers", "PyTorch", "FastAPI", "Docker", "Python", "End-to-End ML Pipeline", "Modular Pipeline Architecture", "Weights & Biases", "Containerized Deployment", "MLOps Practices", "ROUGE Evaluation", "Automated Pipeline Stages", "Experiment Tracking", "RESTful API"],
+      "highlights": [],
+      "images": []
+    },
+    {
+      "title": "Multi-Tier AI Agent System with Vector Database Integration",
+      "summary": "Engineered **multi-tier AI agent architecture** implementing **three progressive complexity levels** from simple web-search agents to **coordinated multi-agent teams** for financial analysis. Integrated **multiple AI models (Groq, Gemini, OpenAI)** with **vector database (LanceDB)** for **knowledge management**, **hybrid search capabilities**, and **PDF knowledge bases**. Demonstrated **advanced agent coordination**, **domain-specific expertise**, and **scalable agent orchestration** using **Python**, **Agno framework**, and **DuckDuckGo/YFinance APIs**.",
+      "url": "https://github.com/GoJo-Rika/Basic-Agents",
+      "technologies": ["Python", "Agno", "Google Gemini", "Groq", "Lancedb", "Google API", "DuckDuckGo", "Multi-tier AI Agents Architecture", "Knowledge Management", "Hybrid Search Capabilities"],
+      "highlights": [],
+      "images": []
+    },
+    {
+      "title": "Intelligent Document Q&A System with RAG Architecture",
+      "summary": "Delivered **sub-second query response times** by developing **enterprise-grade RAG application** enabling natural language querying of large PDF document collections. Implemented **end-to-end document processing pipeline** with **vector embeddings**, **similarity search**, and **context-aware response generation** using **Groq API (Gemma model)**, **Google Generative AI embeddings**, and **FAISS vector database**. Built **production-ready application** with **optimized chunking strategies**, **session management**, and **Streamlit frontend**, demonstrating expertise in **AI/ML engineering** and **scalable vector database architecture**.",
+      "url": "https://github.com/GoJo-Rika/Document-QA-Using-Gemma-Groq",
+      "technologies": ["Python", "LangChain", "Text Chunking", "PDF parsing", "Streamlit", "FAISS", "Google API", "PyPDF2", "Vector Embeddings", "Similarity Search", "Document Processing", "Semantic Search"],
+      "highlights": [],
+      "images": []
+    },
+    {
+      "title": "Student Performance Prediction System - End-to-End ML Engineering Project",
+      "summary": "Achieved **90%+ prediction accuracy** by developing **end-to-end ML web application** predicting student math scores, bridging the gap between experimental ML models and **production-ready systems**. Architected **modular Flask application** with **scikit-learn pipelines**, **comprehensive logging**, and **exception handling**, deploying on **AWS EC2** using **Elastic Beanstalk** with **automated model selection** from 7 algorithms. Delivered **production-ready ML system** demonstrating **ML engineering**, **cloud deployment**, and **software architecture principles** for data science and full-stack development applications.",
+      "url": "https://github.com/GoJo-Rika/Student-Performance-Project",
+      "technologies": ["Python", "Flask", "scikit-learn pipeline", "Pandas", "AWS EC2", "Elastic Beanstalk", "ML Pipelines", "Model Deployment", "Cloud Deployment (AWS)", "End-to-End ML Web Application", "Modular Architecture", "Comprehensive Loggings", "Production-ready Systems"],
+      "highlights": [],
+      "images": []
+    },
+    {
+      "title": "AI-Powered Blog Content Generator | AWS Serverless Architecture",
+      "summary": "Built **production-ready serverless API** leveraging **AWS Bedrock's Meta Llama 3** for automated blog content generation with **scalable cloud infrastructure**. Architected **end-to-end serverless solution** integrating **Lambda functions**, **API Gateway**, and **S3 storage** with **comprehensive IAM security policies**. Implemented **robust error handling**, **timeout management**, and **logging strategies** for **reliable cloud service orchestration**, demonstrating expertise in **serverless architecture patterns**, **AI model integration**, and **scalable infrastructure design**.",
+      "url": "https://github.com/GoJo-Rika/genai-with-aws-bedrock-lambda-apigateway",
+      "technologies": ["AWS Bedrock", "Lambda", "API Gateway", "S3", "Python", "Boto3", "IAM", "Meta Llama 3", "Scalable Cloud Infrastructure", "Serverless Architecture Patterns", "End-to-End Serverless Solution", "Timeout Management", "AI Model Integration", "Robust Error Handling", "Logging Strategies", "CloudWatch"],
+      "highlights": [],
+      "images": []
+    }
+  ],
+  "volunteer_experience": [
+  ],
+  "education": [
+    {
+      "institution": "Dublin Business School",
+      "location": "Dublin, Ireland",
+      "url": "https://www.dbs.ie/",
+      "degrees": [
+        "Masters of Science in Data Analytics"
+      ],
+      "honors": [],
+      "gpa_cumulative": null,
+      "gpa_major": null,
+      "graduation_date": "September 2022"
+    },
+    {
+      "institution": "FCRIT (Vashi), Mumbai University",
+      "location": "Mumbai, India",
+      "url": "https://fcrit.ac.in/",
+      "degrees": [
+        "Bachelor of Engineering in Information Technology"
+      ],
+      "honors": [],
+      "awards": ["Best Dissertation Project Award"],
+      "gpa_cumulative": null,
+      "gpa_major": null,
+      "graduation_date": "May 2017"
+    }
+  ],
+  "technical_skills_categorized": [
+    {
+      "category": "Languages",
+      "skills": ["Python", "SQL", "R", "JavaScript"]
+    },
+    {
+      "category": "AI & Machine Learning",
+      "skills": ["Scikit-learn", "Pandas", "PyTorch", "LangChain", "HuggingFace Transformers", "Google Gemini", "Groq", "AWS Bedrock", "Agno", "Ollama", "TensorFlow", "CrewAI"]
+    },
+    {
+      "category": "Cloud & MLOps",
+      "skills": ["AWS (SageMaker, Lambda, S3, EC2, IAM, ECR, API Gateway)", "MLflow", "Docker", "CI/CD (GitHub Actions)", "Git", "Dagshub"]
+    },
+    {
+      "category": "Databases",
+      "skills": ["SQL (MySQL, SQLite)", "MongoDB", "FAISS", "LanceDB"]
+    },
+    {
+      "category": "Web Development & Tools",
+      "skills": ["FastAPI", "Flask", "Streamlit", "Jupyter Notebooks", "Swagger", "Postman", "REST APIs"]
+    }
+  ],
+  "interests": [
+  ],
+  "technologies_used": [ "Boto3", "Weights & Biases", "Jupyter Notebooks", "AWS Elastic Beanstalk", "google-generativeai", "Transformers", "PyPDF2", "DuckDuckGoTools", "YFinanceTools", "Google API", "Joblib", "NumPy", "Matplotlib", "Seaborn", "Plotly", "OpenAI API", "uvicorn", "Gemma Model", "Google Gemini 2.0", "RESTful API", "Pydantic", "python-box", "ensure", "nltk", "torch", "pymongo", "Tensorboard", "Hyperopt"],
+  
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native Speaker"
+    },
+    {
+      "language": "Hindi",
+      "fluency": "Native Speaker"
+    },
+    {
+      "language": "Gujarati",
+      "fluency": "Native Speaker"
+    }
+  ],
+  "references": [
+  ],
+  "awards_certifications": [
+    {
+      "name": "Google Cloud Certified Professional Data Engineer",
+      "issuer": "Google Cloud",
+      "date": null,
+      "url": null
+    }
+  ],
+  "blogs": [
+    {
+      "title": "From Messy Data to Production MLOps: My Network Security Journey",
+      "publish_date": "2025-06-18",
+      "url": "https://github.com/GoJo-Rika/Network-Security-System-MLOps-Project",
+      "content": "Building this network security system taught me that **real-world data is never clean**. My biggest challenge was handling inconsistent URL formats and missing network traffic labels. I spent weeks debugging why my model performed well locally but failed in production - turns out I hadn't properly handled data drift. The breakthrough came when I implemented proper **data validation schemas** and **drift detection**. I learned to always validate data at every pipeline stage, not just during training. Another major hurdle was orchestrating multiple AWS services - my first deployment failed spectacularly because I misconfigured IAM permissions. After three sleepless nights, I finally got the **CI/CD pipeline** working smoothly. The key takeaway? **Always build with production in mind from day one**, not as an afterthought. This project taught me that MLOps isn't just about deploying models - it's about building resilient systems that can handle real-world chaos.",
+      "technologies": ["MLflow", "Dagshub", "AWS (EC2, ECR, S3)", "MongoDB", "CI/CD automation", "Schema Validation", "Experiment Tracking", "FastAPI", "Modular Pipeline Architecture", "Production-ready MLOps Pipeline", "Automated Threat Detection", "End-to-End ML Lifecycle Management", "Real-Time Prediction API", "Docker", "Drift Detection Capabilities", "Automated Model Retraining"]
+    },
+    {
+      "title": "When SageMaker Humbled Me: A Cloud-Native ML Reality Check",
+      "publish_date": "2025-06-25",
+      "url": "https://github.com/GoJo-Rika/aws-sagemaker",
+      "content": "My confidence took a hit when my first SageMaker training job failed with a cryptic error message. I had assumed cloud ML would be straightforward - just upload data and train, right? Wrong. The learning curve was steep, especially understanding **IAM roles** and **S3 permissions**. I wasted an entire weekend debugging why my training script couldn't access the data bucket. The real challenge was transitioning from local Jupyter notebooks to **cloud-native architecture**. My breakthrough moment came when I finally grasped the importance of **proper error handling** and **logging strategies**. Initially, I was flying blind when jobs failed, but implementing comprehensive logging made debugging much easier. The mobile price prediction accuracy improved from 78% to 95% once I properly configured **hyperparameter tuning**. This project taught me that cloud platforms are powerful but require disciplined engineering practices. The key lesson? **Infrastructure is just as important as the algorithm**.",
+      "technologies": ["AWS SageMaker", "S3", "IAM", "Boto3", "Python", "CloudWatch", "scikit-learn", "Pandas", "Joblib", "Jupyter Notebooks", "Cloud-native Architecture", "MLOps Best Practices", "Model Versioning", "Model Registry"]
+    },
+    {
+      "title": "Multi-Agent Chaos: When AI Agents Wouldn't Cooperate",
+      "publish_date": "2025-06-15",
+      "url": "https://github.com/GoJo-Rika/financial-ai-analyst",
+      "content": "My agents were fighting each other instead of collaborating. The financial analysis system was supposed to have smooth **agent coordination**, but initially, they kept making redundant API calls and conflicting recommendations. I underestimated how complex **task distribution** would be. The breakthrough came when I implemented proper **state management** and **communication protocols** between agents. Debugging was a nightmare - I had to build custom logging to track which agent was doing what. The Yahoo Finance API rate limits caught me off guard, causing the system to crash during peak trading hours. I solved this by implementing **intelligent caching** and **request queuing**. The most satisfying moment was seeing the research time drop from hours to minutes once the agents learned to work together. This project taught me that **multi-agent systems require careful orchestration** - they're not just multiple independent scripts. The key insight? **Agent coordination is harder than individual agent intelligence**.",
+      "technologies": ["Python", "Agno", "Groq", "DuckDuckGoTools", "YFinanceTools", "Streamlit", "Google API", "Multi-Agent AI System", "Specialized AI Agents", "Agent Coordination Patterns", "Task Distribution Algorithms", "Financial Data Analysis", "Automated Report Generation"]
+    },
+    {
+      "title": "Transformer Fine-Tuning: When GPUs Became My Best Friend",
+      "publish_date": "2025-06-24",
+      "url": "https://github.com/GoJo-Rika/Text-Summarizer",
+      "content": "Fine-tuning the Pegasus model was my first real encounter with **GPU computing**, and it was humbling. My initial attempts kept running out of memory, and I didn't understand why. The breakthrough came when I learned about **gradient accumulation** and **batch size optimization**. I spent days tweaking hyperparameters, watching training losses bounce around unpredictably. The real challenge was getting the **data preprocessing pipeline** right - tokenization issues caused my model to produce gibberish summaries initially. I had to rebuild the entire **data ingestion workflow** three times before getting it right. The ROUGE scores were disappointing at first, but implementing **proper evaluation metrics** helped me understand what the model was actually learning. Docker deployment was another headache - my container kept crashing due to memory issues. This project taught me that **transformer models are powerful but resource-intensive**. The key lesson? **Understanding your compute constraints is crucial for successful model deployment**.",
+      "technologies": ["HuggingFace Transformers", "PyTorch", "FastAPI", "Docker", "Python", "End-to-End ML Pipeline", "Modular Pipeline Architecture", "Weights & Biases", "Containerized Deployment", "MLOps Practices", "ROUGE Evaluation", "Automated Pipeline Stages", "Experiment Tracking", "RESTful API"]
+    },
+    {
+      "title": "Vector Database Nightmares: When Embeddings Don't Embed",
+      "publish_date": "2025-06-13",
+      "url": "https://github.com/GoJo-Rika/Basic-Agents",
+      "content": "Building the **multi-tier agent system** seemed straightforward until I hit the vector database wall. My embeddings weren't clustering properly, and similarity search was returning irrelevant results. I spent weeks debugging why **LanceDB** wasn't performing as expected - turns out my **chunking strategy** was terrible. The real challenge was **coordinating multiple AI models** with different response formats and latencies. My agents kept timing out or producing conflicting outputs. The breakthrough came when I implemented **proper error handling** and **fallback mechanisms**. Initially, I naively assumed all AI models would behave similarly, but each had unique quirks. The financial analysis became much more accurate once I figured out how to **balance different data sources** and **agent expertise**. This project taught me that **vector databases require careful tuning** and that **agent coordination is an art, not a science**. The key insight? **Different AI models need different handling strategies**.",
+      "technologies": ["Python", "Agno", "Google Gemini", "Groq", "Lancedb", "Google API", "DuckDuckGo", "Multi-tier AI Agents Architecture", "Knowledge Management", "Hybrid Search Capabilities"]
+    },
+    {
+      "title": "RAG Reality: When Documents Refuse to Answer Questions",
+      "publish_date": "2025-04-23",
+      "url": "https://github.com/GoJo-Rika/Document-QA-Using-Gemma-Groq",
+      "content": "My RAG system was confidently giving wrong answers, and I couldn't figure out why. The document **chunking strategy** was my biggest mistake - I was splitting text randomly instead of preserving semantic meaning. Users were getting frustrated with irrelevant responses, and I was losing confidence in the system. The breakthrough came when I implemented **semantic chunking** and **overlap strategies**. The **FAISS vector database** performance was another challenge - queries were taking too long, especially with large document collections. I had to learn about **index optimization** and **query batching**. The most embarrassing moment was when the system couldn't answer basic questions about documents it had just processed. This led me to implement **context verification** and **confidence scoring**. The **sub-second response time** achievement only came after extensive **caching optimization**. This project taught me that **RAG systems need careful tuning of every component**. The key lesson? **Garbage in, garbage out applies especially to document processing**.",
+      "technologies": ["Python", "LangChain", "Text Chunking", "PDF parsing", "Streamlit", "FAISS", "Google API", "PyPDF2", "Vector Embeddings", "Similarity Search", "Document Processing", "Semantic Search"]
+    },
+    {
+      "title": "Student Performance Prediction: When Simple Isn't Always Better",
+      "publish_date": "2025-06-21",
+      "url": "https://github.com/GoJo-Rika/Student-Performance-Project",
+      "content": "I overcomplicated everything initially, trying to use advanced deep learning for what turned out to be a **classical ML problem**. My neural network was overfitting terribly, and I was chasing diminishing returns. The humbling moment came when a simple **Random Forest outperformed my complex architecture**. Deployment on **AWS Elastic Beanstalk** was my first real production experience, and it was messier than expected. My Flask app kept crashing due to memory leaks I hadn't noticed during local testing. The **model comparison framework** took longer to build than the actual models - I learned that **proper evaluation infrastructure** is crucial. The biggest challenge was handling **real-time predictions** reliably. Users would input edge cases that broke my preprocessing pipeline. This project taught me that **production systems need robust error handling** and that **simpler solutions often work better**. The key insight? **Focus on reliability over complexity**.",
+      "technologies": ["Python", "Flask", "scikit-learn pipeline", "Pandas", "AWS EC2", "Elastic Beanstalk", "ML Pipelines", "Model Deployment", "Cloud Deployment (AWS)", "End-to-End ML Web Application", "Modular Architecture", "Comprehensive Loggings", "Production-ready Systems"]
+    },
+    {
+      "title": "Serverless Struggles: When Lambda Functions Have Limits",
+      "publish_date": "2025-07-02",
+      "url": "https://github.com/GoJo-Rika/genai-with-aws-bedrock-lambda-apigateway",
+      "content": "My first **serverless deployment** was a disaster. The **Lambda function** kept timing out because I didn't understand the **15-minute execution limit**. I was trying to generate long-form content that exceeded these constraints. The breakthrough came when I implemented **streaming responses** and **chunked processing**. **IAM permissions** were my nemesis - I spent days debugging why my function couldn't access **S3 buckets**. The learning curve for **AWS Bedrock** was steep, especially understanding how to optimize **LLM API calls**. My content generation was inconsistent until I learned proper **prompt engineering** and **response formatting**. The most frustrating part was debugging **cold starts** - my API would randomly become slow for the first few requests. This project taught me that **serverless architecture requires different thinking** than traditional deployments. The key lesson? **Understand your platform's constraints before building**.",
+      "technologies": ["AWS Bedrock", "Lambda", "API Gateway", "S3", "Python", "Boto3", "IAM", "Meta Llama 3", "Scalable Cloud Infrastructure", "Serverless Architecture Patterns", "End-to-End Serverless Solution", "Timeout Management", "AI Model Integration", "Robust Error Handling", "Logging Strategies", "CloudWatch"]
+    },
+    {
+      "title": "PDF Chat Debugging: When RAG Meets Reality",
+      "publish_date": "2025-04-21",
+      "url": "https://github.com/GoJo-Rika/Chat-With-PDF-Using-Gemini-Pro",
+      "content": "Building my first **RAG system** felt straightforward until documents started 'lying' to me. My PDF chat was confidently giving wrong answers, and I couldn't understand why. The chunking strategy was my downfall - I was splitting text arbitrarily, destroying context completely. After days of debugging, I realized my **vector embeddings** weren't capturing semantic meaning properly. The breakthrough came when I implemented **sliding window chunking** with proper overlap. **FAISS indexing** was another learning curve - my similarity search was returning irrelevant chunks consistently. I had to rebuild the entire **embedding pipeline** twice before understanding how **LangChain** actually processes documents. The most frustrating part was **conversation memory** - my chatbot kept forgetting previous questions mid-conversation. Once I figured out **session state management** in Streamlit, everything clicked. This project taught me that **RAG isn't just about retrieval** - it's about understanding how documents should be processed for AI consumption. The key lesson? **Context preservation matters more than perfect similarity scores**",
+      "technologies": ["Python", "LangChain", "Google Gemini Pro", "FAISS", "Streamlit", "PyPDF2", "Vector Embeddings", "RAG Architecture", "Document Processing", "NLP Pipeline"]
+    },
+    {
+      "title": "Computer Vision Meets Nutrition: My Food Analysis Journey",
+      "publish_date": "2025-07-14",
+      "url": "https://github.com/GoJo-Rika/AI-Nutritionist-Using-Gemini-Pro",
+      "content": "My food analysis app was identifying pizza as salad, and I was losing my mind. The **computer vision** component seemed simple - just send an image to **Google Gemini** and get nutritional data back. Wrong. The real challenge was **prompt engineering** for consistent responses. My first attempts returned nutrition data in random formats, making it impossible to parse. I spent weeks crafting the perfect prompt structure, learning that **AI models need very specific instructions**. The **image preprocessing** with **PIL** was another headache - different image formats and sizes broke my pipeline constantly. Users were uploading everything from blurry phone photos to high-res professional shots. I had to implement **robust image handling** and **error recovery**. The breakthrough came when I standardized the **prompt template** and added **response validation**. Initially, the app would crash on edge cases, but proper **exception handling** made it production-ready. This project taught me that **multimodal AI requires careful orchestration** between vision and language models. The key insight? **Consistent prompts lead to consistent results**",
+      "technologies": ["Python", "Streamlit", "Google Gemini AI", "PIL", "Computer Vision", "Image Processing", "Prompt Engineering", "Data Visualization", "Multimodal AI"]
+    },
+    {
+      "title": "Multimodal AI Suite: When Simple Becomes Complex",
+      "publish_date": "2025-04-17",
+      "url": "https://github.com/GoJo-Rika/Image-Application-Using-Gemini-Pro",
+      "content": "What started as a simple demo became a lesson in **multimodal AI complexity**. I wanted to showcase **text generation** and **image analysis** using **Gemini models**, but managing **two different AI endpoints** was trickier than expected. The **Gemini 2.0 Flash** and **Flash Lite** models had different response times and formats, causing UI inconsistencies. My biggest mistake was not implementing **proper error handling** initially - when one model failed, the entire app would crash. The real challenge was **API key management** and **rate limiting**. I was hitting usage limits during testing, learning about **request throttling** the hard way. The breakthrough came when I implemented **fallback mechanisms** and **graceful degradation**. Users could still use one feature even if another failed. **Streamlit state management** across multiple pages was another learning curve - I had to understand how to persist data between different app components. This project taught me that **multiple AI models require orchestration strategies**. The key lesson? **Always plan for API failures and have backup strategies**.",
+      "technologies": ["Python", "Streamlit", "Google Gemini 2.0", "Multimodal AI", "Image Processing Pipeline", "API Security", "Real-time Processing", "UI/UX Design"]
+    },
+    {
+      "title": "Invoice Processing Hell: When AI Meets Accounting",
+      "publish_date": "2025-04-19",
+      "url": "https://github.com/GoJo-Rika/Invoice-Extractor-Using-Gemini-Pro",
+      "content": "My invoice extractor was working perfectly... until I tested it with real invoices. The **multi-language support** I thought I had implemented was failing spectacularly on anything that wasn't English. German invoices were returning gibberish, and Japanese ones crashed the system entirely. The **80% time reduction** only came after I completely redesigned the **text extraction pipeline**. My initial approach using simple **OCR** was too naive - invoice layouts vary wildly across companies and countries. The breakthrough was understanding that **Gemini Pro's multimodal capabilities** could handle both text and layout analysis simultaneously. I had to learn **advanced prompt engineering** to make the AI understand invoice structure, not just text content. The **95% accuracy** achievement required building a **validation system** that cross-checked extracted data for consistency. Users were uploading scanned PDFs, photos, and digital invoices - each requiring different processing strategies. The most challenging part was handling **currency conversion** and **regional number formats**. This project taught me that **document processing AI needs domain expertise built into prompts**. The key insight? **Real-world documents are messier than test data**",
+      "technologies": ["Python", "Google Gemini Pro", "Streamlit", "Computer Vision", "Document Processing", "OCR", "Multimodal AI", "API Integration", "Natural Language Processing"]
+    },
+    {
+      "title": "Chatbot Evolution: Three Versions of Learning",
+      "publish_date": "2025-04-19",
+      "url": "https://github.com/GoJo-Rika/QA-Chatbot-Using-Gemini-Pro",
+      "content": "My first chatbot was stateless and stupid. Version 1 couldn't remember anything beyond the current message, making conversations frustrating. I thought adding **session state** would be simple - just store messages in a list, right? Wrong. **Memory management** in Streamlit was more complex than expected. The app kept running out of memory during long conversations, and I didn't understand why. Version 2 introduced **conversation history**, but the **context window** limitations of **Gemini AI** meant older messages got truncated unpredictably. Users would reference something from earlier in the conversation, and the bot would be clueless. The breakthrough came in Version 3 when I implemented **intelligent context management** - summarizing old conversations and maintaining relevant context. **Streaming responses** were another challenge - I wanted real-time typing effects, but handling **API streaming** while maintaining state was tricky. The most satisfying moment was when users started having natural, flowing conversations with the bot. This project taught me that **conversational AI is about managing context, not just generating responses**. The key lesson? **Progressive iteration leads to better user experiences**",
+      "technologies": ["Google Gemini AI", "Streamlit", "Python", "RESTful API", "Session Management", "Streaming Responses", "Context Awareness", "Web Development"]
+    },
+    {
+      "title": "ATS Optimization: When AI Meets Recruiting",
+      "publish_date": "2025-05-27",
+      "url": "https://github.com/GoJo-Rika/ATS-gemini-1",
+      "content": "My ATS analyzer was giving every resume a 20% match score, regardless of content. I assumed **resume parsing** would be straightforward - extract text and compare keywords. The reality was much messier. **PDF text extraction** with **PyPDF2** was failing on formatted resumes, missing crucial information. Some resumes were images disguised as PDFs, others had complex layouts that scrambled text order. The breakthrough came when I implemented **robust text preprocessing** and **content validation**. The **real-time matching algorithm** was my biggest challenge - I had to learn how **ATS systems actually work** to provide accurate feedback. My initial keyword matching was too simplistic, missing synonyms and context. I had to build a **semantic similarity system** that understood that 'machine learning' and 'ML' are the same thing. The **prompt engineering** for consistent AI responses took weeks to perfect. Users needed actionable feedback, not generic advice. The most rewarding moment was when users started getting interview callbacks after using the tool. This project taught me that **AI tools need domain knowledge** to provide real value. The key insight? **Understanding the problem domain is as important as the technical implementation**",
+      "technologies": ["Python", "Streamlit", "Google Gemini AI", "PyPDF2", "API Integration", "Prompt Engineering", "PDF Processing", "Text Analysis", "Matching Algorithms"]
+    },
+    {
+      "title": "Text-to-SQL: When Natural Language Meets Databases",
+      "publish_date": "2025-05-27",
+      "url": "https://github.com/GoJo-Rika/Text-to-SQL-Using-Gemini-Pro",
+      "content": "My text-to-SQL converter was generating syntactically correct queries that returned empty results. The **95% accuracy** claim was misleading - the SQL was valid, but the logic was wrong. Users would ask 'show me customers from last month' and get results from last year. The challenge was teaching the AI to understand **database schema** and **business logic** simultaneously. I spent weeks building **comprehensive prompt templates** that included table relationships, data types, and business rules. The real breakthrough came when I implemented **query validation** and **result verification**. The **SQLite database** integration was straightforward, but making the AI understand **foreign key relationships** was complex. I had to provide extensive **schema documentation** in the prompts. The most frustrating part was handling **ambiguous queries** - users rarely ask precise questions. 'Show me sales' could mean today's sales, monthly sales, or sales by region. I learned to implement **clarification mechanisms** and **smart defaults**. The **error handling** system became crucial - users needed to understand why their query failed. This project taught me that **natural language interfaces need extensive domain knowledge**. The key lesson? **Context matters more tha",
+      "technologies": ["Python", "Google Gemini Pro API", "Streamlit", "SQLite", "Natural Language Processing", "REST APIs", "Database Design", "Text-to-SQL", "Query Optimization"]
+    },
+    {
+      "title": "Video AI Agent: When Multimodal Meets Complex",
+      "publish_date": "2025-06-15",
+      "url": "https://github.com/GoJo-Rika/Video-Summarizer",
+      "content": "Building a **video summarizer** that could also search the web sounded ambitious, and it was. My **agent-based architecture** was overly complex initially - I was trying to coordinate multiple AI models and web APIs without proper orchestration. The **Gemini 2.0 Flash** video processing was impressive but slow, and users were getting impatient. I had to implement **loading indicators** and **progress tracking** to manage expectations. The real challenge was **combining video insights** with **web search results** coherently. My first attempts produced disjointed summaries that read like random facts. The breakthrough came when I redesigned the **agent coordination** system to have proper **information flow**. The **DuckDuckGo API** integration was reliable, but managing **rate limits** and **search quality** required careful tuning. I learned that **agent systems need clear responsibilities** and **communication protocols**. The most satisfying moment was when the app started producing comprehensive analyses that users actually found valuable. This project taught me that **multimodal AI requires careful system design**. The key insight? **Complex systems need simple, clear interfaces**",
+      "technologies": ["Python", "Streamlit", "Google Gemini 2.0", "Agno Framework", "DuckDuckGo API", "Multimodal AI", "Agent Architecture", "Video Processing", "Workflow Orchestration"]
+    },
+    {
+      "title": "YouTube Summarizer: When APIs Don't Cooperate",
+      "publish_date": "2025-07-14",
+      "url": "https://github.com/GoJo-Rika/yt_transcriber",
+      "content": "My YouTube summarizer worked perfectly on my test videos, then failed spectacularly on real content. The **YouTube Transcript API** was more finicky than expected - many videos don't have transcripts, others have auto-generated gibberish. The **80% time reduction** only became reality after I implemented **robust error handling** and **fallback mechanisms**. My initial approach crashed whenever a video lacked proper transcripts. The breakthrough came when I learned to **validate transcript quality** before processing. The **Google Gemini Pro** summarization was inconsistent - some summaries were too technical, others too basic. I had to implement **adaptive prompting** based on video content type. The **rate limiting** on both APIs was a constant challenge during testing. I learned about **exponential backoff** and **request queuing** the hard way. The most frustrating part was handling **different video types** - educational content summarized well, but entertainment videos were hit-or-miss. I had to build **content classification** to adjust summarization strategies. This project taught me that **API integrations require defensive programming**. The key lesson? **Always have backup plans when dealing with external services**",
+      "technologies": ["Python", "Streamlit", "Google Generative AI SDK", "YouTube Transcript API", "Google Gemini Pro API", "Text Summarization", "Rate Limiting", "API Integration"]
+    }
+  ]
+}
