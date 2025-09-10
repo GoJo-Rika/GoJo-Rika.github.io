@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Info -->
+    <title>From Messy Data to Production MLOps: My Network Security Journey (Part 2) - Mit Patel</title>
+    <meta name="description" content="With a working local pipeline, the &#34;easy&#34; part was next: deployment. This turned into a multi-day AWS nightmare. After successfully automating the CI/CD...">
+    <meta name="author" content="Mit Patel">
+
+    <!-- Base URL to fix relative paths -->
+    <base href="../">
+
+    <!-- Open Graph Tags (for social media sharing) -->
+    <meta property="og:title" content="From Messy Data to Production MLOps: My Network Security Journey (Part 2)">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="127.0.0.1:5500/posts/from-messy-data-to-production-mlops-my-network-security-journey-part-2.html">
+    <meta property="og:image" content="127.0.0.1:5500/portfolio_media/photo_2.jpg">
+    <meta property="og:image:alt" content="Mit Patel Profile Image">
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Custom Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+          rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/modern_normalize.css" />
+    <link rel="stylesheet" href="css/html5bp.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/resume.css">
+    <link rel="stylesheet" href="css/post.css">
+
+    <!-- Icon & Favicon Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- ADD THIS LINE FOR THE TOOLBAR PLUGIN'S CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+
+    <!-- Set a theme color that matches your website's primary color -->
+    <meta name="theme-color" content="#fafafa">
+
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+
+    <!-- Apple touch icon for iOS devices -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
+
+    <!-- Web app manifest for Progressive Web Apps -->
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+    <header class="page-header">
+      <div class="container">
+        <div class="header-top flex-responsive">
+          <div class="header-info">
+            <h1>Mit Patel's Blog</h1>
+            <nav>
+              <ul class="inline-list flex-responsive">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="blog.html">Blog Home</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <div class="page-content">
+        <div class="container">
+            <!-- Main Article Content -->
+            <main class="post-content-main">
+              <h1>The Deployment Gauntlet: From <code>localhost</code> to Live on AWS (Part 2)</h1>
+
+<p>Welcome back! In <a href="link-to-your-part-1-blog-post.html">Part 1</a>, we laid the foundation for our MLOps project by building a modular, reproducible machine learning pipeline that worked flawlessly on a local machine. Now for the "easy" part, right? Taking that pristine local system and deploying it to the cloud.</p>
+
+<p>This is where theory meets the harsh, humbling reality of production infrastructure. This is the story of the deployment gauntlet.</p>
+
+<p><img src="posts_assets/network-architecture-diagram.jpg" alt="A diagram showing the overall project architecture including AWS services, MLflow, and the FastAPI application." /></p>
+
+<h2>The AWS Deployment Nightmare: When the Cloud Humbles You</h2>
+
+<p>If there's one part of this project that truly tested my resolve, it was the AWS deployment. The plan was simple: containerize the application with Docker, push it to AWS ECR, and run it on an EC2 instance, all automated with GitHub Actions.</p>
+
+<p>The reality? A multi-day debugging marathon. Setting up the self-hosted runner on EC2 was the first hurdle. The documentation makes it sound easy, but it involved countless cycles of configuring IAM permissions, installing Docker, and troubleshooting network settings just to get the runner to connect to GitHub.</p>
+
+<h2>The Great Connectivity Mystery: A Debugging Story</h2>
+
+<p>The most frustrating challenge arrived when the CI/CD pipeline finally ran successfully. Green checkmarks everywhere. The Docker container was running on EC2. All services appeared healthy. Yet, when I tried to access the FastAPI application from its public IP address... connection timeouts.</p>
+
+<p>The problem wasn't in my application code. It was a subtle, yet critical, detail of container networking. After hours of checking every layer—EC2 security groups, Docker port mappings, even the instance's firewall—I had a breakthrough. The FastAPI application was binding to <code>localhost</code> (<code>127.0.0.1</code>) by default, which means it would only accept connections from <em>within</em> the container itself.</p>
+
+<p>The fix was a single line of code, but the lesson was profound.</p>
+
+<pre><code># The critical configuration for a containerized web server
+if __name__ == "__main__":
+    # Binding to 0.0.0.0 tells the app to accept connections from any IP,
+    # including those from outside the Docker container.
+    uvicorn.run(app, host="0.0.0.0", port=8080)
+</code></pre>
+
+<p>This experience taught me that in the cloud, the problem is often not in your code, but in the complex interactions between the layers of infrastructure it runs on.</p>
+
+<h2>Automating Everything with a CI/CD Pipeline</h2>
+
+<p>With the connectivity mystery solved, I could finally appreciate the power of the CI/CD pipeline. The GitHub Actions workflow automated every step, from building the Docker image to deploying it on the self-hosted EC2 runner.</p>
+
+<pre><code># A snippet from the GitHub Actions workflow for deployment
+jobs:
+  Continuous-Deployment:
+    needs: build-and-push-ecr-image
+    runs-on: self-hosted # This job runs on our EC2 instance
+    steps:
+      - name: Pull latest image from ECR
+        run: docker pull ${{ secrets.AWS_ECR_LOGIN_URI }}/...
+
+      - name: Stop and remove old container if it exists
+        run: docker stop network_security || true &amp;&amp; docker rm network_security || true
+
+      - name: Run Docker Image to serve users
+        run: |
+          docker run -d -p 8080:8080 --name=network_security \
+            -e AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
+            # ... other environment variables
+            ${{ secrets.AWS_ECR_LOGIN_URI }}/...
+</code></pre>
+
+<p>This automation is the heart of MLOps. It ensures that every deployment is consistent, repeatable, and requires zero manual intervention.</p>
+
+<h2>Key Takeaways: Lessons for Future Projects</h2>
+
+<p>This project was challenging, frustrating, and ultimately one of the most rewarding things I've ever built. Here are the key lessons I'm taking with me:</p>
+
+<blockquote>
+  <p><strong>1. Modular architecture is not a luxury; it's a necessity.</strong> It is the foundation for a maintainable and debuggable system.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>2. Cloud deployment is an infrastructure challenge, not just a code challenge.</strong> You have to understand the entire stack, from IAM permissions to container networking.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>3. Invest in logging and exception handling from day one.</strong> When things break in production, good logs are the only thing that will save you.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>4. True MLOps is about automation.</strong> The goal is to build a system where a <code>git push</code> can safely and reliably trigger a new model deployment.</p>
+</blockquote>
+
+<p>The journey of building this MLOps pipeline taught me that the real value lies not just in the final working system, but in the deep, practical understanding gained through the struggle of building it from the ground up.</p>
+
+<p><strong>Want to dive into the code yourself? You can find the entire project, including a detailed README with setup instructions, on <a href="https://github.com/GoJo-Rika/Network-Security-System-MLOps-Project">my GitHub repository</a>.</strong></p>
+
+
+            
+
+            </main>
+
+            <!-- Sidebar with Post Info and Keywords -->
+            <aside>
+              <!-- Part of a series navigation -->
+              
+              <section class="series-navigation-sidebar">
+                <h4>This post is part of a series.</h4>
+                
+                <a href="posts/from-messy-data-to-production-mlops-my-network-security-journey-part-1.html" class="series-link">← Read Part 1</a>
+                
+                
+              </section>
+              
+
+
+            <!-- Post Information Section -->
+            <section>
+                <h2 class="section-heading">Post Information</h2>
+                <div class="competency-item-sidebar">
+                    <h3 class="competency-title-sidebar">From Messy Data to Production MLOps: My Network Security Journey (Part 2)</h3>
+                    <p class="section-label">Published on: 2025-06-19</p>
+                    
+                      <a href="https://github.com/GoJo-Rika/Network-Security-System-MLOps-Project" class="sidebar-button" target="_blank" rel="noopener noreferrer">
+                          <i class="fab fa-github"></i> View on GitHub
+                      </a>
+                    
+                </div>
+            </section>
+
+            <!-- Technologies & Keywords Section -->
+            <section>
+                <h2 class="section-heading">Technologies & Keywords</h2>
+                <div class="tech-stack">
+                    
+                        <span class="tag">Python</span>
+                    
+                        <span class="tag">MLflow</span>
+                    
+                        <span class="tag">Dagshub</span>
+                    
+                        <span class="tag">AWS EC2</span>
+                    
+                        <span class="tag">AWS ECR</span>
+                    
+                        <span class="tag">AWS S3</span>
+                    
+                        <span class="tag">Scikit-learn</span>
+                    
+                        <span class="tag">MongoDB</span>
+                    
+                        <span class="tag">FastAPI</span>
+                    
+                        <span class="tag">Docker</span>
+                    
+                        <span class="tag">GitHub Actions</span>
+                    
+                    
+                        <span class="tag">CI/CD automation</span>
+                    
+                        <span class="tag">Schema Validation</span>
+                    
+                        <span class="tag">Experiment Tracking</span>
+                    
+                        <span class="tag">Modular Pipeline Architecture</span>
+                    
+                        <span class="tag">Production-ready MLOps Pipeline</span>
+                    
+                        <span class="tag">Automated Threat Detection</span>
+                    
+                        <span class="tag">End-to-End ML Lifecycle Management</span>
+                    
+                        <span class="tag">Real-Time Prediction API</span>
+                    
+                        <span class="tag">Drift Detection Capabilities</span>
+                    
+                        <span class="tag">Automated Model Retraining</span>
+                    
+                </div>
+            </section>
+            </aside>
+
+            <!-- Add this navigation block inside the container, after the <aside> -->
+            <nav class="post-navigation">
+            <!-- OLDER POST LINK LOGIC -->
+            
+                <!-- If this is Part 2, the "Older" link MUST be Part 1 -->
+                <a href="posts/from-messy-data-to-production-mlops-my-network-security-journey-part-1.html" class="nav-link prev-link">
+                    <span class="arrow">←</span>
+                    <span class="nav-text">
+                        <span class="nav-label">Read Part 1</span>
+                        From Messy Data to Production MLOps: My Network Security Journey
+                    </span>
+                </a>
+            
+
+            <!-- NEWER POST LINK LOGIC -->
+            
+            </nav>
+
+        </div>
+    </div>
+
+    <footer class="page-footer">
+      <div class="container">
+        <p>© 2025 Mit Patel. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Prism JS for Code Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+
+    <!-- ADD THIS LINE TO LOAD THE PYTHON LANGUAGE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <!-- ADD THIS LINE for the Toolbar Plugin's JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+
+    <!-- ADD THIS LINE FOR THE COPY BUTTON PLUGIN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+    <!-- ===== Style Switcher Start ===== -->
+    <div class="theme-toggle-container">
+        <div id="theme-toggle-icon" class="theme-icon">
+            <i class="fas"></i>
+        </div>
+    </div>
+    <!-- ===== Style Switcher End ===== -->
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
