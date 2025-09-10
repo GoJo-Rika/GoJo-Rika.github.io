@@ -1,13 +1,37 @@
+/* 1. DEFINE COLOR VARIABLES */
 :root {
+  --bg-color: #ffffff;
+  --text-color: #222;
+  --header-footer-bg-color: #f0f0f0;
+  --card-bg-color: #f9f9f9;
+  --border-color: #ccc;
   --link-color: #0077cc;
   --link-color-hover: #00487c;
-  --header-footer-bg-color: #f0f0f0;
   --aside-accent-color: #9d836b;
+  --tag-bg-color: #e0e0e0;
+  --tag-text-color: #333;
+  --code-bg-color: #2d2d2d; /* The dark grey for light mode */
+  --code-text-color: #f4f4f4; /* The dark grey for dark mode */
   --skill-bar-fill-color: #f3e4c6;
   --blockquote-bg-color: #f7fafc;
   --blockquote-accent-color: #4a5568;
   --blockquote-text-color: #4a5568;
   --spacing-inline: 0.5rem;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --header-footer-bg-color: #1e1e1e;
+  --card-bg-color: #2a2a2a;
+  --border-color: #444;
+  --link-color: #66bfff;
+  --link-color-hover: #99d6ff;
+  --aside-accent-color: #bfa895;
+  --tag-bg-color: #3a3a3a;
+  --tag-text-color: #e0e0e0;
+  --code-bg-color: #f4f4f4; /* A light grey for dark mode */
+  --code-text-color: #2d2d2d; /* The light grey for light mode */
 }
 
 /* Base Styles */
@@ -18,6 +42,9 @@ body {
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 1.05rem;
 }
 
 h1,
@@ -101,7 +128,7 @@ header {
 }
 
 aside {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--border-color);
 }
 
 footer {
@@ -139,11 +166,13 @@ section {
 
 .page-header,
 .page-footer {
-  background: var(--header-footer-bg-color);
+  background-color: var(--header-footer-bg-color);
+  color: var(--text-color); /* This ensures text in header/footer also changes color */
+  border-color: var(--border-color);
 }
 
 .page-header {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .page-header .container {
@@ -176,7 +205,7 @@ section {
 
 .header-label {
   font-size: 1.3rem;
-  color: #444;
+  color: var(--text-color);
   margin-top: 0.2rem;
   margin-bottom: 0.8rem;
 }
@@ -186,7 +215,7 @@ section {
 }
 
 .page-footer {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--border-color);
 }
 
 .section-heading {
@@ -200,14 +229,14 @@ section {
 .section-heading::after {
   content: "";
   flex: 1;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--border-color);
   margin: 0 1rem;
 }
 
 aside .section-heading {
   align-items: flex-start;
   text-align: left;
-  border-left: 4px solid var(--aside-accent-color);
+  border-left: 1px solid var(--border-color);
   padding-left: 0.5rem;
   margin-bottom: 0.75rem;
 }
@@ -438,6 +467,7 @@ blockquote {
 
   .header-info {
     margin-top: 0.5rem;
+    padding-top: 1rem;
   }
 
   .page-header ul {
@@ -478,8 +508,8 @@ blockquote {
 
 .tag {
     display: inline-block;
-    background: #e0e0e0;
-    color: #333;
+    background: var(--tag-bg-color); 
+    color: var(--tag-text-color);
     padding: 5px 10px;
     margin-right: 5px;
     margin-bottom: 5px;
@@ -554,8 +584,8 @@ blockquote {
 }
 
 .competency-item {
-  background-color: #f9f9f9;
-  border: 1px solid #eee;
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--border-color);
   border-left: 4px solid #3498db; /* Uses the accent color from your theme */
   padding: 1.25rem;
   border-radius: 4px;
@@ -568,30 +598,171 @@ blockquote {
 }
 
 .competencies-sidebar {
+  color: var(--text-color); 
   /* This class is a container, no special styles needed */
 }
 
 .competency-item-sidebar {
-  background-color: #f9f9f9;
+  /* APPLY THEME COLORS */
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--aside-accent-color);
+  
+  /* Keep existing layout styles */
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   border-radius: 3px;
-  border: 1px solid #eee;
-  /* Using the existing accent color for consistency */
-  border-left: 4px solid #3498db;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .competency-title-sidebar {
+  color: var(--text-color); /* Ensure title text changes color */
   font-size: 1rem;
   font-weight: 600;
-  color: #333;
   margin: 0 0 0.25rem 0;
 }
 
 .competency-description-sidebar {
-  font-size: 0.85rem; /* Slightly smaller text for the sidebar */
-  color: #555;
+  color: var(--text-color); /* Ensure description text changes color */
+  opacity: 0.9;
+  font-size: 0.85rem;
   line-height: 1.4;
   margin: 0;
+}
+
+/* Styling for new homepage sections */
+.reading-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.reading-list li {
+  margin-bottom: 0.75rem;
+  padding-left: 0;
+}
+
+.sidebar-hr {
+  border: 0;
+  border-top: 1px solid var(--border-color, #ccc);
+  margin: 0.75rem 0;
+}
+
+.competency-item-sidebar p {
+    margin: 0.5rem 0;
+}
+
+/* STYLE THE TOGGLE SWITCH */
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+.theme-switch {
+  display: inline-block;
+  height: 24px;
+  position: relative;
+  width: 48px;
+}
+.theme-switch input {
+  display: none;
+}
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+  /* Sun icon for light mode */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23f2c500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+input:checked + .slider {
+  background-color: var(--link-color);
+}
+input:checked + .slider:before {
+  transform: translateX(24px);
+  /* Moon icon for dark mode */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>');
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* ===== FLOATING THEME TOGGLE ICON ===== */
+.theme-toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000; /* Ensures it stays on top of other content */
+}
+
+.theme-icon {
+  width: 45px;
+  height: 45px;
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+  
+  /* Center the icon inside the circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 20px;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.theme-icon:hover {
+  transform: scale(1.1) rotate(360deg);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.project-summary, 
+.blog-post p {
+    font-size: 1rem; /* Make summary text slightly larger */
+    line-height: 1.7; /* Improve line spacing for readability */
+    opacity: 0.9;       /* Slightly reduce contrast for softer text */
+}
+
+/* --- Social Icon Styling --- */
+.link-with-icon {
+  display: inline-flex; /* Use inline-flex for better alignment */
+  align-items: center;
+  gap: 0.5rem; /* Increased gap slightly for better spacing */
+}
+
+.social-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;  /* Define a fixed width */
+  height: 16px; /* Define a fixed height */
+}
+
+/* This is the key: it targets any SVG inside our wrapper */
+.social-icon-wrapper svg {
+  width: 100%;  /* Make the SVG fill the wrapper */
+  height: 100%; /* Make the SVG fill the wrapper */
+  fill: currentColor; /* Make the SVG inherit the link color */
 }
