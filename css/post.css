@@ -1,0 +1,229 @@
+/* Main content area for the article */
+.post-content-main {
+    padding: 2rem;
+}
+
+/* Headings within the article */
+.post-content-main h1 {
+    font-size: 2.5rem; /* Main title of the article if used */
+    margin: 0 0 1rem 0;
+}
+.post-content-main h2 {
+    border-bottom: 1px solid var(--border-color);
+    /* Other heading styles remain the same */
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    padding-bottom: 0.5rem;
+}
+.post-content-main h3 {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+}
+
+/* Paragraphs */
+.post-content-main p {
+    line-height: 1.7;
+}
+
+/* For Unordered Lists (bullet points) */
+.post-content-main ul {
+    list-style-type: disc;
+    padding-left: 40px;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+.post-content-main li {
+    margin-bottom: 0.5em;
+    padding-left: 5px;
+}
+
+/* For Code Blocks (already uses dark background, let's refine for light theme) */
+.post-content-main pre {
+    background-color: var(--code-bg-color); /* This stays dark for contrast in both themes */
+    color: var(--code-text-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin: 1.5em 0;
+}
+
+.post-content-main pre code {
+    padding: 0;
+    background: none;
+    color: inherit;
+}
+
+/* For inline code snippets, now theme-aware */
+.post-content-main p > code, .post-content-main li > code {
+    background-color: var(--tag-bg-color); /* Use the tag background color */
+    color: var(--tag-text-color); /* Use the tag text color */
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* For images */
+.post-content-main img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 2em 0;
+}
+
+/* Ensure the tags in the sidebar stack nicely */
+aside .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* ===== PREVIOUS / NEXT POST NAVIGATION ===== */
+.post-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  grid-column: 1 / -1; /* This makes it span both columns */
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 48%;
+  text-decoration: none;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-color) !important;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--card-bg-color);
+  border-color: var(--link-color);
+}
+
+.nav-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-label {
+  font-size: 0.8em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 0.25rem;
+}
+
+.arrow {
+  font-size: 2rem;
+  color: var(--link-color);
+}
+
+.next-link {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+/* ===== PRISMJS COPY-TO-CLIPBOARD BUTTON STYLING ===== */
+div.code-toolbar {
+  position: relative;
+}
+
+div.code-toolbar > .toolbar {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+div.code-toolbar:hover > .toolbar {
+  opacity: 1;
+}
+
+.toolbar-item > .copy-to-clipboard-button {
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  background: #555;
+  color: #f0f0f0;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-family: sans-serif;
+  font-size: 0.8em;
+  transition: background-color 0.2s;
+}
+
+.toolbar-item > .copy-to-clipboard-button:hover {
+  background-color: #777;
+}
+
+.toolbar-item > .copy-to-clipboard-button:active {
+  background-color: var(--link-color);
+}
+
+.toolbar-item > .copy-to-clipboard-button[data-copy-state="copy"]::after {
+  content: 'Copy';
+}
+
+.toolbar-item > .copy-to-clipboard-button[data-copy-state="copied"]::after {
+  content: 'Copied!';
+}
+
+/* ===== GITHUB BUTTON IN POST SIDEBAR ===== */
+.sidebar-button {
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box; /* Ensures padding is included in the width */
+  margin-top: 1rem;
+  padding: 10px 15px;
+  background-color: var(--card-bg-color);
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.sidebar-button:hover {
+  background-color: var(--bg-color);
+  border-color: var(--link-color);
+  color: var(--link-color) !important;
+}
+
+.sidebar-button .fa-github {
+  margin-right: 0.5rem;
+}
+
+/* ===== BLOG POST SERIES BOX IN SIDEBAR ===== */
+.series-navigation-sidebar {
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    text-align: center;
+    border-left: 4px solid var(--aside-accent-color);
+}
+
+.series-navigation-sidebar h4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.series-navigation-sidebar .series-link {
+    display: block; /* Stack the links vertically if both are present */
+    margin: 0.5rem 0;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--link-color) !important;
+}
