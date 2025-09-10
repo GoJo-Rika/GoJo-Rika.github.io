@@ -1,12 +1,23 @@
 import json
+import os
 from datetime import UTC, datetime
 from pathlib import Path
 
+import markdown2
 from jinja2 import Environment, FileSystemLoader
+import re
+
+def slugify(text):
+    text = text.lower()
+    # Replace spaces and underscores with hyphens
+    text = re.sub(r'[\s_]+', '-', text)
+    # Remove all non-alphanumeric characters except hyphens
+    text = re.sub(r'[^a-z0-9-]', '', text)
+    return text
 
 
 def markdown_to_html(text):
-    # Replace **text** with <strong>text</strong>
+    # This function is now used for the main blog summaries
     import re
 
     text = re.sub(r"\*\*(.*?)\*\*", r"<strong>\1</strong>", text)
@@ -34,31 +45,96 @@ if "social_links" in data:
             with Path(link["svg_path"]).open(encoding="utf-8") as svg_file:
                 link["svg_data"] = svg_file.read()
 
-# Set up Jinja environment
 env = Environment(loader=FileSystemLoader("."), autoescape=True)
-index_template = env.get_template("index_template.html")
-resume_template = env.get_template("resume_template.html")
-blog_template = env.get_template("blog_template.html")
 
 env.filters["markdown_to_html"] = markdown_to_html
 env.filters["markdown_to_html_resume"] = markdown_to_html_resume
 
-# Sort the blog posts by publish date
-data["blogs"].sort(
-    key=lambda x: datetime.strptime(x["publish_date"], "%Y-%m-%d"), reverse=True
+# Set up Jinja environment
+# env = Environment(loader=FileSystemLoader("."), autoescape=True)
+index_template = env.get_template("index_template.html")
+resume_template = env.get_template("resume_template.html")
+blog_template = env.get_template("blog_template.html")
+post_template = env.get_template("post_template.html") # <-- Load the new post template
+contact_template = env.get_template("contact_template.html")
+projects_template = env.get_template("projects_template.html")
+tech_stack_template = env.get_template("tech_stack_template.html")
+
+# env.filters["markdown_to_html"] = markdown_to_html
+# env.filters["markdown_to_html_resume"] = markdown_to_html_resume
+
+# Create a directory for the output blog post files if it doesn't exist
+Path("posts").mkdir(exist_ok=True)
+
+# 1. First, add a slug to EVERY post object
+for post in data.get("blogs", []):
+    post['slug'] = slugify(post['title'])
+
+# 2. NOW, sort all blog posts by date
+blog_posts = sorted(
+    data.get("blogs", []),
+    key=lambda x: datetime.strptime(x["publish_date"], "%Y-%m-%d"),
+    reverse=True
 )
+
+# 3. Now that every post has a slug, add previous/next post information
+for i, post in enumerate(blog_posts):
+    post['next_post'] = None
+    post['previous_post'] = None
+    if i + 1 < len(blog_posts):
+        post['next_post'] = blog_posts[i + 1]
+    if i > 0:
+        post['previous_post'] = blog_posts[i - 1]
+
+# 4. Finally, process each post to create its HTML file
+for post in blog_posts:
+    if "markdown_file" in post and post["markdown_file"]:
+        md_filepath = Path("blog_posts") / post["markdown_file"]
+
+        if md_filepath.exists():
+            with md_filepath.open("r", encoding="utf-8") as f:
+                markdown_content = f.read()
+            post['detailed_content'] = markdown2.markdown(
+                markdown_content, extras=["fenced-code-blocks", "code-friendly"]
+            )
+
+            post_output = post_template.render(post=post, **data)
+            output_path = Path("posts") / f"{post['slug']}.html"
+            with output_path.open("w", encoding="utf-8") as f:
+                f.write(post_output)
+        else:
+            print(f"Warning: Markdown file not found for blog '{post['title']}': {md_filepath}")
+
+# Update the main data dictionary with the sorted and processed posts
+data['blogs'] = blog_posts
 
 # Render the template with the data
 html_output = index_template.render(**data)
 resume_output = resume_template.render(**data)
-blog_output = blog_template.render(**data)
+projects_output = projects_template.render(**data)
 
 
-# This is equivalent to...
-# html_output = index_template.render(name=data["name"], label=data["label"]...)
-# resume_output = resume_template.render(name=data["name"], label=data["label"]...)
-# blog_output = blog_template.render(name=data["name"], label=data["label"]...)
+# Collect all unique tags from all blog posts
+all_tags = set()
+for post in data.get("blogs", []):
+    # We need to add the slugify function call here as well for the links to work
+    for tech in post.get("core_technologies", []):
+        all_tags.add(tech)
 
+# Convert set to a sorted list for consistent order
+sorted_tags = sorted(list(all_tags))
+
+
+# Find and update the line below to pass the new 'tags' variable
+blog_output = blog_template.render(tags=sorted_tags, **data)
+
+# blog_output = blog_template.render(**data)
+
+# Render the new contact page
+contact_output = contact_template.render(**data)
+
+# Render the new tech stack page
+tech_stack_output = tech_stack_template.render(**data)
 
 # Write the output to an HTML file
 with Path("index.html").open("w", encoding="utf-8") as f:
@@ -70,9 +146,17 @@ with Path("resume.html").open("w", encoding="utf-8") as f:
 with Path("blog.html").open("w", encoding="utf-8") as f:
     f.write(blog_output)
 
+with Path("contact.html").open("w", encoding="utf-8") as f:
+    f.write(contact_output)
+
+with Path("projects.html").open("w", encoding="utf-8") as f:
+    f.write(projects_output)
+
+with Path("tech-stack.html").open("w", encoding="utf-8") as f:
+    f.write(tech_stack_output)
 
 print("HTML files generated successfully!")
-
+print("Individual blog posts have been generated in the 'posts' directory.")
 
 # There are 18 keys in the JSON data that are used in the templates:
 # name
