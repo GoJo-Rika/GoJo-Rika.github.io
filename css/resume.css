@@ -45,7 +45,7 @@ aside {
 
 .page-header,
 .page-footer {
-  background: #fff;
+  background: var(--header-footer-bg-color)
 }
 
 .flex-responsive {
@@ -57,7 +57,7 @@ aside {
 
 aside {
   border-top: none;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid var(--border-color);
 }
 
 aside h1 {
@@ -105,5 +105,26 @@ aside h6 {
 .inline-list li:not(:last-child)::after {
   content: "|";
   margin-left: var(--spacing-inline);
-  color: #ccc;
+  color: var(--tag-text-color);
+}
+
+/* Updated Styling for the Download PDF Button in the Sidebar */
+.download-button {
+  display: block; /* Change to block to allow full width */
+  width: 100%; /* Make it fill the sidebar width */
+  box-sizing: border-box; /* Ensures padding is included in the width */
+  margin-bottom: 2rem; /* Add space between the button and the section below */
+  padding: 12px 20px;
+  background-color: var(--link-color, #0077cc);
+  color: #fff !important;
+  text-decoration: none;
+  text-align: center; /* Center the text inside the button */
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.download-button:hover {
+  background-color: var(--link-color-hover, #00487c);
+  text-decoration: none;
 }
