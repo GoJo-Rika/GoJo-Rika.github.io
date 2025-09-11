@@ -320,7 +320,7 @@
   "blogs": [
     {
       "title": "From Messy Data to Production MLOps: My Network Security Journey (Part 1)",
-      "publish_date": "2025-06-18",
+      "publish_date": "2025-09-09",
       "github_url": "https://github.com/GoJo-Rika/Network-Security-System-MLOps-Project",
       "markdown_file": "network_security_blog_part_1_pipeline_foundation.md",
       "next_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-2",
@@ -330,7 +330,7 @@
     },
     {
       "title": "From Messy Data to Production MLOps: My Network Security Journey (Part 2)",
-      "publish_date": "2025-06-19",
+      "publish_date": "2025-09-09",
       "github_url": "https://github.com/GoJo-Rika/Network-Security-System-MLOps-Project",
       "markdown_file": "network_security_blog_part_2_cloud_deployment.md",
       "previous_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-1",
