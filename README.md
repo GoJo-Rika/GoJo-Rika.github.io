@@ -104,3 +104,7 @@ This project is a continuous work in progress. Here are some of the features and
     *   Add more projects to the `json` file.
     *   Write more technical blog posts.
     *   Continue to expand and refine the `tech_stack` with new skills.
+
+*   `[ ]` **Update architecture diagram link in markdown file**
+    * by simply adding `../` or `/` should work on local system, but that does not solve the problem in static `html` page
+    * the current approach solves the issue for `html` page but when previewing the `markdown` file, the **image** is not shown (both in **local** as well as in **github repos**)
