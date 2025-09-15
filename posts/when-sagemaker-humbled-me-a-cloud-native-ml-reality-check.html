@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Info -->
+    <title>When SageMaker Humbled Me: A Cloud-Native ML Reality Check - Mit Patel</title>
+    <meta name="description" content="I thought taking a scikit-learn model to the cloud would be simple, but AWS SageMaker taught me more about cloud architecture and DevOps than I ever...">
+    <meta name="author" content="Mit Patel">
+
+    <!-- Base URL to fix relative paths -->
+    <base href="../">
+
+    <!-- Open Graph Tags (for social media sharing) -->
+    <meta property="og:title" content="When SageMaker Humbled Me: A Cloud-Native ML Reality Check">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="127.0.0.1:5500/posts/when-sagemaker-humbled-me-a-cloud-native-ml-reality-check.html">
+    <meta property="og:image" content="127.0.0.1:5500/portfolio_media/photo_2.jpg">
+    <meta property="og:image:alt" content="Mit Patel Profile Image">
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Custom Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+          rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/modern_normalize.css" />
+    <link rel="stylesheet" href="css/html5bp.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/resume.css">
+    <link rel="stylesheet" href="css/post.css">
+
+    <!-- Icon & Favicon Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- ADD THIS LINE FOR THE TOOLBAR PLUGIN'S CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+
+    <!-- Set a theme color that matches your website's primary color -->
+    <meta name="theme-color" content="#fafafa">
+
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+
+    <!-- Apple touch icon for iOS devices -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
+
+    <!-- Web app manifest for Progressive Web Apps -->
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+    <header class="page-header">
+      <div class="container">
+        <div class="header-top flex-responsive">
+          <div class="header-info">
+            <h1>Mit Patel's Blog</h1>
+            <nav>
+              <ul class="inline-list flex-responsive">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="blog.html">Blog Home</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <div class="page-content">
+        <div class="container">
+            <!-- Main Article Content -->
+            <main class="post-content-main">
+              <h1>My Journey into Cloud ML: From Local Scripts to a Deployed SageMaker Pipeline</h1>
+
+<p>I had a simple goal: take a Random Forest model I’d built locally and deploy it on AWS SageMaker. I knew scikit-learn, I knew Python, and I thought I understood machine learning. How hard could it be?</p>
+
+<p>As it turns out, the journey from a local script to a deployed cloud endpoint is less about machine learning and more about mastering a new way of thinking. It was a challenging, often frustrating, and ultimately transformative experience that taught me invaluable lessons about cloud architecture, DevOps, and what it truly means to build a production-ready system. This is the story of that journey—the roadblocks, the "aha!" moments, and the mental model that finally made it all click.</p>
+
+<h3>The Foundational Hurdles: More DevOps than Data Science</h3>
+
+<p>Before I could even write a single line of ML code, I hit a wall: the AWS setup. My first few days were a humbling lesson in humility, spent deep in the AWS console, battling permissions and configurations.</p>
+
+<p><strong>My IAM Role Nightmare</strong></p>
+
+<p>My first major roadblock was the IAM (Identity and Access Management) role. The documentation casually mentioned a "SageMaker execution role," but I spent a weekend debugging cryptic <code>AccessDeniedException</code> errors. My training jobs couldn't read data from my S3 bucket, and I couldn’t figure out why.</p>
+
+<p>The breakthrough came when I stopped thinking of permissions as a simple checklist and started seeing them as a conversation between services. The SageMaker role isn’t just for my code; it’s an identity that SageMaker <em>assumes</em> to act on my behalf. It needs permission to talk to S3 to get data, to CloudWatch to write logs, and to EC2 to manage the training instances. Once I created a role with the <code>AmazonSageMakerFullAccess</code> policy, everything started working. Lesson learned: cloud security isn't just a gate; it's the language every service uses to communicate.</p>
+
+<h3>The Architectural Shift: Bridging Local Code and Cloud Execution</h3>
+
+<p>The biggest conceptual leap was understanding SageMaker's decoupled architecture. My first attempt at a training script was naive, assuming my data was in the same directory:</p>
+
+<pre><code># My naive first attempt - This doesn't work in SageMaker!
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+
+# Fails because SageMaker doesn't know where "train-V-1.csv" is
+train_df = pd.read_csv("train-V-1.csv") 
+# ... training logic ...
+</code></pre>
+
+<p>This fails completely. The breakthrough was realizing I had to structure my code to accept instructions from the SageMaker environment. The new, SageMaker-compatible script uses <code>argparse</code> to read paths that SageMaker provides as environment variables.</p>
+
+<pre><code># The SageMaker-compatible approach
+import argparse
+import os
+import pandas as pd
+from pathlib import Path
+
+# --- SageMaker Environment Variables ---
+parser = argparse.ArgumentParser()
+parser.add_argument("--model-dir", type=str, default=os.environ.get("SM_MODEL_DIR"))
+parser.add_argument("--train", type=str, default=os.environ.get("SM_CHANNEL_TRAIN"))
+args, _ = parser.parse_known_args()
+
+# Now the script can find the data SageMaker has downloaded
+train_df = pd.read_csv(Path(args.train) / "train-V-1.csv")
+# ... training logic ...
+</code></pre>
+
+<p>Another critical lesson was model persistence. Training happens in a temporary container that is destroyed afterward. To save my model, I couldn't just save it to a local path. I had to use the special model directory provided by SageMaker, which ensures the final artifact is captured and uploaded to S3.</p>
+
+<pre><code># This ensures the model is saved and persisted by SageMaker
+import joblib
+from pathlib import Path
+
+# args.model_dir is /opt/ml/model inside the SageMaker container
+model_path = Path(args.model_dir) / "model.joblib"
+joblib.dump(model, model_path)
+</code></pre>
+
+<p>The key was to structure my project into two distinct parts: an <strong>orchestrator</strong> and a <strong>training script</strong>.</p>
+
+<ol>
+<li><p><strong>The Orchestrator (<code>research.ipynb</code>)</strong>: This notebook became my control panel. It uses the SageMaker Python SDK to manage the entire process—uploading data to S3, defining the training job, and deploying the endpoint. It doesn’t do any of the actual model training itself; it just tells SageMaker what to do.</p></li>
+<li><p><strong>The Training Script (<code>script.py</code>)</strong>: This is where the core ML logic lives. It’s a standard Python script that loads data, trains a model, and saves the output. The magic is how it gets its instructions. Instead of hardcoding file paths, it uses <code>argparse</code> to read them from the command line.</p></li>
+</ol>
+
+<p>This separation initially felt awkward, but I soon realized its power. SageMaker acts as the bridge between the two. When I call <code>.fit()</code> in my notebook, SageMaker does the following:</p>
+
+<ul>
+<li>Spins up a fresh, clean EC2 instance.</li>
+<li>Downloads my <code>script.py</code> and the training data from S3 onto the instance.</li>
+<li>Executes <code>script.py</code>, passing the S3 data paths and hyperparameters as command-line arguments.</li>
+<li>Monitors the script, captures the logs, and streams them to CloudWatch.</li>
+<li>Finally, it takes the trained model artifact my script saves, packages it into a <code>model.tar.gz</code> file, and uploads it back to S3.</li>
+</ul>
+
+<h3>Bringing it to Life: Training, Deployment, and Inference</h3>
+
+<p>With the architecture in place, the rest of the process felt like watching a perfectly orchestrated symphony.</p>
+
+<p><strong>Kicking Off the Training Job</strong></p>
+
+<p>Watching the training job logs in CloudWatch was a revelation. I could see the instance being prepared, my script being invoked, and the scikit-learn model training progress in real-time. The verbose output from my script, which felt unnecessary locally, was now my lifeline for debugging.</p>
+
+<p><strong>From Saved Model to Live Endpoint</strong></p>
+
+<p>Once the training job completed, the trained model was waiting for me in S3. Deploying it was astonishingly simple. The <code>.deploy()</code> method took that model artifact and provisioned a fully managed HTTPS endpoint, handling everything from the underlying server provisioning to the REST API setup. </p>
+
+<p>The code to make this happen is deceptively straightforward:</p>
+
+<pre><code># Deploys the trained model to a real-time HTTPS endpoint
+predictor = model.deploy(
+    initial_instance_count=1, 
+    instance_type="ml.m4.xlarge"
+)
+</code></pre>
+
+<p>In a matter of minutes, I had a scalable, real-time prediction service. I could send it new phone data as a JSON payload and get a price classification back instantly. To avoid unnecessary costs, I learned the importance of the final, critical step: tearing down the endpoint once my work was done.</p>
+
+<h3>Hard-Won Lessons: The SageMaker Mental Model</h3>
+
+<p>This project fundamentally changed how I view ML development. Here are the key lessons that I will carry with me to every future project:</p>
+
+<ol>
+<li><strong>Embrace Cloud-Native Patterns:</strong> Don't fight the framework. SageMaker is designed around a decoupled pattern of orchestration and execution. Leaning into this by using argument parsing and environment variables makes your code more modular, scalable, and easier to debug.</li>
+<li><strong>Your Notebook is a Control Panel, Not a Lab:</strong> The primary role of the notebook in a cloud workflow is to orchestrate, not to execute. Do your heavy lifting and experimentation in the notebook, but once the logic is stable, move it to a clean, dependency-managed script.</li>
+<li><strong>Log Everything:</strong> In a distributed system, logs are your eyes and ears. The print statements and verbose outputs that feel like noise in local development are your most valuable debugging tools in the cloud.</li>
+<li><strong>Start Simple and Build Incrementally:</strong> My biggest mistake was trying to build everything at once. The key to success was to get each piece working in isolation first: verify data uploads to S3, test the training script locally, and then integrate them with a SageMaker training job.</li>
+</ol>
+
+<p>This journey was about far more than just classifying mobile phone prices. It was about building the mental model required for modern, cloud-based machine learning. The initial struggles weren't setbacks; they were the necessary steps to understanding a more powerful and scalable way to build AI systems.</p>
+
+
+            
+
+            </main>
+
+            <!-- Sidebar with Post Info and Keywords -->
+            <aside>
+              <!-- Part of a series navigation -->
+              
+
+
+            <!-- Post Information Section -->
+            <section>
+                <h2 class="section-heading">Post Information</h2>
+                <div class="competency-item-sidebar">
+                    <h3 class="competency-title-sidebar">When SageMaker Humbled Me: A Cloud-Native ML Reality Check</h3>
+                    <p class="section-label">Published on: 2025-09-15</p>
+                    
+                      <a href="https://github.com/GoJo-Rika/aws-sagemaker" class="sidebar-button" target="_blank" rel="noopener noreferrer">
+                          <i class="fab fa-github"></i> View on GitHub
+                      </a>
+                    
+                </div>
+            </section>
+
+            <!-- Technologies & Keywords Section -->
+            <section>
+                <h2 class="section-heading">Technologies & Keywords</h2>
+                <div class="tech-stack">
+                    
+                        <span class="tag">AWS</span>
+                    
+                        <span class="tag">AWS SageMaker</span>
+                    
+                        <span class="tag">Scikit-learn</span>
+                    
+                        <span class="tag">AWS S3</span>
+                    
+                        <span class="tag">Python</span>
+                    
+                        <span class="tag">MLOps</span>
+                    
+                        <span class="tag">CloudWatch</span>
+                    
+                    
+                        <span class="tag">AWS</span>
+                    
+                        <span class="tag">Amazon SageMaker</span>
+                    
+                        <span class="tag">AWS S3</span>
+                    
+                        <span class="tag">IAM</span>
+                    
+                        <span class="tag">Cloud ML</span>
+                    
+                        <span class="tag">MLOps</span>
+                    
+                        <span class="tag">Machine Learning</span>
+                    
+                        <span class="tag">Scikit-learn</span>
+                    
+                        <span class="tag">Random Forest</span>
+                    
+                        <span class="tag">Model Deployment</span>
+                    
+                        <span class="tag">ML Pipeline</span>
+                    
+                        <span class="tag">Boto3</span>
+                    
+                        <span class="tag">SageMaker SDK</span>
+                    
+                        <span class="tag">Cloud Computing</span>
+                    
+                        <span class="tag">Data Science</span>
+                    
+                        <span class="tag">Endpoint Deployment</span>
+                    
+                        <span class="tag">Cloud-native Architecture</span>
+                    
+                        <span class="tag">Model Versioning</span>
+                    
+                        <span class="tag">Model Registry</span>
+                    
+                </div>
+            </section>
+            </aside>
+
+            <!-- Add this navigation block inside the container, after the <aside> -->
+            <nav class="post-navigation">
+            <!-- OLDER POST LINK LOGIC -->
+            
+                <!-- Otherwise, link to the chronologically older post (standard behavior) -->
+                <a href="posts/from-notebook-to-ui-the-web-deployment-journey-part-2.html" class="nav-link prev-link">
+                    <span class="arrow">←</span>
+                    <span class="nav-text">
+                        <span class="nav-label">Older Post</span>
+                        From Notebook to UI: The Web Deployment Journey (Part 2)
+                    </span>
+                </a>
+            
+
+            <!-- NEWER POST LINK LOGIC -->
+            
+            </nav>
+
+        </div>
+    </div>
+
+    <footer class="page-footer">
+      <div class="container">
+        <p>© 2025 Mit Patel. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Prism JS for Code Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+
+    <!-- ADD THIS LINE TO LOAD THE PYTHON LANGUAGE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <!-- ADD THIS LINE for the Toolbar Plugin's JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+
+    <!-- ADD THIS LINE FOR THE COPY BUTTON PLUGIN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+    <!-- ===== Style Switcher Start ===== -->
+    <div class="theme-toggle-container">
+        <div id="theme-toggle-icon" class="theme-icon">
+            <i class="fas"></i>
+        </div>
+    </div>
+    <!-- ===== Style Switcher End ===== -->
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
