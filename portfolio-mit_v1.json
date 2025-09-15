@@ -14,6 +14,7 @@
     "Flask": { "icon": "tech_icons/flask.svg" },
     "AWS EC2": { "icon": "tech_icons/aws-ec2.svg" },
     "AWS S3": { "icon": "tech_icons/aws-s3.svg" },
+    "AWS SageMaker": { "icon": "tech_icons/aws-sagemaker.svg" },
     "AWS ECR": { "icon": "tech_icons/aws-ecr.svg" },
     "Bash": { "icon": "tech_icons/bash.svg" },
     "Git": { "icon": "tech_icons/git.svg" },
@@ -39,7 +40,15 @@
       "technologies": ["PyTorch", "FastAPI", "Flask", "torchvision", "Python", "TensorBoard"],
       "github_url": "https://github.com/GoJo-Rika/PyTorch-FoodVision-Mini",
       "live_demo_url": null
-    }    
+    },
+    {
+      "title": "AWS SageMaker ML Pipeline",
+      "image": "tech_icons/aws-sagemaker.svg",
+      "summary": "An end-to-end ML pipeline built on AWS SageMaker to demonstrate a real-world, cloud-native workflow. This project trains, deploys, and serves a scikit-learn model for mobile price classification, bridging the gap between local development and scalable MLOps.",
+      "technologies": ["AWS SageMaker", "Scikit-learn", "AWS S3",  "Python", "MLOps", "CloudWatch", "AWS"],
+      "github_url": "https://github.com/GoJo-Rika/aws-sagemaker",
+      "live_demo_url": null
+    }
   ],
   "about_me_prose": [
     "I'm an educator and technologist who's spent the last 8 years building bridges between complex technical concepts and real-world applications. What started as a passion for teaching mathematics and IT has evolved into a deep expertise in data science, machine learning, and building production-ready systems.",
@@ -196,10 +205,10 @@
     },
     {
       "title": "AWS SageMaker Machine Learning Pipeline - Mobile Price Classification System",
-      "summary": "Achieved **95% prediction accuracy** by engineering **production-ready ML pipeline** using **AWS SageMaker** and **Random Forest classification** for mobile price category prediction. Implemented **cloud-native architecture** integrating **S3 data lakes**, **IAM security policies**, and **CloudWatch monitoring** with **automated model deployment workflows**. Demonstrated **MLOps best practices** through **local-to-cloud development patterns**, **comprehensive error handling**, and **model versioning**, delivering enterprise-grade solution for **ML Engineering**, **Cloud Architecture**, and **Data Science** applications.",
+      "summary": "Engineered an end-to-end ML pipeline on AWS SageMaker, achieving 88% prediction accuracy for mobile price classification. Architected a cloud-native solution utilizing S3 for data management, IAM for security, and SageMaker for automated model training and deployment, showcasing MLOps best practices in a production-style workflow.",
       "url": "https://github.com/GoJo-Rika/aws-sagemaker",
-      "core_technologies": ["AWS SageMaker", "AWS S3", "IAM", "Boto3", "Python", "CloudWatch", "Scikit-learn", "Pandas", "AWS", "Jupyter Notebooks"],
-      "keywords": ["Cloud-native Architecture", "MLOps Best Practices", "Model Versioning", "Model Registry"],
+      "core_technologies": ["AWS", "AWS SageMaker", "Scikit-learn", "AWS S3",  "Python", "MLOps", "CloudWatch"],
+      "keywords": ["AWS", "Amazon SageMaker", "AWS S3", "IAM", "Cloud ML", "MLOps", "Machine Learning", "Scikit-learn", "Random Forest", "Model Deployment", "ML Pipeline", "Boto3", "SageMaker SDK", "Cloud Computing", "Data Science", "Endpoint Deployment", "Cloud-native Architecture", "Model Versioning", "Model Registry"],
       "highlights": [],
       "images": []
     },
@@ -377,6 +386,15 @@
       "content": "A machine learning model is useless if no one can use it. This post covers the \"last mile\" problem: giving my PyTorch model an interactive body. This is the story of my struggle against frozen UIs, the architectural epiphany that led to a framework-agnostic core, and the final lessons learned while building identical apps in both Flask and FastAPI.",
       "core_technologies": ["PyTorch", "FastAPI", "Flask", "torchvision", "Python", "TensorBoard"],
       "keywords": ["MLOps", "Computer Vision", "Transfer Learning", "Experiment Tracking", "Web Application", "Deep Learning", "Image Classification", "Modular Architecture"]
+    },
+    {
+      "title": "When SageMaker Humbled Me: A Cloud-Native ML Reality Check",
+      "publish_date": "2025-09-15",
+      "github_url": "https://github.com/GoJo-Rika/aws-sagemaker",
+      "markdown_file": "aws-sagemaker-blog-cloud-native-ml-reality-check.md",
+      "content": "I thought taking a scikit-learn model to the cloud would be simple, but AWS SageMaker taught me more about cloud architecture and DevOps than I ever expected. This post details my entire journey, from battling IAM roles and structuring S3 buckets to mastering the SageMaker training patterns that finally bridged the gap between my local machine and a production-ready endpoint. It's a story of the struggles, the breakthroughs, and the hard-won lessons learned while building a real-world ML pipeline.",
+      "core_technologies": ["AWS", "AWS SageMaker", "Scikit-learn", "AWS S3",  "Python", "MLOps", "CloudWatch"],
+      "keywords": ["AWS", "Amazon SageMaker", "AWS S3", "IAM", "Cloud ML", "MLOps", "Machine Learning", "Scikit-learn", "Random Forest", "Model Deployment", "ML Pipeline", "Boto3", "SageMaker SDK", "Cloud Computing", "Data Science", "Endpoint Deployment", "Cloud-native Architecture", "Model Versioning", "Model Registry"]
     }
   ]
 }
