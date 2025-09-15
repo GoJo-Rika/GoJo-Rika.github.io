@@ -10,6 +10,8 @@
     "Scikit-learn": { "icon": "tech_icons/scikit-learn.svg" },
     "MongoDB": { "icon": "tech_icons/mongodb.svg" },
     "Pandas": { "icon": "tech_icons/pandas.svg" },
+    "PyTorch": { "icon": "tech_icons/pytorch.svg" },
+    "Flask": { "icon": "tech_icons/flask.svg" },
     "AWS EC2": { "icon": "tech_icons/aws-ec2.svg" },
     "AWS S3": { "icon": "tech_icons/aws-s3.svg" },
     "AWS ECR": { "icon": "tech_icons/aws-ecr.svg" },
@@ -18,7 +20,8 @@
     "GitHub Actions": { "icon": "tech_icons/github-actions.svg" },
     "Markdown": { "icon": "tech_icons/markdown.svg" },
     "NumPy": { "icon": "tech_icons/numpy.svg" },
-    "Postman": { "icon": "tech_icons/postman.svg" }
+    "Postman": { "icon": "tech_icons/postman.svg" },
+    "TensorBoard": { "icon": "tech_icons/tensorboard.svg" }
   },
   "featured_projects": [
     {
@@ -28,7 +31,15 @@
       "technologies": ["Python", "AWS", "Docker", "FastAPI", "Scikit-learn", "MLflow", "GitHub Actions"],
       "github_url": "https://github.com/GoJo-Rika/Network-Security-System-MLOps-Project",
       "live_demo_url": null
-    }
+    },
+    {
+      "title": "PyTorch FoodVision Mini",
+      "image": "project_images/effnet-feature-extraction-diagram.png",
+      "summary": "An end-to-end MLOps project that refactors a PyTorch research notebook into a production-ready system. This project features robust experiment tracking with TensorBoard and serves an image classification model through two interactive web applications built with both Flask and FastAPI.",
+      "technologies": ["PyTorch", "FastAPI", "Flask", "torchvision", "Python", "TensorBoard"],
+      "github_url": "https://github.com/GoJo-Rika/PyTorch-FoodVision-Mini",
+      "live_demo_url": null
+    }    
   ],
   "about_me_prose": [
     "I'm an educator and technologist who's spent the last 8 years building bridges between complex technical concepts and real-world applications. What started as a passion for teaching mathematics and IT has evolved into a deep expertise in data science, machine learning, and building production-ready systems.",
@@ -171,6 +182,15 @@
       "url": "https://github.com/GoJo-Rika/Network-Security-System-MLOps-Project",
       "core_technologies": ["Python", "MLflow", "Dagshub", "MongoDB", "AWS EC2",  "AWS ECR", "AWS S3", "Scikit-learn", "MongoDB", "FastAPI", "Docker", "GitHub Actions"],
       "keywords": ["CI/CD automation", "Schema Validation", "Experiment Tracking", "Modular Pipeline Architecture", "Production-ready MLOps Pipeline", "Automated Threat Detection", "End-to-End ML Lifecycle Management", "Real-Time Prediction API", "Drift Detection Capabilities", "Automated Model Retraining"],
+      "highlights": [],
+      "images": []
+    },
+    {
+      "title": "End-to-End FoodVision MLOps Pipeline",
+      "summary": "Developed a modular system using **PyTorch** and EfficientNet transfer learning, achieving **90%+ classification accuracy** on pizza, steak, and sushi, with **TensorBoard** integrated for systematic experiment tracking. Architected and built two parallel web interfaces using both **Flask** and **FastAPI**, demonstrating framework flexibility and a clean separation of concerns. Implemented a non-blocking, asynchronous background training process with real-time status monitoring, ensuring a responsive UI and full cross-platform compatibility (CPU/CUDA/Apple Silicon).",
+      "url": "https://github.com/GoJo-Rika/PyTorch-FoodVision-Mini",
+      "core_technologies": ["PyTorch", "FastAPI", "Flask", "torchvision", "Python", "TensorBoard"],
+      "keywords": ["MLOps", "Computer Vision", "Transfer Learning", "Experiment Tracking", "Web Application", "Deep Learning", "Image Classification", "Modular Architecture"],
       "highlights": [],
       "images": []
     },
@@ -320,7 +340,7 @@
   "blogs": [
     {
       "title": "From Messy Data to Production MLOps: My Network Security Journey (Part 1)",
-      "publish_date": "2025-09-09",
+      "publish_date": "2025-09-08",
       "github_url": "https://github.com/GoJo-Rika/Network-Security-System-MLOps-Project",
       "markdown_file": "network_security_blog_part_1_pipeline_foundation.md",
       "next_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-2",
@@ -337,6 +357,26 @@
       "content": "With a working local pipeline, the \"easy\" part was next: deployment. This turned into a multi-day AWS nightmare. After successfully automating the CI/CD pipeline with GitHub Actions, the app was live but unreachable. The culprit? A single, critical line of code related to container networking. This post dives into the humbling, real-world challenges of cloud infrastructure, debugging EC2 security groups, and the final \"aha!\" moment that brought the entire system online.",
       "core_technologies": ["Python", "MLflow", "Dagshub", "AWS EC2",  "AWS ECR", "AWS S3", "Scikit-learn", "MongoDB", "FastAPI", "Docker", "GitHub Actions"],
       "keywords": ["CI/CD automation", "Schema Validation", "Experiment Tracking", "Modular Pipeline Architecture", "Production-ready MLOps Pipeline", "Automated Threat Detection", "End-to-End ML Lifecycle Management", "Real-Time Prediction API", "Drift Detection Capabilities", "Automated Model Retraining"]
+    },
+    {
+      "title": "From Notebook to UI: The Local Development Journey (Part 1)",
+      "publish_date": "2025-09-12",
+      "github_url": "https://github.com/GoJo-Rika/PyTorch-FoodVision-Mini",
+      "markdown_file": "pytorch-foodvision-mini-part-1-from-notebook-to-pipeline.md",
+      "next_part_slug": "from-notebook-to-ui-the-web-deployment-journey-part-2",
+      "content": "My FoodVision Mini project started with a simple question in a Jupyter Notebook, but the answer required a real engineering journey. This post tells the story of how I tamed chaotic experiments with a systematic process, unlocked the true power of transfer learning through trial and error, and refactored a monolithic script into a robust, modular ML pipeline.",
+      "core_technologies": ["PyTorch", "FastAPI", "Flask", "torchvision", "Python", "TensorBoard"],
+      "keywords": ["MLOps", "Computer Vision", "Transfer Learning", "Experiment Tracking", "Web Application", "Deep Learning", "Image Classification", "Modular Architecture"]
+    },
+    {
+      "title": "From Notebook to UI: The Web Deployment Journey (Part 2)",
+      "publish_date": "2025-09-13",
+      "github_url": "https://github.com/GoJo-Rika/PyTorch-FoodVision-Mini",
+      "markdown_file": "pytorch-foodvision-mini-part-2-the-ui-challenge.md",
+      "previous_part_slug": "from-notebook-to-ui-the-local-development-journey-part-1",
+      "content": "A machine learning model is useless if no one can use it. This post covers the \"last mile\" problem: giving my PyTorch model an interactive body. This is the story of my struggle against frozen UIs, the architectural epiphany that led to a framework-agnostic core, and the final lessons learned while building identical apps in both Flask and FastAPI.",
+      "core_technologies": ["PyTorch", "FastAPI", "Flask", "torchvision", "Python", "TensorBoard"],
+      "keywords": ["MLOps", "Computer Vision", "Transfer Learning", "Experiment Tracking", "Web Application", "Deep Learning", "Image Classification", "Modular Architecture"]
     }
   ]
 }
