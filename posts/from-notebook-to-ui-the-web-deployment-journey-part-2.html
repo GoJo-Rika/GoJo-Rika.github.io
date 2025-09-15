@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Info -->
+    <title>From Notebook to UI: The Web Deployment Journey (Part 2) - Mit Patel</title>
+    <meta name="description" content="A machine learning model is useless if no one can use it. This post covers the &#34;last mile&#34; problem: giving my PyTorch model an interactive body. This is the...">
+    <meta name="author" content="Mit Patel">
+
+    <!-- Base URL to fix relative paths -->
+    <base href="../">
+
+    <!-- Open Graph Tags (for social media sharing) -->
+    <meta property="og:title" content="From Notebook to UI: The Web Deployment Journey (Part 2)">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="127.0.0.1:5500/posts/from-notebook-to-ui-the-web-deployment-journey-part-2.html">
+    <meta property="og:image" content="127.0.0.1:5500/portfolio_media/photo_2.jpg">
+    <meta property="og:image:alt" content="Mit Patel Profile Image">
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Custom Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+          rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/modern_normalize.css" />
+    <link rel="stylesheet" href="css/html5bp.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/resume.css">
+    <link rel="stylesheet" href="css/post.css">
+
+    <!-- Icon & Favicon Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- ADD THIS LINE FOR THE TOOLBAR PLUGIN'S CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+
+    <!-- Set a theme color that matches your website's primary color -->
+    <meta name="theme-color" content="#fafafa">
+
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+
+    <!-- Apple touch icon for iOS devices -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
+
+    <!-- Web app manifest for Progressive Web Apps -->
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+    <header class="page-header">
+      <div class="container">
+        <div class="header-top flex-responsive">
+          <div class="header-info">
+            <h1>Mit Patel's Blog</h1>
+            <nav>
+              <ul class="inline-list flex-responsive">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="blog.html">Blog Home</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <div class="page-content">
+        <div class="container">
+            <!-- Main Article Content -->
+            <main class="post-content-main">
+              <h1>💻 The UI Challenge: Serving a PyTorch Model with Flask and FastAPI (Part 2)</h1>
+
+<p>In the first part of this series, I forged a powerful machine learning pipeline. It was modular, validated, and lived happily in my terminal. The hard part was over, right? I couldn't have been more wrong. A model that only a developer can run is a solution in search of a problem. The real challenge, the "last mile" of any MLOps project, was to give it a body—an interactive web interface that made it useful to everyone.</p>
+
+<p>This is the story of that last mile: a journey through the clash of two worlds—the predictable, stateful domain of machine learning and the fast, stateless chaos of the web.</p>
+
+<h3>The First Great Failure: The Frozen App</h3>
+
+<p>I started with Flask because it was familiar. I whipped up a simple UI with a "Start Training" button, hooked it up to my training script, and clicked it with confidence. The terminal sprang to life, loss values started ticking down... and my web browser froze solid. The entire application was locked, unable to serve even a simple request, until the model finished its 10-minute training run.</p>
+
+<p>I had fundamentally misunderstood the nature of a web server. It needs to be available, always ready to respond in milliseconds. My long-running ML task was holding it hostage. My first instinct was to use Python's <code>threading</code>, but that quickly led to a tangled mess of race conditions and a terrifying realization that I couldn't easily stop a runaway training thread.</p>
+
+<p>The solution came from thinking about isolation. The training job didn't need to be <em>in</em> the web app; it just needed to be <em>started by</em> it. The <code>subprocess</code> module was the perfect tool.</p>
+
+<pre><code># The solution: launch training as a completely separate process
+command = ["python", "train.py", "--model", model]
+state.training_process = subprocess.Popen(command)
+</code></pre>
+
+<p>This was the breakthrough. The web app could launch the process and immediately return control to the user, keeping the UI responsive. It was a powerful lesson in decoupling long-running tasks from the request-response cycle.</p>
+
+<h3>The Architectural Epiphany: Drowning in Duplicated Code</h3>
+
+<p>With my model training happily in the background, I turned to building out the rest of the features. Then, for the sake of learning and expanding my skills, I decided to build an identical twin of my app using FastAPI.</p>
+
+<p>Within hours, I was drowning. Both <code>app_flask.py</code> and <code>app_fastapi.py</code> had near-identical code for finding saved models, handling image uploads, and checking the status of the training process. I was violating the most sacred rule of software engineering: Don't Repeat Yourself (DRY). A bug fix in one file meant remembering to fix it in the other. It was a maintenance nightmare waiting to happen.</p>
+
+<p>This pain forced me to stop and rethink my entire architecture. The solution was to ask: what is the "business logic" of my app, and can it exist without a web framework? The answer led to the project's most important design decision: the creation of a framework-agnostic <code>webapp</code> package.</p>
+
+<p>I extracted every piece of shared logic into this new layer:</p>
+
+<ul>
+<li><strong><code>webapp/logic.py</code></strong>: The "how-to" functions (<code>perform_prediction</code>, <code>start_training_process</code>). It contains zero Flask or FastAPI code.</li>
+<li><strong><code>webapp/state.py</code></strong>: A simple global dictionary to track the training status.</li>
+<li><strong><code>webapp/config.py</code></strong>: A single source of truth for all paths and settings.</li>
+</ul>
+
+<p>Suddenly, my <code>app_flask.py</code> and <code>app_fastapi.py</code> files became beautiful, thin "wrappers." Their only job was to handle the web stuff (routes, requests) and then call the shared logic layer to do the real work. This 3-tier architecture (<code>Interface -&gt; Logic -&gt; ML Core</code>) was the ultimate "aha!" moment. It made the system clean, testable, and incredibly easy to maintain.</p>
+
+<h3>The Final Frontier: A Glimpse of the Cloud</h3>
+
+<p>So, here we are. The project has a validated ML brain (<code>food_vision</code>) and a responsive, well-designed body (<code>webapp</code> + <code>FastAPI</code>/<code>Flask</code>). It works beautifully on my local machine. We've journeyed from a chaotic notebook to a sophisticated, multi-layered application. This is a huge victory and a complete project in its own right.</p>
+
+<p>But in the world of MLOps, a local machine is just a sandbox. The true final step is to give our application a home on the internet, where it can be accessed by anyone, anywhere, at any time.</p>
+
+<p>This next phase of the journey would involve a whole new set of challenges:</p>
+
+<ul>
+<li><strong>Containerization with Docker:</strong> How can we package this entire complex application—Python, PyTorch, system libraries and all—into a single, portable container that runs identically everywhere?</li>
+<li><strong>CI/CD Pipelines:</strong> How do we automate testing and deployment, so that a simple <code>git push</code> can safely update the live application?</li>
+<li><strong>Cloud Deployment:</strong> Where will it live? On AWS, Google Cloud, or Hugging Face Spaces? How do we manage resources, handle scaling, and monitor its health?</li>
+</ul>
+
+<p>The model now has a body and can interact with the world. The final step is to give it a home in the cloud, and that... will be a story for another time.</p>
+
+
+            
+
+            </main>
+
+            <!-- Sidebar with Post Info and Keywords -->
+            <aside>
+              <!-- Part of a series navigation -->
+              
+              <section class="series-navigation-sidebar">
+                <h4>This post is part of a series.</h4>
+                
+                <a href="posts/from-notebook-to-ui-the-local-development-journey-part-1.html" class="series-link">← Read Part 1</a>
+                
+                
+              </section>
+              
+
+
+            <!-- Post Information Section -->
+            <section>
+                <h2 class="section-heading">Post Information</h2>
+                <div class="competency-item-sidebar">
+                    <h3 class="competency-title-sidebar">From Notebook to UI: The Web Deployment Journey (Part 2)</h3>
+                    <p class="section-label">Published on: 2025-09-13</p>
+                    
+                      <a href="https://github.com/GoJo-Rika/PyTorch-FoodVision-Mini" class="sidebar-button" target="_blank" rel="noopener noreferrer">
+                          <i class="fab fa-github"></i> View on GitHub
+                      </a>
+                    
+                </div>
+            </section>
+
+            <!-- Technologies & Keywords Section -->
+            <section>
+                <h2 class="section-heading">Technologies & Keywords</h2>
+                <div class="tech-stack">
+                    
+                        <span class="tag">PyTorch</span>
+                    
+                        <span class="tag">FastAPI</span>
+                    
+                        <span class="tag">Flask</span>
+                    
+                        <span class="tag">torchvision</span>
+                    
+                        <span class="tag">Python</span>
+                    
+                        <span class="tag">TensorBoard</span>
+                    
+                    
+                        <span class="tag">MLOps</span>
+                    
+                        <span class="tag">Computer Vision</span>
+                    
+                        <span class="tag">Transfer Learning</span>
+                    
+                        <span class="tag">Experiment Tracking</span>
+                    
+                        <span class="tag">Web Application</span>
+                    
+                        <span class="tag">Deep Learning</span>
+                    
+                        <span class="tag">Image Classification</span>
+                    
+                        <span class="tag">Modular Architecture</span>
+                    
+                </div>
+            </section>
+            </aside>
+
+            <!-- Add this navigation block inside the container, after the <aside> -->
+            <nav class="post-navigation">
+            <!-- OLDER POST LINK LOGIC -->
+            
+                <!-- If this is Part 2, the "Older" link MUST be Part 1 -->
+                <a href="posts/from-notebook-to-ui-the-local-development-journey-part-1.html" class="nav-link prev-link">
+                    <span class="arrow">←</span>
+                    <span class="nav-text">
+                        <span class="nav-label">Read Part 1</span>
+                        From Notebook to UI: The Web Deployment Journey
+                    </span>
+                </a>
+            
+
+            <!-- NEWER POST LINK LOGIC -->
+            
+            </nav>
+
+        </div>
+    </div>
+
+    <footer class="page-footer">
+      <div class="container">
+        <p>© 2025 Mit Patel. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Prism JS for Code Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+
+    <!-- ADD THIS LINE TO LOAD THE PYTHON LANGUAGE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <!-- ADD THIS LINE for the Toolbar Plugin's JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+
+    <!-- ADD THIS LINE FOR THE COPY BUTTON PLUGIN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+    <!-- ===== Style Switcher Start ===== -->
+    <div class="theme-toggle-container">
+        <div id="theme-toggle-icon" class="theme-icon">
+            <i class="fas"></i>
+        </div>
+    </div>
+    <!-- ===== Style Switcher End ===== -->
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>

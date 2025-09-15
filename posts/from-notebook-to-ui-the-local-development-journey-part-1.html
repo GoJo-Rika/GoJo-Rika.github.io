@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Info -->
+    <title>From Notebook to UI: The Local Development Journey (Part 1) - Mit Patel</title>
+    <meta name="description" content="My FoodVision Mini project started with a simple question in a Jupyter Notebook, but the answer required a real engineering journey. This post tells the...">
+    <meta name="author" content="Mit Patel">
+
+    <!-- Base URL to fix relative paths -->
+    <base href="../">
+
+    <!-- Open Graph Tags (for social media sharing) -->
+    <meta property="og:title" content="From Notebook to UI: The Local Development Journey (Part 1)">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="127.0.0.1:5500/posts/from-notebook-to-ui-the-local-development-journey-part-1.html">
+    <meta property="og:image" content="127.0.0.1:5500/portfolio_media/photo_2.jpg">
+    <meta property="og:image:alt" content="Mit Patel Profile Image">
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Custom Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+          rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/modern_normalize.css" />
+    <link rel="stylesheet" href="css/html5bp.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/resume.css">
+    <link rel="stylesheet" href="css/post.css">
+
+    <!-- Icon & Favicon Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- ADD THIS LINE FOR THE TOOLBAR PLUGIN'S CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+
+    <!-- Set a theme color that matches your website's primary color -->
+    <meta name="theme-color" content="#fafafa">
+
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+
+    <!-- Apple touch icon for iOS devices -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
+
+    <!-- Web app manifest for Progressive Web Apps -->
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+    <header class="page-header">
+      <div class="container">
+        <div class="header-top flex-responsive">
+          <div class="header-info">
+            <h1>Mit Patel's Blog</h1>
+            <nav>
+              <ul class="inline-list flex-responsive">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="blog.html">Blog Home</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <div class="page-content">
+        <div class="container">
+            <!-- Main Article Content -->
+            <main class="post-content-main">
+              <h1>🧠 From Notebook to Pipeline: A Deep Learning Developer's Journey (Part 1)</h1>
+
+<p>Every machine learning project starts with a spark of an idea. Mine was simple: "Could I build a model to tell the difference between pizza, steak, and sushi?" Like many developers, I opened my go-to tool for exploration: a Jupyter Notebook. It felt like the perfect place to start, but I quickly discovered that a notebook is just a starting point. The real journey—the one filled with frustrating setbacks and "aha!" moments—was turning that experimental script into a reliable, reusable machine learning system.</p>
+
+<h3>The First Big Question: Is My Model Actually Any Good?</h3>
+
+<p>After some initial coding, I had a simple classifier that seemed to work. But my process was a mess. I was manually changing hyperparameters in code cells, re-running the notebook, and scribbling results in a notepad. I was getting numbers, but I couldn't trust them. This led to the first major challenge: <strong>how can I prove my model's performance in a scientific, repeatable way?</strong></p>
+
+<p>This single question broke down into a series of smaller, interconnected problems.</p>
+
+<p><strong>Problem #1: My experiments were chaotic and biased.</strong>
+My first attempt at a solution was to bring order to the chaos. I wrote a nested loop to systematically iterate through every combination of model (<code>EfficientNetB0</code>, <code>B2</code>, <code>B4</code>), dataset size, and training duration.</p>
+
+<p><img src="posts_assets/experiments-table.png" alt="A table showing the structured plan for all 8 experiments, varying model type, data size, and epochs." />
+<em>Moving from random tweaks to a structured experiment plan like this was the first step toward building a reliable model.</em></p>
+
+<p>This was a huge step forward! But it created a new problem: I was drowning in a sea of <code>print()</code> statements. Comparing the results of run #3 with run #17 was a nightmare of scrolling and squinting.</p>
+
+<pre><code># The first step toward a real system: a structured experiment loop
+for data_name, train_dataloader in train_dataloaders_dict.items():
+    for epochs in num_epochs_list:
+        for model_name in models_list:
+            # ... train and evaluate ...
+</code></pre>
+
+<p><strong>Problem #2: I couldn't visualize the story of my training.</strong>
+I realized I didn't just need results; I needed a narrative. I needed to see the learning curves to understand <em>how</em> each model was behaving. This is where TensorBoard came in. But my first attempt was, again, a mess. All my logs were jumbled into one confusing timeline.</p>
+
+<p><img src="posts_assets/tensorboard-accuracy-chart.png" alt="A screenshot of the TensorBoard dashboard showing accuracy curves for multiple experiments." />
+<em>TensorBoard made it easy to visually compare all eight experiments. The superiority of the <code>EffNetB2</code> model trained on 20% of the data (the top-performing line) became immediately obvious.</em></p>
+
+<p>The insight wasn't just to <em>use</em> TensorBoard, but to be deliberate about <em>how</em> I organized my logs. I wrote a small utility function to create a clean, timestamped directory structure for every single run, which made the above visualization possible.</p>
+
+<pre><code># This function was the key to unlocking readable, comparable logs
+def create_writer(experiment_name, model_name, extra=None):
+    timestamp = datetime.now().strftime("%Y-%m-%d")
+    log_dir = Path("runs") / timestamp / experiment_name / model_name
+    # ...
+</code></pre>
+
+<p>Finally, I could see the story. I had a dashboard that clearly showed which models were learning fastest and which were overfitting. The data was now pointing to <code>EfficientNetB2</code> as the most promising candidate.</p>
+
+<h3>The Second Big Question: How Do I Squeeze Out More Performance?</h3>
+
+<p>My experiments were now reliable, but the best model's accuracy was still just "okay." I knew the answer was <strong>Transfer Learning</strong>, but I soon learned that knowing the name of a technique is very different from implementing it correctly.</p>
+
+<p><img src="posts_assets/feature-extraction-diagram.png" alt="A diagram showing a large pre-trained model being adapted for a new, smaller task." />
+<em>The core concept of feature extraction: keep the pre-trained 'backbone' (the feature learner) and only train a new, small 'head' (the classifier) on our specific data.</em></p>
+
+<p><strong>Problem #3: My GPU was crying and my training was slow.</strong>
+My first attempt was naive. I loaded a pre-trained <code>EfficientNet</code>, swapped the final layer for my 3-class classifier, and hit "train." My GPU fan spun up like a jet engine, and the estimated training time was in hours, not minutes.</p>
+
+<p>The "aha!" moment came after digging into how transfer learning truly works. I was trying to retrain the entire network. The solution was to <strong>freeze the backbone</strong>.</p>
+
+<p><img src="posts_assets/torchinfo-frozen-layers.png" alt="A screenshot of the torchinfo summary showing a massive reduction in trainable parameters." />
+<em>The proof is in the numbers. After freezing the backbone, the number of trainable parameters dropped from over 4 million to just 3,843, dramatically speeding up training.</em></p>
+
+<pre><code># The crucial insight: only train the tiny new part of the model
+for param in model.features.parameters():
+    param.requires_grad = False # Freeze the billions of learned parameters
+</code></pre>
+
+<p>By freezing the vast majority of the network, I was only training the tiny "head" I had added. The training time plummeted, and my GPU could finally breathe.</p>
+
+<p><strong>Problem #4: A better model was performing worse. Why?</strong>
+With my training loop now fast and efficient, I hit another wall. My accuracy was inexplicably poor. I spent hours debugging my code before realizing the problem wasn't in my logic, but in my data.</p>
+
+<p>The pre-trained <code>EfficientNet</code> model expects images to be a specific size, with specific normalization values. My manually crafted image transforms were close, but not perfect. It was like speaking the same language but with a slightly wrong accent—the model was getting confused. The fix, once found, was beautifully simple:</p>
+
+<pre><code># This one line fixed a mountain of hidden data-mismatch issues
+weights = torchvision.models.EfficientNet_B0_Weights.DEFAULT
+auto_transforms = weights.transforms()
+</code></pre>
+
+<p>Using the transforms that came packaged with the pre-trained weights ensured my data was perfectly preened for the model and the accuracy immediately jumped.</p>
+
+<h3>The Final Step: From a Monolithic Script to a Modular System</h3>
+
+<p>I now had a reliable, high-performing pipeline. But it was all trapped inside a single, massive 500-line script. It worked, but it wasn't a piece of software; it was a monolith.</p>
+
+<p>The final challenge of this phase was to perform the <strong>Great Refactor</strong>. I systematically broke the monolithic script apart, piece by piece, into a dedicated Python package called <code>food_vision</code>. Each file was given a single, clear responsibility:
+-   <code>data_setup.py</code>: Does one thing: creates <code>DataLoaders</code>.
+-   <code>model_builder.py</code>: Does one thing: builds <code>EfficientNet</code> models.
+-   <code>engine.py</code>: Does one thing: runs the training and testing loops.
+-   <code>utils.py</code>: Holds the helpers for saving models and creating TensorBoard writers.</p>
+
+<p>This process was the bridge from being a data scientist to being an MLOps engineer. The result wasn't just a script that ran; it was a <strong>system</strong> that could be imported, tested, and extended.</p>
+
+<p>The ML brain was finally complete. It was validated, packaged, and ready. But it was a brain trapped in a jar, only accessible via my terminal. It felt like a powerful engine with no car around it. The next, even bigger challenge was giving it a body—an interactive web interface that anyone could use.</p>
+
+<p>My struggle with web frameworks, background processes, and user experience is a whole other story. <strong>If you want to see how I built the UI for this model, you can follow along in <a href="posts/from-notebook-to-ui-the-web-deployment-journey-part-2.html">Part 2 of this series</a>!</strong></p>
+
+
+            
+
+            </main>
+
+            <!-- Sidebar with Post Info and Keywords -->
+            <aside>
+              <!-- Part of a series navigation -->
+              
+              <section class="series-navigation-sidebar">
+                <h4>This post is part of a series.</h4>
+                
+                
+                <a href="posts/from-notebook-to-ui-the-web-deployment-journey-part-2.html" class="series-link">Read Part 2 →</a>
+                
+              </section>
+              
+
+
+            <!-- Post Information Section -->
+            <section>
+                <h2 class="section-heading">Post Information</h2>
+                <div class="competency-item-sidebar">
+                    <h3 class="competency-title-sidebar">From Notebook to UI: The Local Development Journey (Part 1)</h3>
+                    <p class="section-label">Published on: 2025-09-12</p>
+                    
+                      <a href="https://github.com/GoJo-Rika/PyTorch-FoodVision-Mini" class="sidebar-button" target="_blank" rel="noopener noreferrer">
+                          <i class="fab fa-github"></i> View on GitHub
+                      </a>
+                    
+                </div>
+            </section>
+
+            <!-- Technologies & Keywords Section -->
+            <section>
+                <h2 class="section-heading">Technologies & Keywords</h2>
+                <div class="tech-stack">
+                    
+                        <span class="tag">PyTorch</span>
+                    
+                        <span class="tag">FastAPI</span>
+                    
+                        <span class="tag">Flask</span>
+                    
+                        <span class="tag">torchvision</span>
+                    
+                        <span class="tag">Python</span>
+                    
+                        <span class="tag">TensorBoard</span>
+                    
+                    
+                        <span class="tag">MLOps</span>
+                    
+                        <span class="tag">Computer Vision</span>
+                    
+                        <span class="tag">Transfer Learning</span>
+                    
+                        <span class="tag">Experiment Tracking</span>
+                    
+                        <span class="tag">Web Application</span>
+                    
+                        <span class="tag">Deep Learning</span>
+                    
+                        <span class="tag">Image Classification</span>
+                    
+                        <span class="tag">Modular Architecture</span>
+                    
+                </div>
+            </section>
+            </aside>
+
+            <!-- Add this navigation block inside the container, after the <aside> -->
+            <nav class="post-navigation">
+            <!-- OLDER POST LINK LOGIC -->
+            
+                <!-- Otherwise, link to the chronologically older post (standard behavior) -->
+                <a href="posts/from-messy-data-to-production-mlops-my-network-security-journey-part-2.html" class="nav-link prev-link">
+                    <span class="arrow">←</span>
+                    <span class="nav-text">
+                        <span class="nav-label">Older Post</span>
+                        From Messy Data to Production MLOps: My Network Security Journey (Part 2)
+                    </span>
+                </a>
+            
+
+            <!-- NEWER POST LINK LOGIC -->
+            
+                <!-- If this is Part 1, the "Newer" link MUST be Part 2 -->
+                <a href="posts/from-notebook-to-ui-the-web-deployment-journey-part-2.html" class="nav-link next-link">
+                    <span class="nav-text">
+                        <span class="nav-label">Read Part 2</span>
+                        From Notebook to UI: The Local Development Journey
+                    </span>
+                    <span class="arrow">→</span>
+                </a>
+            
+            </nav>
+
+        </div>
+    </div>
+
+    <footer class="page-footer">
+      <div class="container">
+        <p>© 2025 Mit Patel. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Prism JS for Code Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+
+    <!-- ADD THIS LINE TO LOAD THE PYTHON LANGUAGE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <!-- ADD THIS LINE for the Toolbar Plugin's JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+
+    <!-- ADD THIS LINE FOR THE COPY BUTTON PLUGIN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+    <!-- ===== Style Switcher Start ===== -->
+    <div class="theme-toggle-container">
+        <div id="theme-toggle-icon" class="theme-icon">
+            <i class="fas"></i>
+        </div>
+    </div>
+    <!-- ===== Style Switcher End ===== -->
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
