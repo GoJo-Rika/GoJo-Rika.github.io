@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Info -->
+    <title>Text Summarizer Journey: Serving the Model (Part 3) - Mit Patel</title>
+    <meta name="description" content="The final step in our MLOps journey is making the trained model useful. This post covers the &#34;last mile&#34; of deployment, showing how to wrap the text...">
+    <meta name="author" content="Mit Patel">
+
+    <!-- Base URL to fix relative paths -->
+    <base href="../">
+
+    <!-- Open Graph Tags (for social media sharing) -->
+    <meta property="og:title" content="Text Summarizer Journey: Serving the Model (Part 3)">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="127.0.0.1:5500/posts/text-summarizer-journey-serving-the-model-part-3.html">
+    <meta property="og:image" content="127.0.0.1:5500/portfolio_media/photo_2.jpg">
+    <meta property="og:image:alt" content="Mit Patel Profile Image">
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Custom Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+          rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/modern_normalize.css" />
+    <link rel="stylesheet" href="css/html5bp.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/resume.css">
+    <link rel="stylesheet" href="css/post.css">
+
+    <!-- Icon & Favicon Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- ADD THIS LINE FOR THE TOOLBAR PLUGIN'S CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+
+    <!-- Set a theme color that matches your website's primary color -->
+    <meta name="theme-color" content="#fafafa">
+
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+
+    <!-- Apple touch icon for iOS devices -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
+
+    <!-- Web app manifest for Progressive Web Apps -->
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+    <header class="page-header">
+      <div class="container">
+        <div class="header-top flex-responsive">
+          <div class="header-info">
+            <h1>Mit Patel's Blog</h1>
+            <nav>
+              <ul class="inline-list flex-responsive">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="blog.html">Blog Home</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <div class="page-content">
+        <div class="container">
+            <!-- Main Article Content -->
+            <main class="post-content-main">
+              <h1>Serving the World: Deploying the Summarizer with FastAPI and Docker</h1>
+
+<p>In the first two parts of this series, we've been on a transformative journey. We started with a simple research notebook and architected a robust MLOps blueprint. Then, we built the ML engine, diving deep into data transformation, model training, and evaluation. We’ve successfully created a high-quality, fine-tuned text summarization model, all orchestrated by a repeatable, automated pipeline.</p>
+
+<p>The result of this effort is not just a model, but a clean, organized, and production-ready project. Before we take the final step, let’s look at the complete structure we've built:</p>
+
+<pre><code>Text-Summarizer/
+├── artifacts/                  # Stores outputs: data, models, metrics
+├── config/
+│   └── config.yaml             # Static configuration (paths, model names)
+├── src/
+│   └── text_summarizer/
+│       ├── components/         # Core logic for each pipeline stage
+│       ├── config/             # Configuration manager class
+│       ├── pipeline/           # Orchestrates the ML workflow
+│       └── ...
+├── app.py                      # FastAPI application for our API
+├── main.py                     # Main script to run the training pipeline
+├── params.yaml                 # Tunable hyperparameters
+├── requirements.txt            # Python dependencies
+└── Dockerfile                  # Our application's shipping container
+</code></pre>
+
+<p>This structure represents a complete and maintainable system. But there’s one final, crucial step: making it useful to the outside world. Right now, our powerful model is locked away in the <code>artifacts/</code> folder. To complete our journey from research to production, we need to solve this "last mile" problem. We need to build a bridge from our code to the end-user.</p>
+
+<h2>Building the Bridge: Serving Our Model with a FastAPI API</h2>
+
+<p>A machine learning model becomes truly powerful when it can be accessed as a service. The best way to do this is by wrapping it in a web API. For this project, I chose <strong>FastAPI</strong>, a modern, high-performance Python web framework. It’s incredibly fast, easy to learn, and comes with automatically generated interactive documentation—a massive time-saver.</p>
+
+<p>The logic for our API lives in a single, clean file: <code>app.py</code>. The goal here is simple: create an endpoint that can receive text, pass it to our trained model, and return the generated summary.</p>
+
+<p>To achieve this, I created a <code>PredictionPipeline</code> class that knows how to load the trained model and tokenizer from our <code>artifacts</code> directory and perform inference. The <code>app.py</code> file simply exposes this functionality through a <code>/predict</code> endpoint.</p>
+
+<p>Here’s the core of the <code>app.py</code> file:</p>
+
+<pre><code># From: app.py
+
+from fastapi import FastAPI
+from src.text_summarizer.pipeline.prediction_pipeline import PredictionPipeline
+
+app = FastAPI()
+
+@app.post("/predict")
+async def predict_route(text: str) -&gt; str:
+    try:
+        obj = PredictionPipeline()
+        summary = obj.predict(text)
+        return summary
+    except Exception as e:
+        raise e
+</code></pre>
+
+<p>With just a few lines of code, we've created a robust web server. By running <code>uvicorn app:app --host 0.0.0.0 --port 8080</code>, we can now interact with our model over a simple HTTP request, and FastAPI even gives us a beautiful UI to test it at <code>http://localhost:8080/docs</code>.</p>
+
+<h2>Packaging It Up: Consistent Deployment with Docker</h2>
+
+<p>Our API works perfectly on my machine. But what about yours? Or a cloud server? This is the classic "it works on my machine" problem that has plagued developers for decades. The solution is <strong>containerization</strong>, and the tool of choice is <strong>Docker</strong>.</p>
+
+<p>Docker allows us to package our entire application—the Python code, the dependencies in <code>requirements.txt</code>, the trained model artifacts, and even the operating system itself—into a single, portable image. This image can then be run on any machine with Docker installed, guaranteeing a consistent environment every single time.</p>
+
+<p>The instructions for building this package are defined in a <code>Dockerfile</code>. It’s a simple, step-by-step recipe:</p>
+
+<pre><code># From: Dockerfile
+
+# Start with a standard Python 3.8 base image
+FROM python:3.8-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy and install the required Python packages
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy our entire application code into the container
+COPY . .
+
+# Expose the port the app runs on
+EXPOSE 8080
+
+# The command to run when the container starts
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
+</code></pre>
+
+<p>With this file, we can build and run our entire application with two simple commands:</p>
+
+<pre><code># 1. Build the Docker image from the Dockerfile
+docker build -t text-summarizer .
+
+# 2. Run the image as a container, mapping the port
+docker run -p 8080:8080 text-summarizer
+</code></pre>
+
+<p>And just like that, our application is running in a clean, isolated, and portable container. We can now send a <code>curl</code> request to it and get a summary back, proving our end-to-end system is complete.</p>
+
+<h2>From Notebook to a World-Ready Service: The Journey's End</h2>
+
+<p>We’ve done it. We've taken a concept born in a Jupyter notebook and transformed it into a robust, deployable MLOps application. We started by building a solid engineering blueprint, then installed the machine learning engine, and finally, we built the chassis that makes it a world-ready service.</p>
+
+<p>This journey underscores a critical lesson in modern machine learning: a successful project is so much more than just a model. It’s a well-architected system built on a foundation of solid engineering principles, designed for reproducibility, scalability, and maintainability. Thank you for following along!</p>
+
+<h2>Key Takeaways: Lessons from This Project</h2>
+
+<p>This project was a journey from a simple script to a full-fledged MLOps system. It was challenging, sometimes frustrating, but ultimately incredibly rewarding. Here are the key lessons I'm taking with me:</p>
+
+<blockquote>
+  <p><strong>1. Architecture First, Code Second.</strong> A successful ML system is built on a strong engineering foundation. Investing time in designing a modular, configuration-driven architecture upfront saved countless hours of debugging and refactoring down the line. It's not a luxury; it's a necessity.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>2. Configuration is King for Reproducibility.</strong> Externalizing paths and hyperparameters into YAML files was the single biggest win for experiment tracking and reproducibility. It turns chaotic tweaking into a systematic process.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>3. The "Last Mile" of Deployment is a Project in Itself.</strong> A trained model is just an artifact. Turning it into a useful, accessible service requires a completely different skill set involving APIs, containerization, and infrastructure thinking. Don't underestimate this final, critical step.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>4. Embrace the Full Stack.</strong> Building this project reinforced that a modern AI/ML developer needs to be comfortable across the entire stack—from data science and modeling in a notebook to software architecture, API design, and DevOps practices with Docker.</p>
+</blockquote>
+
+<p>The journey of building this MLOps pipeline taught me that the real value lies not just in the final working system, but in the deep, practical understanding gained through the struggle of building it from the ground up.</p>
+
+<p>Want to dive into the code yourself? You can find the entire project, including a detailed README with setup instructions, on my <strong><a href="https://github.com/GoJo-Rika/Text-Summarizer-Using-HuggingFace-Transformers">GitHub repository</a></strong>.</p>
+
+
+            
+
+            </main>
+
+            <!-- Sidebar with Post Info and Keywords -->
+            <aside>
+              <!-- Part of a series navigation -->
+              
+              <section class="series-navigation-sidebar">
+                <h4>This post is part of a series.</h4>
+                
+                <a href="posts/text-summarizer-journey-the-ml-engine-room-part-2.html" class="series-link">← Read Part 1</a>
+                
+                
+              </section>
+              
+
+
+            <!-- Post Information Section -->
+            <section>
+                <h2 class="section-heading">Post Information</h2>
+                <div class="competency-item-sidebar">
+                    <h3 class="competency-title-sidebar">Text Summarizer Journey: Serving the Model (Part 3)</h3>
+                    <p class="section-label">Published on: 2025-09-18</p>
+                    
+                      <a href="https://github.com/GoJo-Rika/Text-Summarizer-Using-HuggingFace-Transformers" class="sidebar-button" target="_blank" rel="noopener noreferrer">
+                          <i class="fab fa-github"></i> View on GitHub
+                      </a>
+                    
+                </div>
+            </section>
+
+            <!-- Technologies & Keywords Section -->
+            <section>
+                <h2 class="section-heading">Technologies & Keywords</h2>
+                <div class="tech-stack">
+                    
+                    
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                    
+                        <span class="tag">HuggingFace Transformers</span>
+                    
+                        <span class="tag">PyTorch</span>
+                    
+                        <span class="tag">FastAPI</span>
+                    
+                        <span class="tag">Docker</span>
+                    
+                        <span class="tag">Python</span>
+                    
+                        <span class="tag">Weights &amp; Biases</span>
+                    
+                        <span class="tag">MLOps</span>
+                    
+                        <span class="tag">NLP</span>
+                    
+                        <span class="tag">End-to-End ML</span>
+                    
+                        <span class="tag">Text Summarization</span>
+                    
+                        <span class="tag">Deep Learning</span>
+                    
+                        <span class="tag">Containerized Deployment</span>
+                    
+                        <span class="tag">Experiment Tracking</span>
+                    
+                        <span class="tag">RESTful API</span>
+                    
+                </div>
+            </section>
+            </aside>
+
+            <!-- Add this navigation block inside the container, after the <aside> -->
+            <nav class="post-navigation">
+            <!-- OLDER POST LINK LOGIC -->
+            
+                <!-- If this is Part 2, the "Older" link MUST be Part 1 -->
+                <a href="posts/text-summarizer-journey-the-ml-engine-room-part-2.html" class="nav-link prev-link">
+                    <span class="arrow">←</span>
+                    <span class="nav-text">
+                        <span class="nav-label">Read Part 1</span>
+                        Text Summarizer Journey: Serving the Model (Part 3)
+                    </span>
+                </a>
+            
+
+            <!-- NEWER POST LINK LOGIC -->
+            
+            </nav>
+
+        </div>
+    </div>
+
+    <footer class="page-footer">
+      <div class="container">
+        <p>© 2025 Mit Patel. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Prism JS for Code Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+
+    <!-- ADD THIS LINE TO LOAD THE PYTHON LANGUAGE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <!-- ADD THIS LINE for the Toolbar Plugin's JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+
+    <!-- ADD THIS LINE FOR THE COPY BUTTON PLUGIN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+    <!-- ===== Style Switcher Start ===== -->
+    <div class="theme-toggle-container">
+        <div id="theme-toggle-icon" class="theme-icon">
+            <i class="fas"></i>
+        </div>
+    </div>
+    <!-- ===== Style Switcher End ===== -->
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>

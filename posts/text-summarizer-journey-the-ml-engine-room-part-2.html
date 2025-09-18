@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Info -->
+    <title>Text Summarizer Journey: The ML Engine Room (Part 2) - Mit Patel</title>
+    <meta name="description" content="With a robust MLOps pipeline in place, this post dives into the core machine learning workflow of the Text Summarizer project. I explore each critical...">
+    <meta name="author" content="Mit Patel">
+
+    <!-- Base URL to fix relative paths -->
+    <base href="../">
+
+    <!-- Open Graph Tags (for social media sharing) -->
+    <meta property="og:title" content="Text Summarizer Journey: The ML Engine Room (Part 2)">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="127.0.0.1:5500/posts/text-summarizer-journey-the-ml-engine-room-part-2.html">
+    <meta property="og:image" content="127.0.0.1:5500/portfolio_media/photo_2.jpg">
+    <meta property="og:image:alt" content="Mit Patel Profile Image">
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Custom Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+          rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/modern_normalize.css" />
+    <link rel="stylesheet" href="css/html5bp.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/resume.css">
+    <link rel="stylesheet" href="css/post.css">
+
+    <!-- Icon & Favicon Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- ADD THIS LINE FOR THE TOOLBAR PLUGIN'S CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+
+    <!-- Set a theme color that matches your website's primary color -->
+    <meta name="theme-color" content="#fafafa">
+
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+
+    <!-- Apple touch icon for iOS devices -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
+
+    <!-- Web app manifest for Progressive Web Apps -->
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+    <header class="page-header">
+      <div class="container">
+        <div class="header-top flex-responsive">
+          <div class="header-info">
+            <h1>Mit Patel's Blog</h1>
+            <nav>
+              <ul class="inline-list flex-responsive">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="blog.html">Blog Home</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <div class="page-content">
+        <div class="container">
+            <!-- Main Article Content -->
+            <main class="post-content-main">
+              <h1>The Engine Room: A Deep Dive into the ML Training &amp; Evaluation Workflow</h1>
+
+<p>In the first part of this series, we laid the blueprint. We transformed a chaotic research notebook into a structured, production-ready MLOps pipeline. We separated our code from our configuration, built modular components, and created an orchestrated workflow ready for the real work. The foundation is solid. Now, it's time to build the engine.</p>
+
+<p>This post is a deep dive into the heart of the project—the machine learning components that power our Text Summarizer. With our robust architecture in place, we can confidently execute each stage of the ML lifecycle, knowing the process is repeatable and reliable. Let's walk through the engine room, stage by stage.</p>
+
+<h2>Stage 1 &amp; 2: Sourcing and Shaping Our Fuel (Data Ingestion &amp; Transformation)</h2>
+
+<p>Every machine learning model is fueled by data, and ours is no different. The pipeline kicks off with <strong>Data Ingestion</strong>, a straightforward component that downloads the <a href="https://huggingface.co/datasets/samsum">SAMSum dataset</a> and unzips it into our <code>artifacts</code> directory.</p>
+
+<p>But raw data is rarely in a format a model can understand. This is where the crucial <strong>Data Transformation</strong> stage comes in. Our model, Pegasus, doesn't read words; it reads numbers. Specifically, it needs token IDs. Our goal is to convert each dialogue-summary pair into a format the model can train on.</p>
+
+<p>This is handled by the <code>convert_examples_to_features</code> function. It takes a batch of examples and uses a pre-trained tokenizer to create the necessary inputs:</p>
+
+<ul>
+<li><code>input_ids</code>: The numerical representation of the dialogue text.</li>
+<li><code>attention_mask</code>: A binary tensor that tells the model which tokens to pay attention to (and which are just padding).</li>
+<li><code>labels</code>: The numerical representation of the target summary.</li>
+</ul>
+
+<p>Here’s the code that makes it happen:</p>
+
+<pre><code># From: src/text_summarizer/components/data_transformation.py
+
+class DataTransformation:
+    # ...
+    def convert_examples_to_features(self, example_batch: dict) -&gt; dict:
+        input_encodings = self.tokenizer(
+            example_batch["dialogue"], max_length=1024, truncation=True
+        )
+
+        with self.tokenizer.as_target_tokenizer():
+            target_encodings = self.tokenizer(
+                example_batch["summary"], max_length=128, truncation=True
+            )
+
+        return {
+            "input_ids": input_encodings["input_ids"],
+            "attention_mask": input_encodings["attention_mask"],
+            "labels": target_encodings["input_ids"],
+        }
+</code></pre>
+
+<p>With our data properly tokenized and formatted, it's saved to disk, ready to be fed into the training component.</p>
+
+<h2>Stage 3: Firing Up the Engine (Model Training)</h2>
+
+<p>This is the most computationally intensive part of our pipeline. We aren't training a model from scratch; instead, we're using <strong>transfer learning</strong> to fine-tune a massive, pre-trained model: <code>google/pegasus-cnn_dailymail</code>. This model already has a deep understanding of the English language, and our job is to adapt it to the specific task of summarizing conversational dialogue from the SAMSum dataset.</p>
+
+<p>The HuggingFace <code>Trainer</code> class makes this process incredibly streamlined. It handles the entire training loop, from feeding batches of data to the model to calculating the loss and updating the model's weights.</p>
+
+<p>Crucially, it integrates directly with our configuration-driven design. We instantiate <code>TrainingArguments</code> using the hyperparameters we defined in our <code>params.yaml</code> file. This is where the power of our architecture shines—to run a new experiment with a different batch size or learning rate, we just change the YAML file, not the code.</p>
+
+<pre><code># From: src/text_summarizer/components/model_trainer.py
+
+from transformers import TrainingArguments, Trainer
+
+class ModelTrainer:
+    # ...
+    def train(self) -&gt; None:
+        # ... (device and model setup)
+
+        trainer_args = TrainingArguments(
+            output_dir=self.config.root_dir,
+            num_train_epochs=self.params.num_train_epochs,
+            warmup_steps=self.params.warmup_steps,
+            per_device_train_batch_size=self.params.per_device_train_batch_size,
+            # ... more arguments from params.yaml
+        )
+
+        trainer = Trainer(
+            model=model_pegasus,
+            args=trainer_args,
+            tokenizer=tokenizer,
+            data_collator=seq2seq_data_collator,
+            train_dataset=dataset_samsum_pt["test"],
+            eval_dataset=dataset_samsum_pt["validation"],
+        )
+
+        trainer.train()
+</code></pre>
+
+<p>After the training process completes, the fine-tuned model and its tokenizer are saved as artifacts in the <code>artifacts/model_trainer</code> directory.</p>
+
+<h2>Stage 4: The Quality Check (Model Evaluation)</h2>
+
+<p>Our model is trained, but is it any good? The final stage in our ML workflow is <strong>Model Evaluation</strong>, where we quantitatively measure the quality of our model's summaries against the reference summaries in the test set.</p>
+
+<p>For summarization tasks, the standard metric is <strong>ROUGE</strong> (Recall-Oriented Understudy for Gisting Evaluation). It measures the overlap between the model-generated summary and the human-written reference summary. We focus on a few key ROUGE scores:</p>
+
+<ul>
+<li><strong>ROUGE-1:</strong> Measures the overlap of individual words (unigrams).</li>
+<li><strong>ROUGE-2:</strong> Measures the overlap of word pairs (bigrams).</li>
+<li><strong>ROUGE-L:</strong> Measures the longest common subsequence of words, which rewards keeping sentence structure intact.</li>
+</ul>
+
+<p>Our <code>ModelEvaluation</code> component iterates through the test set, generates a summary for each dialogue, and compares it to the reference using the HuggingFace <code>evaluate</code> library.</p>
+
+<p>The final scores are compiled into a CSV file, giving us a clear, objective measure of our model's performance.</p>
+
+<h2>The Engine is Built and Tested</h2>
+
+<p>We've successfully journeyed through the entire machine learning workflow. We started with raw data, transformed it into a model-ready format, fine-tuned a powerful Transformer model, and rigorously evaluated its performance. Thanks to our MLOps pipeline, this entire process is now automated and repeatable.</p>
+
+<p>We have a proven, high-quality model. But right now, it’s just a set of files sitting in our <code>artifacts</code> folder. It’s an engine without a car. How do we make it accessible and useful to the outside world?</p>
+
+<hr />
+
+<h3><strong>Coming Up in Part 3...</strong></h3>
+
+<p>We have the blueprint and the engine. In the final part of this series, <a href="posts/text-summarizer-journey-serving-the-model-part-3.html"><strong>"Serving the World: Deploying the Summarizer with FastAPI and Docker,"</strong></a> we'll build the chassis. I’ll show you how to wrap our trained model in a fast, modern API and containerize the entire application, turning our powerful model into a portable, production-ready service that anyone can use. Stay tuned!</p>
+
+
+            
+
+            </main>
+
+            <!-- Sidebar with Post Info and Keywords -->
+            <aside>
+              <!-- Part of a series navigation -->
+              
+              <section class="series-navigation-sidebar">
+                <h4>This post is part of a series.</h4>
+                
+                <a href="posts/text-summarizer-journey-the-mlops-blueprint-part-1.html" class="series-link">← Read Part 1</a>
+                
+                
+                <a href="posts/text-summarizer-journey-serving-the-model-part-3.html" class="series-link">Read Part 2 →</a>
+                
+              </section>
+              
+
+
+            <!-- Post Information Section -->
+            <section>
+                <h2 class="section-heading">Post Information</h2>
+                <div class="competency-item-sidebar">
+                    <h3 class="competency-title-sidebar">Text Summarizer Journey: The ML Engine Room (Part 2)</h3>
+                    <p class="section-label">Published on: 2025-09-17</p>
+                    
+                      <a href="https://github.com/GoJo-Rika/Text-Summarizer-Using-HuggingFace-Transformers" class="sidebar-button" target="_blank" rel="noopener noreferrer">
+                          <i class="fab fa-github"></i> View on GitHub
+                      </a>
+                    
+                </div>
+            </section>
+
+            <!-- Technologies & Keywords Section -->
+            <section>
+                <h2 class="section-heading">Technologies & Keywords</h2>
+                <div class="tech-stack">
+                    
+                    
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                    
+                        <span class="tag">HuggingFace Transformers</span>
+                    
+                        <span class="tag">PyTorch</span>
+                    
+                        <span class="tag">FastAPI</span>
+                    
+                        <span class="tag">Docker</span>
+                    
+                        <span class="tag">Python</span>
+                    
+                        <span class="tag">Weights &amp; Biases</span>
+                    
+                        <span class="tag">MLOps</span>
+                    
+                        <span class="tag">NLP</span>
+                    
+                        <span class="tag">End-to-End ML</span>
+                    
+                        <span class="tag">Text Summarization</span>
+                    
+                        <span class="tag">Deep Learning</span>
+                    
+                        <span class="tag">Machine Learning</span>
+                    
+                        <span class="tag">Pegasus Model</span>
+                    
+                        <span class="tag">SAMSum Dataset</span>
+                    
+                        <span class="tag">Modular Pipeline Architecture</span>
+                    
+                </div>
+            </section>
+            </aside>
+
+            <!-- Add this navigation block inside the container, after the <aside> -->
+            <nav class="post-navigation">
+            <!-- OLDER POST LINK LOGIC -->
+            
+                <!-- If this is Part 2, the "Older" link MUST be Part 1 -->
+                <a href="posts/text-summarizer-journey-the-mlops-blueprint-part-1.html" class="nav-link prev-link">
+                    <span class="arrow">←</span>
+                    <span class="nav-text">
+                        <span class="nav-label">Read Part 1</span>
+                        Text Summarizer Journey: The ML Engine Room
+                    </span>
+                </a>
+            
+
+            <!-- NEWER POST LINK LOGIC -->
+            
+                <!-- If this is Part 1, the "Newer" link MUST be Part 2 -->
+                <a href="posts/text-summarizer-journey-serving-the-model-part-3.html" class="nav-link next-link">
+                    <span class="nav-text">
+                        <span class="nav-label">Read Part 2</span>
+                        Text Summarizer Journey: The ML Engine Room (Part 2)
+                    </span>
+                    <span class="arrow">→</span>
+                </a>
+            
+            </nav>
+
+        </div>
+    </div>
+
+    <footer class="page-footer">
+      <div class="container">
+        <p>© 2025 Mit Patel. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Prism JS for Code Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+
+    <!-- ADD THIS LINE TO LOAD THE PYTHON LANGUAGE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <!-- ADD THIS LINE for the Toolbar Plugin's JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+
+    <!-- ADD THIS LINE FOR THE COPY BUTTON PLUGIN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+    <!-- ===== Style Switcher Start ===== -->
+    <div class="theme-toggle-container">
+        <div id="theme-toggle-icon" class="theme-icon">
+            <i class="fas"></i>
+        </div>
+    </div>
+    <!-- ===== Style Switcher End ===== -->
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
