@@ -157,11 +157,14 @@ auto_transforms = weights.transforms()
 
 <p>I now had a reliable, high-performing pipeline. But it was all trapped inside a single, massive 500-line script. It worked, but it wasn't a piece of software; it was a monolith.</p>
 
-<p>The final challenge of this phase was to perform the <strong>Great Refactor</strong>. I systematically broke the monolithic script apart, piece by piece, into a dedicated Python package called <code>food_vision</code>. Each file was given a single, clear responsibility:
--   <code>data_setup.py</code>: Does one thing: creates <code>DataLoaders</code>.
--   <code>model_builder.py</code>: Does one thing: builds <code>EfficientNet</code> models.
--   <code>engine.py</code>: Does one thing: runs the training and testing loops.
--   <code>utils.py</code>: Holds the helpers for saving models and creating TensorBoard writers.</p>
+<p>The final challenge of this phase was to perform the <strong>Great Refactor</strong>. I systematically broke the monolithic script apart, piece by piece, into a dedicated Python package called <code>food_vision</code>. Each file was given a single, clear responsibility:</p>
+
+<ul>
+<li><code>data_setup.py</code>: Does one thing: creates <code>DataLoaders</code>.</li>
+<li><code>model_builder.py</code>: Does one thing: builds <code>EfficientNet</code> models.</li>
+<li><code>engine.py</code>: Does one thing: runs the training and testing loops.</li>
+<li><code>utils.py</code>: Holds the helpers for saving models and creating TensorBoard writers.</li>
+</ul>
 
 <p>This process was the bridge from being a data scientist to being an MLOps engineer. The result wasn't just a script that ran; it was a <strong>system</strong> that could be imported, tested, and extended.</p>
 

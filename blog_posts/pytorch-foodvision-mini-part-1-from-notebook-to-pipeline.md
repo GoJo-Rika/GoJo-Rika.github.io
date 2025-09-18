@@ -83,6 +83,7 @@ Using the transforms that came packaged with the pre-trained weights ensured my 
 I now had a reliable, high-performing pipeline. But it was all trapped inside a single, massive 500-line script. It worked, but it wasn't a piece of software; it was a monolith.
 
 The final challenge of this phase was to perform the **Great Refactor**. I systematically broke the monolithic script apart, piece by piece, into a dedicated Python package called `food_vision`. Each file was given a single, clear responsibility:
+
 -   `data_setup.py`: Does one thing: creates `DataLoaders`.
 -   `model_builder.py`: Does one thing: builds `EfficientNet` models.
 -   `engine.py`: Does one thing: runs the training and testing loops.
