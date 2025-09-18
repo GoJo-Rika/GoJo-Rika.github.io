@@ -117,11 +117,15 @@
             <section>
                 <h2 class="section-heading">Technologies & Keywords</h2>
                 <div class="tech-stack">
-                    {% for tech in post.core_technologies %}
-                        <span class="tag">{{ tech }}</span>
+                    {% set all_tags = post.core_technologies + post.keywords %}
+                    {% set unique_tags = [] %}
+                    {% for tag in all_tags %}
+                        {% if tag not in unique_tags %}
+                            {% set _ = unique_tags.append(tag) %}
+                        {% endif %}
                     {% endfor %}
-                    {% for keyword in post.keywords %}
-                        <span class="tag">{{ keyword }}</span>
+                    {% for tag in unique_tags %}
+                        <span class="tag">{{ tag }}</span>
                     {% endfor %}
                 </div>
             </section>
