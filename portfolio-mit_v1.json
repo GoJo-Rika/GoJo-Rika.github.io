@@ -22,7 +22,9 @@
     "Markdown": { "icon": "tech_icons/markdown.svg" },
     "NumPy": { "icon": "tech_icons/numpy.svg" },
     "Postman": { "icon": "tech_icons/postman.svg" },
-    "TensorBoard": { "icon": "tech_icons/tensorboard.svg" }
+    "TensorBoard": { "icon": "tech_icons/tensorboard.svg" },
+    "HuggingFace Transformers": { "icon": "tech_icons/hugging-face.svg" },
+    "Weights & Biases": { "icon": "tech_icons/weights-and-biases.svg" }
   },
   "featured_projects": [
     {
@@ -47,6 +49,14 @@
       "summary": "An end-to-end ML pipeline built on AWS SageMaker to demonstrate a real-world, cloud-native workflow. This project trains, deploys, and serves a scikit-learn model for mobile price classification, bridging the gap between local development and scalable MLOps.",
       "technologies": ["AWS SageMaker", "Scikit-learn", "AWS S3",  "Python", "MLOps", "CloudWatch", "AWS"],
       "github_url": "https://github.com/GoJo-Rika/aws-sagemaker",
+      "live_demo_url": null
+    },
+    {
+      "title": "Text Summarizer Using HuggingFace Transformers",
+      "image": "tech_icons/hugging-face.svg",
+      "summary": "An end-to-end MLOps project that fine-tunes a HuggingFace Pegasus model for conversational text summarization. The entire system is containerized with Docker and served via a high-performance FastAPI backend, demonstrating a complete production-ready workflow.",
+      "technologies": ["HuggingFace Transformers", "PyTorch", "FastAPI", "Docker", "Python", "Weights & Biases", "MLOps", "NLP"],
+      "github_url": "https://github.com/GoJo-Rika/Text-Summarizer-Using-HuggingFace-Transformers",
       "live_demo_url": null
     }
   ],
@@ -213,20 +223,20 @@
       "images": []
     },
     {
+      "title": "Text Summarizer Using HuggingFace Transformers",
+      "summary": "Achieved **ROUGE-optimized summarization performance** by developing **production-ready text summarization system** processing conversational data and meeting transcripts. Implemented **end-to-end ML pipeline** with **HuggingFace Transformers (Pegasus model)**, **data ingestion/transformation pipelines**, and **fine-tuning on SAMSum dataset** via **Google Colab GPU**. Deployed **RESTful API** with **FastAPI**, **Docker containerization**, **Weights & Biases experiment tracking**, and **comprehensive logging**, delivering **scalable ML service** with **automated pipeline stages** and **seamless deployment capabilities**.",
+      "url": "https://github.com/GoJo-Rika/Text-Summarizer-Using-HuggingFace-Transformers",
+      "core_technologies": ["HuggingFace Transformers", "PyTorch", "FastAPI", "Docker", "Python", "Weights & Biases", "MLOps", "NLP"],
+      "keywords": ["MLOps", "End-to-End ML", "Text Summarization", "HuggingFace", "Transformers", "Pegasus Model", "Deep Learning", "NLP", "FastAPI", "Python", "Docker", "Machine Learning Pipeline", "SAMSum Dataset", "PyTorch", "Modular Pipeline Architecture", "Containerized Deployment", "Experiment Tracking", "RESTful API"],
+      "highlights": [],
+      "images": []
+    },
+    {
       "title": "Multi-Agent Financial AI System",
       "summary": "**Reduced manual research time by 95%** by building **multi-agent AI system** using **Python**, **Groq AI models**, and **Agno framework** for automated stock analysis. Orchestrated **specialized AI agents** with **Yahoo Finance API integration** and **web search capabilities**, implementing **agent coordination patterns** and **task distribution algorithms**. Developed **interactive Streamlit interface** delivering **real-time market data**, **analyst recommendations**, and **sentiment analysis** with **comprehensive financial insights** and **automated report generation**.",
       "url": "https://github.com/GoJo-Rika/financial-ai-analyst",
       "core_technologies": ["Python", "Agno", "Groq", "DuckDuckGoTools", "YFinanceTools", "Streamlit", "Google API", "Multi-Agent AI"],
       "keywords": ["Multi-Agent AI System", "Specialized AI Agents", "Agent Coordination Patterns", "Task Distribution Algorithms", "Financial Data Analysis", "Automated Report Generation"],
-      "highlights": [],
-      "images": []
-    },
-    {
-      "title": "Text Summarizer Using HuggingFace Transformers",
-      "summary": "Achieved **ROUGE-optimized summarization performance** by developing **production-ready text summarization system** processing conversational data and meeting transcripts. Implemented **end-to-end ML pipeline** with **HuggingFace Transformers (Pegasus model)**, **data ingestion/transformation pipelines**, and **fine-tuning on SAMSum dataset** via **Google Colab GPU**. Deployed **RESTful API** with **FastAPI**, **Docker containerization**, **Weights & Biases experiment tracking**, and **comprehensive logging**, delivering **scalable ML service** with **automated pipeline stages** and **seamless deployment capabilities**.",
-      "url": "https://github.com/GoJo-Rika/Text-Summarizer",
-      "core_technologies": ["HuggingFace Transformers", "PyTorch", "FastAPI", "Docker", "Python", "Weights & Biases", "NLP"],
-      "keywords": ["End-to-End ML Pipeline", "Modular Pipeline Architecture", "Containerized Deployment", "MLOps Practices", "ROUGE Evaluation", "Automated Pipeline Stages", "Experiment Tracking", "RESTful API"],
       "highlights": [],
       "images": []
     },
@@ -395,6 +405,37 @@
       "content": "I thought taking a scikit-learn model to the cloud would be simple, but AWS SageMaker taught me more about cloud architecture and DevOps than I ever expected. This post details my entire journey, from battling IAM roles and structuring S3 buckets to mastering the SageMaker training patterns that finally bridged the gap between my local machine and a production-ready endpoint. It's a story of the struggles, the breakthroughs, and the hard-won lessons learned while building a real-world ML pipeline.",
       "core_technologies": ["AWS", "AWS SageMaker", "Scikit-learn", "AWS S3",  "Python", "MLOps", "CloudWatch"],
       "keywords": ["AWS", "Amazon SageMaker", "AWS S3", "IAM", "Cloud ML", "MLOps", "Machine Learning", "Scikit-learn", "Random Forest", "Model Deployment", "ML Pipeline", "Boto3", "SageMaker SDK", "Cloud Computing", "Data Science", "Endpoint Deployment", "Cloud-native Architecture", "Model Versioning", "Model Registry"]
+    },
+    {
+      "title": "Text Summarizer Journey: The MLOps Blueprint (Part 1)",
+      "publish_date": "2025-09-16",
+      "github_url": "https://github.com/GoJo-Rika/Text-Summarizer-Using-HuggingFace-Transformers",
+      "markdown_file": "text-summarizer-journey-part-1-the-mlops-blueprint.md",
+      "next_part_slug": "text-summarizer-journey-the-ml-engine-room-part-2",
+      "content": "My Text Summarizer project started in a Jupyter notebook—a great place for experimentation, but a fragile foundation for a real application. This post details the journey of refactoring that initial script into a robust, production-ready MLOps pipeline, tackling the challenges of hardcoded paths, scattered configuration, and monolithic execution with a modular, component-based architecture.",
+      "core_technologies": ["HuggingFace Transformers", "PyTorch", "FastAPI", "Docker", "Python", "Weights & Biases", "MLOps", "NLP"],
+      "keywords": ["MLOps", "End-to-End ML", "Text Summarization", "Deep Learning", "Python", "Machine Learning Pipeline", "Software Architecture", "DevOps"]
+      },
+    {
+      "title": "Text Summarizer Journey: The ML Engine Room (Part 2)",
+      "publish_date": "2025-09-17",
+      "github_url": "https://github.com/GoJo-Rika/Text-Summarizer-Using-HuggingFace-Transformers",
+      "markdown_file": "text-summarizer-journey-part-2-the-ml-engine-room.md",
+      "previous_part_slug": "text-summarizer-journey-the-mlops-blueprint-part-1",
+      "next_part_slug": "text-summarizer-journey-serving-the-model-part-3",
+      "content": "With a robust MLOps pipeline in place, this post dives into the core machine learning workflow of the Text Summarizer project. I explore each critical stage: transforming the raw SAMSum dataset for the model, fine-tuning a pre-trained Pegasus Transformer using a configuration-driven approach, and quantitatively evaluating its performance with ROUGE metrics.",
+      "core_technologies": ["HuggingFace Transformers", "PyTorch", "FastAPI", "Docker", "Python", "Weights & Biases", "MLOps", "NLP"],
+      "keywords": ["MLOps", "End-to-End ML", "Text Summarization", "Deep Learning", "Python", "Machine Learning", "HuggingFace Transformers", "NLP", "PyTorch", "Pegasus Model", "SAMSum Dataset", "Modular Pipeline Architecture"]
+    },
+    {
+      "title": "Text Summarizer Journey: Serving the Model (Part 3)",
+      "publish_date": "2025-09-18",
+      "github_url": "https://github.com/GoJo-Rika/Text-Summarizer-Using-HuggingFace-Transformers",
+      "markdown_file": "text-summarizer-journey-part-3-serving-the-model.md",
+      "previous_part_slug": "text-summarizer-journey-the-ml-engine-room-part-2",
+      "content": "The final step in our MLOps journey is making the trained model useful. This post covers the \"last mile\" of deployment, showing how to wrap the text summarization model in a high-performance API using FastAPI. I then walk through creating a Dockerfile to containerize the entire application, ensuring a consistent and portable service that can be deployed anywhere.",
+      "core_technologies": ["HuggingFace Transformers", "PyTorch", "FastAPI", "Docker", "Python", "Weights & Biases", "MLOps", "NLP"],
+      "keywords": ["MLOps", "End-to-End ML", "Text Summarization", "Deep Learning", "Python", "FastAPI", "Docker", "Containerized Deployment", "Experiment Tracking", "RESTful API"]
     }
   ]
 }
