@@ -24,7 +24,8 @@
     "Postman": { "icon": "tech_icons/postman.svg" },
     "TensorBoard": { "icon": "tech_icons/tensorboard.svg" },
     "HuggingFace Transformers": { "icon": "tech_icons/hugging-face.svg" },
-    "Weights & Biases": { "icon": "tech_icons/weights-and-biases.svg" }
+    "Weights & Biases": { "icon": "tech_icons/weights-and-biases.svg" },
+    "AWS Elastic Beanstalk": { "icon": "tech_icons/aws-elastic-beanstalk.svg" }
   },
   "featured_projects": [
     {
@@ -57,6 +58,14 @@
       "summary": "An end-to-end MLOps project that fine-tunes a HuggingFace Pegasus model for conversational text summarization. The entire system is containerized with Docker and served via a high-performance FastAPI backend, demonstrating a complete production-ready workflow.",
       "technologies": ["HuggingFace Transformers", "PyTorch", "FastAPI", "Docker", "Python", "Weights & Biases", "MLOps", "NLP"],
       "github_url": "https://github.com/GoJo-Rika/Text-Summarizer-Using-HuggingFace-Transformers",
+      "live_demo_url": null
+    },
+    {
+      "title": "Student Performance Prediction System - End-to-End ML Engineering Project",
+      "image": "posts_assets/pipeline_workflow_diagram.png",
+      "summary": "Developed a full end-to-end machine learning pipeline to predict student math performance from raw data. The project features a modular, production-ready architecture that trains the best regression model and serves predictions via a Flask web application deployed on AWS.",
+      "technologies": ["AWS", "Python", "Flask", "Scikit-learn", "Pandas", "NumPy", "AWS EC2", "AWS Elastic Beanstalk", "MLOps"],
+      "github_url": "https://github.com/GoJo-Rika/Student-Performance-Prediction-System",
       "live_demo_url": null
     }
   ],
@@ -232,6 +241,15 @@
       "images": []
     },
     {
+      "title": "Student Performance Prediction System - End-to-End ML Engineering Project",
+      "summary": "Achieved **90%+ prediction accuracy** by developing **end-to-end ML web application** predicting student math scores, bridging the gap between experimental ML models and **production-ready systems**. Architected **modular Flask application** with **scikit-learn pipelines**, **comprehensive logging**, and **exception handling**, deploying on **AWS EC2** using **Elastic Beanstalk** with **automated model selection** from 7 algorithms. Delivered **production-ready ML system** demonstrating **ML engineering**, **cloud deployment**, and **software architecture principles** for data science and full-stack development applications.",
+      "url": "https://github.com/GoJo-Rika/Student-Performance-Prediction-System",
+      "core_technologies": ["AWS", "Python", "Flask", "Scikit-learn", "Pandas", "NumPy", "AWS EC2", "AWS Elastic Beanstalk", "MLOps"],
+      "keywords": ["Machine Learning", "MLOps", "End-to-End ML", "Scikit-learn", "Data Pipeline", "ML Pipelines", "Model Deployment", "Predictive Modeling", "Cloud Deployment (AWS)", "Modular Architecture", "Comprehensive Loggings", "Production-ready Systems", "Data Engineering"],
+      "highlights": [],
+      "images": []
+    },
+    {
       "title": "Multi-Agent Financial AI System",
       "summary": "**Reduced manual research time by 95%** by building **multi-agent AI system** using **Python**, **Groq AI models**, and **Agno framework** for automated stock analysis. Orchestrated **specialized AI agents** with **Yahoo Finance API integration** and **web search capabilities**, implementing **agent coordination patterns** and **task distribution algorithms**. Developed **interactive Streamlit interface** delivering **real-time market data**, **analyst recommendations**, and **sentiment analysis** with **comprehensive financial insights** and **automated report generation**.",
       "url": "https://github.com/GoJo-Rika/financial-ai-analyst",
@@ -255,15 +273,6 @@
       "url": "https://github.com/GoJo-Rika/Document-QA-Using-Gemma-Groq",
       "core_technologies": ["Python", "LangChain", "Streamlit", "FAISS", "Google API", "PyPDF2", "RAG"],
       "keywords": ["Text Chunking", "PDF parsing", "Vector Embeddings", "Similarity Search", "Document Processing", "Semantic Search"],
-      "highlights": [],
-      "images": []
-    },
-    {
-      "title": "Student Performance Prediction System - End-to-End ML Engineering Project",
-      "summary": "Achieved **90%+ prediction accuracy** by developing **end-to-end ML web application** predicting student math scores, bridging the gap between experimental ML models and **production-ready systems**. Architected **modular Flask application** with **scikit-learn pipelines**, **comprehensive logging**, and **exception handling**, deploying on **AWS EC2** using **Elastic Beanstalk** with **automated model selection** from 7 algorithms. Delivered **production-ready ML system** demonstrating **ML engineering**, **cloud deployment**, and **software architecture principles** for data science and full-stack development applications.",
-      "url": "https://github.com/GoJo-Rika/Student-Performance-Project",
-      "core_technologies": ["AWS", "Python", "Flask", "Scikit-learn", "Pandas", "NumPy", "AWS EC2", "AWS Elastic Beanstalk"],
-      "keywords": ["scikit-learn pipeline", "ML Pipelines", "Model Deployment", "Cloud Deployment (AWS)", "End-to-End ML Web Application", "Modular Architecture", "Comprehensive Loggings", "Production-ready Systems"],
       "highlights": [],
       "images": []
     },
@@ -436,6 +445,15 @@
       "content": "The final step in our MLOps journey is making the trained model useful. This post covers the \"last mile\" of deployment, showing how to wrap the text summarization model in a high-performance API using FastAPI. I then walk through creating a Dockerfile to containerize the entire application, ensuring a consistent and portable service that can be deployed anywhere.",
       "core_technologies": ["HuggingFace Transformers", "PyTorch", "FastAPI", "Docker", "Python", "Weights & Biases", "MLOps", "NLP"],
       "keywords": ["MLOps", "End-to-End ML", "Text Summarization", "Deep Learning", "Python", "FastAPI", "Docker", "Containerized Deployment", "Experiment Tracking", "RESTful API"]
+    },
+    {
+      "title": "Student Performance Prediction: When Simple Isn't Always Better",
+      "publish_date": "2025-09-19",
+      "github_url": "https://github.com/GoJo-Rika/Student-Performance-Prediction-System",
+      "markdown_file": "student-performance-prediction-simple-isnt-always-better.md",
+      "content": "A candid, in-depth account of developing an end-to-end Student Performance Prediction system. This post explores the journey from an experimental Jupyter Notebook to a production-ready, modular ML pipeline, covering the critical roles of custom logging, exception handling, and a component-based architecture. It also details the real-world challenges and hard-won lessons from deploying a Flask application on AWS.",
+      "core_technologies": ["AWS", "Python", "Flask", "Scikit-learn", "Pandas", "NumPy", "AWS EC2", "AWS Elastic Beanstalk", "MLOps"],
+      "keywords": ["Machine Learning", "MLOps", "End-to-End ML", "Scikit-learn", "Data Pipeline", "ML Pipelines", "Model Deployment", "Predictive Modeling", "Cloud Deployment (AWS)", "Modular Architecture", "Comprehensive Loggings", "Production-ready Systems", "Data Engineering"]
     }
   ]
 }
