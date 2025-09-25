@@ -25,7 +25,11 @@
     "TensorBoard": { "icon": "tech_icons/tensorboard.svg" },
     "HuggingFace Transformers": { "icon": "tech_icons/hugging-face.svg" },
     "Weights & Biases": { "icon": "tech_icons/weights-and-biases.svg" },
-    "AWS Elastic Beanstalk": { "icon": "tech_icons/aws-elastic-beanstalk.svg" }
+    "AWS Elastic Beanstalk": { "icon": "tech_icons/aws-elastic-beanstalk.svg" },
+    "Agno": { "icon": "tech_icons/agno.png" },
+    "Groq": { "icon": "tech_icons/groq.svg" },
+    "Streamlit": { "icon": "tech_icons/streamlit.svg" },
+    "Google Gemini": { "icon": "tech_icons/google-gemini.svg" }
   },
   "featured_projects": [
     {
@@ -66,6 +70,22 @@
       "summary": "Developed a full end-to-end machine learning pipeline to predict student math performance from raw data. The project features a modular, production-ready architecture that trains the best regression model and serves predictions via a Flask web application deployed on AWS.",
       "technologies": ["AWS", "Python", "Flask", "Scikit-learn", "Pandas", "NumPy", "AWS EC2", "AWS Elastic Beanstalk", "MLOps"],
       "github_url": "https://github.com/GoJo-Rika/Student-Performance-Prediction-System",
+      "live_demo_url": null
+    },
+    {
+      "title": "Multi-Agent Financial AI System",
+      "image": "project_images/financial-ai.jpg",
+      "summary": "Built a multi-agent AI system using Groq and the Agno framework to automate comprehensive stock analysis. The system orchestrates specialized agents for financial data retrieval and web research to deliver synthesized, actionable insights in seconds.",
+      "technologies": ["Python", "Agno", "Groq", "FastAPI", "YFinance"],
+      "github_url": "https://github.com/GoJo-Rika/financial-ai-analyst",
+      "live_demo_url": null
+    },
+    {
+      "title": "Video Summarizer: An Agentic AI Approach with Google Gemini",
+      "image": "project_images/video-summarizer-thumbnail.png",
+      "summary": "An intelligent AI agent that provides deep analysis of video content. It uses Google's multimodal Gemini model to understand video and the `Agno` framework to autonomously perform supplementary web research, delivering insights that go far beyond simple summarization.",
+      "technologies": ["Python", "Streamlit", "Google Gemini", "Agno"],
+      "github_url": "https://github.com/GoJo-Rika/Video-Summarizer",
       "live_demo_url": null
     }
   ],
@@ -253,8 +273,26 @@
       "title": "Multi-Agent Financial AI System",
       "summary": "**Reduced manual research time by 95%** by building **multi-agent AI system** using **Python**, **Groq AI models**, and **Agno framework** for automated stock analysis. Orchestrated **specialized AI agents** with **Yahoo Finance API integration** and **web search capabilities**, implementing **agent coordination patterns** and **task distribution algorithms**. Developed **interactive Streamlit interface** delivering **real-time market data**, **analyst recommendations**, and **sentiment analysis** with **comprehensive financial insights** and **automated report generation**.",
       "url": "https://github.com/GoJo-Rika/financial-ai-analyst",
-      "core_technologies": ["Python", "Agno", "Groq", "DuckDuckGoTools", "YFinanceTools", "Streamlit", "Google API", "Multi-Agent AI"],
-      "keywords": ["Multi-Agent AI System", "Specialized AI Agents", "Agent Coordination Patterns", "Task Distribution Algorithms", "Financial Data Analysis", "Automated Report Generation"],
+      "core_technologies": ["Python", "Agno", "Groq", "Agentic AI", "Multi-Agent Systems", "FastAPI", "DuckDuckGoTools", "YFinanceTools", "Google API"],
+      "keywords": ["Multi-Agent AI System", "Financial Analysis", "Stock Market", "Investment Research", "Agent Coordination Patterns", "YFinance API", "Automation"],
+      "highlights": [],
+      "images": []
+    },
+    {
+      "title": "Video Summarizer: An Agentic AI Approach with Google Gemini",
+      "summary": "Developed and architected an end-to-end multimodal AI agent for intelligent video analysis using Python, Streamlit, and Google Gemini. Engineered a robust, asynchronous data pipeline and integrated DuckDuckGo for agentic web search, creating a system that provides contextual, web-supplemented insights from video content.",
+      "url": "https://github.com/GoJo-Rika/video-summarizer",
+      "core_technologies": ["Python", "Streamlit", "Agno", "Google Gemini", "DuckDuckGo API", "google-generativeai", "python-dotenv"],
+      "keywords": ["Agentic AI", "Multimodal AI", "Generative AI", "LLM", "Video Analysis", "AI Agent", "Prompt Engineering", "Asynchronous API", "Data Pipeline", "Natural Language Processing"],
+      "highlights": [],
+      "images": []
+    },
+    {
+      "title": "AI-Powered Blog Content Generator | AWS Serverless Architecture",
+      "summary": "Built **production-ready serverless API** leveraging **AWS Bedrock's Meta Llama 3** for automated blog content generation with **scalable cloud infrastructure**. Architected **end-to-end serverless solution** integrating **Lambda functions**, **API Gateway**, and **S3 storage** with **comprehensive IAM security policies**. Implemented **robust error handling**, **timeout management**, and **logging strategies** for **reliable cloud service orchestration**, demonstrating expertise in **serverless architecture patterns**, **AI model integration**, and **scalable infrastructure design**.",
+      "url": "https://github.com/GoJo-Rika/genai-with-aws-bedrock-lambda-apigateway",
+      "core_technologies": ["AWS Bedrock", "AWS Lambda", "AWS API Gateway", "AWS S3", "Python", "Boto3", "IAM", "Meta Llama", "AWS CloudWatch"],
+      "keywords": ["Scalable Cloud Infrastructure", "Serverless Architecture Patterns", "End-to-End Serverless Solution", "Timeout Management", "AI Model Integration", "Robust Error Handling", "Logging Strategies"],
       "highlights": [],
       "images": []
     },
@@ -273,15 +311,6 @@
       "url": "https://github.com/GoJo-Rika/Document-QA-Using-Gemma-Groq",
       "core_technologies": ["Python", "LangChain", "Streamlit", "FAISS", "Google API", "PyPDF2", "RAG"],
       "keywords": ["Text Chunking", "PDF parsing", "Vector Embeddings", "Similarity Search", "Document Processing", "Semantic Search"],
-      "highlights": [],
-      "images": []
-    },
-    {
-      "title": "AI-Powered Blog Content Generator | AWS Serverless Architecture",
-      "summary": "Built **production-ready serverless API** leveraging **AWS Bedrock's Meta Llama 3** for automated blog content generation with **scalable cloud infrastructure**. Architected **end-to-end serverless solution** integrating **Lambda functions**, **API Gateway**, and **S3 storage** with **comprehensive IAM security policies**. Implemented **robust error handling**, **timeout management**, and **logging strategies** for **reliable cloud service orchestration**, demonstrating expertise in **serverless architecture patterns**, **AI model integration**, and **scalable infrastructure design**.",
-      "url": "https://github.com/GoJo-Rika/genai-with-aws-bedrock-lambda-apigateway",
-      "core_technologies": ["AWS Bedrock", "AWS Lambda", "AWS API Gateway", "AWS S3", "Python", "Boto3", "IAM", "Meta Llama", "AWS CloudWatch"],
-      "keywords": ["Scalable Cloud Infrastructure", "Serverless Architecture Patterns", "End-to-End Serverless Solution", "Timeout Management", "AI Model Integration", "Robust Error Handling", "Logging Strategies"],
       "highlights": [],
       "images": []
     }
@@ -454,6 +483,35 @@
       "content": "A candid, in-depth account of developing an end-to-end Student Performance Prediction system. This post explores the journey from an experimental Jupyter Notebook to a production-ready, modular ML pipeline, covering the critical roles of custom logging, exception handling, and a component-based architecture. It also details the real-world challenges and hard-won lessons from deploying a Flask application on AWS.",
       "core_technologies": ["AWS", "Python", "Flask", "Scikit-learn", "Pandas", "NumPy", "AWS EC2", "AWS Elastic Beanstalk", "MLOps"],
       "keywords": ["Machine Learning", "MLOps", "End-to-End ML", "Scikit-learn", "Data Pipeline", "ML Pipelines", "Model Deployment", "Predictive Modeling", "Cloud Deployment (AWS)", "Modular Architecture", "Comprehensive Loggings", "Production-ready Systems", "Data Engineering"]
+    },
+    {
+      "title": "Multi-Agent Chaos: When AI Agents Wouldn't Cooperate",
+      "publish_date": "2025-09-20",
+      "github_url": "https://github.com/GoJo-Rika/financial-ai-analyst",
+      "markdown_file": "financial-ai-blog-post-when-ai-agents-wouldn't-cooperate.md",
+      "content": "My journey to build an AI financial analyst started with a single, confused bot that failed miserably. The solution wasn't a better model, but a better architecture: a coordinated team of AI specialists. Here's a deep dive into the code, the struggles, and the key lessons learned from building a multi-agent system with Agno and Groq.",
+      "core_technologies": ["Python", "Agno", "Groq", "Agentic AI", "Multi-Agent Systems", "FastAPI", "DuckDuckGoTools", "YFinanceTools", "Google API"],
+      "keywords": ["Multi-Agent AI System", "Financial Analysis", "Stock Market", "Investment Research", "Agent Coordination Patterns", "YFinance API", "Automation"]
+    },
+    {
+      "title": "Building an Intelligent Video Analyst: The Foundational Pipeline (Part 1)",
+      "publish_date": "2025-09-21",
+      "github_url": "https://github.com/GoJo-Rika/Video-Summarizer",
+      "markdown_file": "video-summarizer-blog-part-1.md",
+      "next_part_slug": "building-an-intelligent-video-analyst-crafting-the-agents-brain-part-2",
+      "content": "My journey to build an intelligent video analyst started with what seemed like a simple task: uploading a video. I quickly hit a wall with Google's asynchronous File API, a common real-world challenge that requires more than just basic code. This post covers the architectural decisions, the code for building a resilient video processing pipeline, and the \"aha!\" moment that made it all work, setting the stage for the AI agent.",
+      "core_technologies": ["Python", "Streamlit", "Agno", "Google Gemini", "DuckDuckGo API", "google-generativeai", "python-dotenv"],
+      "keywords": ["Agentic AI", "Multimodal AI", "Generative AI", "LLM", "Video Analysis", "AI Agent", "Prompt Engineering", "Asynchronous API", "Data Pipeline", "Natural Language Processing"]
+    },
+    {
+      "title": "Building an Intelligent Video Analyst: Crafting the Agent's Brain (Part 2)",
+      "publish_date": "2025-09-22",
+      "github_url": "https://github.com/GoJo-Rika/Video-Summarizer",
+      "markdown_file": "video-summarizer-blog-part-2.md",
+      "previous_part_slug": "building-an-intelligent-video-analyst-the-foundational-pipeline-part-1",
+      "content": "A robust pipeline is just the beginning; the real intelligence comes from the agent's 'brain.' This post is a deep dive into the art of prompt engineering, showing how carefully crafted instructions enable our `Agno` agent to not only analyze video with Google Gemini but also to autonomously use web search tools for a richer, more contextual analysis. See how the final pieces came together to create an intelligent video research assistant.",
+      "core_technologies": ["Python", "Streamlit", "Agno", "Google Gemini", "DuckDuckGo API", "google-generativeai", "python-dotenv"],
+      "keywords": ["Agentic AI", "Multimodal AI", "Generative AI", "LLM", "Video Analysis", "AI Agent", "Prompt Engineering", "Asynchronous API", "Data Pipeline", "Natural Language Processing"]
     }
   ]
 }

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Info -->
+    <title>Building an Intelligent Video Analyst: Crafting the Agent&#39;s Brain (Part 2) - Mit Patel</title>
+    <meta name="description" content="A robust pipeline is just the beginning; the real intelligence comes from the agent&#39;s &#39;brain.&#39; This post is a deep dive into the art of prompt engineering,...">
+    <meta name="author" content="Mit Patel">
+
+    <!-- Base URL to fix relative paths -->
+    <base href="../">
+
+    <!-- Open Graph Tags (for social media sharing) -->
+    <meta property="og:title" content="Building an Intelligent Video Analyst: Crafting the Agent&#39;s Brain (Part 2)">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="127.0.0.1:5500/posts/building-an-intelligent-video-analyst-crafting-the-agents-brain-part-2.html">
+    <meta property="og:image" content="127.0.0.1:5500/portfolio_media/photo_2.jpg">
+    <meta property="og:image:alt" content="Mit Patel Profile Image">
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Custom Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+          rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/modern_normalize.css" />
+    <link rel="stylesheet" href="css/html5bp.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/resume.css">
+    <link rel="stylesheet" href="css/post.css">
+
+    <!-- Icon & Favicon Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- ADD THIS LINE FOR THE TOOLBAR PLUGIN'S CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+
+    <!-- Set a theme color that matches your website's primary color -->
+    <meta name="theme-color" content="#fafafa">
+
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+
+    <!-- Apple touch icon for iOS devices -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
+
+    <!-- Web app manifest for Progressive Web Apps -->
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+    <header class="page-header">
+      <div class="container">
+        <div class="header-top flex-responsive">
+          <div class="header-info">
+            <h1>Mit Patel's Blog</h1>
+            <nav>
+              <ul class="inline-list flex-responsive">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="blog.html">Blog Home</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <div class="page-content">
+        <div class="container">
+            <!-- Main Article Content -->
+            <main class="post-content-main">
+              <h1>🧠 The Agent's Brain: Teaching A Multimodal AI To Think And Search The Web</h1>
+
+<p>In <strong><a href="posts/building-an-intelligent-video-analyst-the-foundational-pipeline-part-1.html">Part 1</a></strong>, we laid the groundwork. We architected a robust pipeline capable of handling video uploads, navigating the complexities of Google's asynchronous File API, and optimizing performance with smart caching. We built the "eyes" and "hands" of our system, but now it's time to build its "brain."</p>
+
+<p>A data pipeline is only as good as the intelligence that uses it. The real challenge was transforming our functional pipeline into an intelligent agent that could reason, analyze, and autonomously use tools to answer complex questions. This is the story of how I crafted the agent's logic, battled with prompt engineering, and refined the user experience to create a truly useful AI tool.</p>
+
+<h2>The Core Challenge: Teaching an AI to Think</h2>
+
+<p>With the video processing pipeline in place, the next step was to get the agent to perform the analysis. My first attempt was simple. I gave the agent a basic instruction: "Summarize this video."</p>
+
+<p>The results were... underwhelming. The summaries were often generic, inconsistent, and completely missed the user's intent. Sometimes they were too technical, other times too vague. It became clear that the agent needed more than a simple command; it needed a detailed set of instructions—a carefully engineered prompt.</p>
+
+<p>This led me to the most critical part of the project: <strong>prompt engineering</strong>. The prompt is the bridge between the user's goal and the AI's capabilities. A good prompt doesn't just ask a question; it provides context, sets constraints, and guides the model's reasoning process.</p>
+
+<p>After dozens of iterations, I landed on a multi-part prompt structure that gave the Gemini model the clarity it needed.</p>
+
+<pre><code># In app.py, inside the 'if st.button("Analyze Video")' block...
+
+user_query = st.text_area(
+    "What insights are you seeking from the video?",
+    placeholder="Ask anything about the video content..."
+)
+
+# The final, engineered prompt that guides the agent
+analysis_prompt = f"""
+    Analyze the uploaded video's content and context in detail.
+    Respond to the following query: "{user_query}"
+
+    Base your answer on insights from the video and supplement 
+    it with web research using your available tools.
+
+    Provide a detailed, user-friendly, and well-structured response.
+    """
+</code></pre>
+
+<p>Let's break down why this prompt is effective:</p>
+
+<ol>
+<li><strong>Clear Role:</strong> It starts with a direct command: "Analyze the uploaded video's content and context in detail."</li>
+<li><strong>Dynamic Input:</strong> It dynamically injects the <code>user_query</code> so the analysis is always tailored to the user's specific question.</li>
+<li><strong>Explicit Tool Instruction:</strong> This is the key. The line, "...supplement it with web research using your available tools," explicitly encourages the <code>Agno</code> agent to use the <code>DuckDuckGoTools</code> we gave it during initialization. Without this instruction, the agent might not realize it's allowed to search the web.</li>
+<li><strong>Format Guidance:</strong> The final instruction, "Provide a detailed, user-friendly, and well-structured response," guides the model to produce output that is readable and actionable, not just a raw data dump.</li>
+</ol>
+
+<h2>The Magic of Agentic Execution</h2>
+
+<p>With a well-crafted prompt and a ready video file, triggering the entire complex workflow comes down to a single, elegant line of code, thanks to the <code>Agno</code> framework.</p>
+
+<pre><code># In app.py
+
+# ... after the polling loop confirms the video is 'ACTIVE' ...
+
+# The agent takes the prompt and the video, and handles all the complexity.
+response = multimodal_agent.run(
+    analysis_prompt,
+    videos=[{"filepath": video_path}], # Pass the video file path
+)
+
+# Display the final, formatted result to the user.
+st.subheader("Analysis Result")
+st.markdown(response.content)
+</code></pre>
+
+<p>This <code>.run()</code> method is where the magic happens. The <code>Agno</code> framework takes our prompt, the video, and the available tools, and orchestrates the entire process:</p>
+
+<ul>
+<li>It sends the video and prompt to the Gemini model.</li>
+<li>Gemini analyzes the content and determines if it needs more information to answer the <code>user_query</code>.</li>
+<li>If needed, the agent autonomously calls the DuckDuckGo tool to perform a web search.</li>
+<li>Finally, it synthesizes all the information—from the video and the web—into a single, coherent response.</li>
+</ul>
+
+<h2>Refining the User Experience</h2>
+
+<p>A powerful backend is useless if the frontend is confusing. As I tested the application, I realized that user experience (UX) was just as important as the AI logic. I focused on three key areas:</p>
+
+<ol>
+<li><strong>Clear Instructions:</strong> The initial UI was minimal. I added a <code>placeholder</code> and <code>help</code> text to the <code>st.text_area</code> to guide users toward asking specific, effective questions.</li>
+<li><strong>Managing Expectations:</strong> AI processing takes time. The <code>st.spinner</code> and status messages (<code>st.write</code>) we built in Part 1 are crucial for letting the user know the system is working and hasn't crash </li>
+<li><strong>Readable Output:</strong> The agent was configured with <code>markdown=True</code>. This ensures the final output is well-formatted with headings, lists, and links, making the analysis easy to read and digest.</li>
+</ol>
+
+<h2>Key Takeaways from the Journey</h2>
+
+<p>This project was a profound learning experience that went far beyond writing code. It provided several key insights into modern AI development.</p>
+
+<blockquote>
+  <p><strong>AI Development is System Integration:</strong> The most powerful AI applications often come from orchestrating multiple, specialized components. The magic wasn't in building a new model, but in making a vision model, a language model, and a search tool work together as a single, intelligent agent.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Embrace Asynchronicity:</strong> Many advanced AI APIs (for video, audio, or large-scale processing) are asynchronous. Building robust applications requires a shift in mindset—from expecting immediate responses to designing patient, resilient polling and state-management workflows.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Prompt Engineering is a Core Skill:</strong> A great AI model with a poor prompt will produce poor results. Crafting clear, contextual, and well-structured prompts is not an afterthought; it is a central part of the development process that directly determines the quality of the final output.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Engineering Fundamentals Still Reign Supreme:</strong> The most impressive AI logic will fail if it's built on a shaky foundation. Principles like secure key management, robust error handling (<code>try...finally</code>), and performance optimization (caching) are what elevate a cool prototype into a reliable, production-ready application.</p>
+</blockquote>
+
+<p>The journey of building this application taught me that success in AI requires a blend of technical expertise, user empathy, and the persistence to debug the weird, unexpected issues that arise when working on the cutting edge.</p>
+
+<p>Want to see how it all came together? You can find the entire project, including the final <code>app.py</code> and a detailed README, on my <strong><a href="https://github.com/GoJo-Rika/Video-Summarizer">GitHub repository</a></strong>.</p>
+
+
+            
+
+            </main>
+
+            <!-- Sidebar with Post Info and Keywords -->
+            <aside>
+              <!-- Part of a series navigation -->
+              
+              <section class="series-navigation-sidebar">
+                <h4>This post is part of a series.</h4>
+                
+                <a href="posts/building-an-intelligent-video-analyst-the-foundational-pipeline-part-1.html" class="series-link">← Read Part 1</a>
+                
+                
+              </section>
+              
+
+
+            <!-- Post Information Section -->
+            <section>
+                <h2 class="section-heading">Post Information</h2>
+                <div class="competency-item-sidebar">
+                    <h3 class="competency-title-sidebar">Building an Intelligent Video Analyst: Crafting the Agent&#39;s Brain (Part 2)</h3>
+                    <p class="section-label">Published on: 2025-09-22</p>
+                    
+                      <a href="https://github.com/GoJo-Rika/Video-Summarizer" class="sidebar-button" target="_blank" rel="noopener noreferrer">
+                          <i class="fab fa-github"></i> View on GitHub
+                      </a>
+                    
+                </div>
+            </section>
+
+            <!-- Technologies & Keywords Section -->
+            <section>
+                <h2 class="section-heading">Technologies & Keywords</h2>
+                <div class="tech-stack">
+                    
+                    
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                    
+                        <span class="tag">Python</span>
+                    
+                        <span class="tag">Streamlit</span>
+                    
+                        <span class="tag">Agno</span>
+                    
+                        <span class="tag">Google Gemini</span>
+                    
+                        <span class="tag">DuckDuckGo API</span>
+                    
+                        <span class="tag">google-generativeai</span>
+                    
+                        <span class="tag">python-dotenv</span>
+                    
+                        <span class="tag">Agentic AI</span>
+                    
+                        <span class="tag">Multimodal AI</span>
+                    
+                        <span class="tag">Generative AI</span>
+                    
+                        <span class="tag">LLM</span>
+                    
+                        <span class="tag">Video Analysis</span>
+                    
+                        <span class="tag">AI Agent</span>
+                    
+                        <span class="tag">Prompt Engineering</span>
+                    
+                        <span class="tag">Asynchronous API</span>
+                    
+                        <span class="tag">Data Pipeline</span>
+                    
+                        <span class="tag">Natural Language Processing</span>
+                    
+                </div>
+            </section>
+            </aside>
+
+            <!-- Add this navigation block inside the container, after the <aside> -->
+            <nav class="post-navigation">
+            <!-- OLDER POST LINK LOGIC -->
+            
+                <!-- If this is Part 2, the "Older" link MUST be Part 1 -->
+                <a href="posts/building-an-intelligent-video-analyst-the-foundational-pipeline-part-1.html" class="nav-link prev-link">
+                    <span class="arrow">←</span>
+                    <span class="nav-text">
+                        <span class="nav-label">Read Part 1</span>
+                        Building an Intelligent Video Analyst: Crafting the Agent&#39;s Brain
+                    </span>
+                </a>
+            
+
+            <!-- NEWER POST LINK LOGIC -->
+            
+            </nav>
+
+        </div>
+    </div>
+
+    <footer class="page-footer">
+      <div class="container">
+        <p>© 2025 Mit Patel. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Prism JS for Code Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+
+    <!-- ADD THIS LINE TO LOAD THE PYTHON LANGUAGE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <!-- ADD THIS LINE for the Toolbar Plugin's JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+
+    <!-- ADD THIS LINE FOR THE COPY BUTTON PLUGIN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+    <!-- ===== Style Switcher Start ===== -->
+    <div class="theme-toggle-container">
+        <div id="theme-toggle-icon" class="theme-icon">
+            <i class="fas"></i>
+        </div>
+    </div>
+    <!-- ===== Style Switcher End ===== -->
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Info -->
+    <title>Building an Intelligent Video Analyst: The Foundational Pipeline (Part 1) - Mit Patel</title>
+    <meta name="description" content="My journey to build an intelligent video analyst started with what seemed like a simple task: uploading a video. I quickly hit a wall with Google&#39;s...">
+    <meta name="author" content="Mit Patel">
+
+    <!-- Base URL to fix relative paths -->
+    <base href="../">
+
+    <!-- Open Graph Tags (for social media sharing) -->
+    <meta property="og:title" content="Building an Intelligent Video Analyst: The Foundational Pipeline (Part 1)">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="127.0.0.1:5500/posts/building-an-intelligent-video-analyst-the-foundational-pipeline-part-1.html">
+    <meta property="og:image" content="127.0.0.1:5500/portfolio_media/photo_2.jpg">
+    <meta property="og:image:alt" content="Mit Patel Profile Image">
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Custom Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+          rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/modern_normalize.css" />
+    <link rel="stylesheet" href="css/html5bp.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/resume.css">
+    <link rel="stylesheet" href="css/post.css">
+
+    <!-- Icon & Favicon Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- ADD THIS LINE FOR THE TOOLBAR PLUGIN'S CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+
+    <!-- Set a theme color that matches your website's primary color -->
+    <meta name="theme-color" content="#fafafa">
+
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+
+    <!-- Apple touch icon for iOS devices -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
+
+    <!-- Web app manifest for Progressive Web Apps -->
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+    <header class="page-header">
+      <div class="container">
+        <div class="header-top flex-responsive">
+          <div class="header-info">
+            <h1>Mit Patel's Blog</h1>
+            <nav>
+              <ul class="inline-list flex-responsive">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="blog.html">Blog Home</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <div class="page-content">
+        <div class="container">
+            <!-- Main Article Content -->
+            <main class="post-content-main">
+              <h1>🚀 From Simple Upload To Robust Pipeline: A Developer's Battle With Asynchronous AI</h1>
+
+<p>I was losing hours. Conference talks, technical tutorials, team meetings—my video backlog was growing, and I was struggling to extract the key insights efficiently. I thought to myself, "What if I could build a tool that not only summarizes a video but acts as an intelligent research assistant, capable of understanding the content and even searching the web for context?"</p>
+
+<p>That simple question sparked a deep dive into the world of multimodal AI and agentic architectures. What followed was a journey filled with complex challenges, frustrating debugging sessions, and incredible "aha!" moments. This is the story of how I built the Video Summarizer, starting with the foundational pipeline that nearly stumped me.</p>
+
+<h2>The Blueprint: Architecting for an Intelligent Future</h2>
+
+<p>Before writing a single line of logic, I knew a solid architecture was essential. The goal wasn't just to cobble together a script, but to build a stable, scalable application.</p>
+
+<p>My tech stack of choice was:</p>
+
+<ul>
+<li><strong>Streamlit:</strong> For its unparalleled speed in building beautiful, interactive Python web apps.</li>
+<li><strong>Agno (formerly phidata):</strong> As the "brain" or framework to orchestrate the AI agent and its tools.</li>
+<li><strong>Google Gemini:</strong> As the state-of-the-art multimodal model for understanding both video and text.</li>
+</ul>
+
+<p>A clean project structure was my first priority to ensure the code remained maintainable.</p>
+
+<pre><code>Video-Summarizer/
+├── .env.sample      # A template for environment variables
+├── app.py           # The core Streamlit application logic
+├── README.md        # The project's main documentation
+└── requirements.txt # All Python dependencies
+</code></pre>
+
+<p>This simple layout separates concerns, defines dependencies, and uses a <code>.env</code> file to handle the <code>GOOGLE_API_KEY</code> securely—a critical first step in any project.</p>
+
+<h2>The First Wall: My Naive Code Meets an Asynchronous Beast</h2>
+
+<p>With the blueprint in place, I started with what I thought was the easiest part: uploading a video. My initial logic was simple: get the file from the user, upload it to Google's API, and immediately send it to the Gemini model for analysis.</p>
+
+<p>It failed. Repeatedly.</p>
+
+<p>After hours of debugging, I had my first major breakthrough. I discovered that the Google File API is <strong>asynchronous</strong>. When you upload a video, the API starts a background job and immediately returns a file object with a <code>state</code> of <code>"PROCESSING"</code>. Trying to use that file for analysis right away is like trying to drink a coffee the instant you get the receipt—the barista hasn't even started making it yet.</p>
+
+<p>The solution was to build a <strong>polling mechanism</strong>: a patient loop that periodically asks the API, "Is it done yet?" until the answer is yes. This required a complete rethinking of the workflow.</p>
+
+<p>First, I needed to handle the uploaded file securely on the server. Python's <code>tempfile</code> module is perfect for this, as it creates a file in a secure location and guarantees a unique name.</p>
+
+<pre><code># In app.py
+import tempfile
+from pathlib import Path
+
+# ... (inside the 'if video_file:' block) ...
+
+# The 'with' statement ensures the file object is properly managed.
+# 'delete=False' is critical because it gives us control over when to delete the file.
+with tempfile.NamedTemporaryFile(delete=False, suffix=".mp4") as temp_video:
+    temp_video.write(video_file.read())
+    video_path = temp_video.name # Store the path for later use.
+</code></pre>
+
+<p>Next came the core logic to handle the asynchronous upload and polling, wrapped in a <code>try...finally</code> block to guarantee that the temporary file is always deleted, even if something goes wrong.</p>
+
+<pre><code># In app.py
+
+try:
+    with st.spinner("Processing video and gathering insights..."):
+        # 1. Start the Asynchronous Upload
+        st.write("Uploading file to Google...")
+        processed_video = upload_file(path=video_path) # Starts the async job
+        st.write(f"File '{processed_video.display_name}' is now processing...")
+
+        # 2. The Patient Polling Loop
+        # This loop is the heart of the solution.
+        while processed_video.state.name == "PROCESSING":
+            time.sleep(5) # Wait for 5 seconds to avoid spamming the API.
+            processed_video = get_file(processed_video.name) # Ask for the latest status.
+
+        # 3. Final Check for Success
+        if processed_video.state.name != "ACTIVE":
+            raise ValueError(f"
+                    Video processing failed. State: {processed_video.state.name}
+                    ")
+
+        st.write("Video processing complete!")
+        # The video is now ready for analysis!
+
+        # ... (Agent execution logic will go here) ...
+
+finally:
+    # 4. The Guaranteed Cleanup
+    # This block *always* runs, ensuring we clean up the temporary file.
+    st.write("Cleaning up temporary files...")
+    Path(video_path).unlink(missing_ok=True)
+</code></pre>
+
+<p>This approach is robust. It provides clear user feedback with <code>st.spinner</code>, handles the asynchronous nature of the API gracefully, and ensures the server stays clean.</p>
+
+<h2>From Working to Performant: The Magic of Caching</h2>
+
+<p>With the pipeline working, I noticed a new problem: the app was slow. Every time I asked a question, it felt like the entire AI agent was being reloaded from scratch. It was.</p>
+
+<p>Streamlit re-runs the entire script on every user interaction, which meant my <code>Agent</code> object was being re-initialized constantly. The solution was a single, powerful decorator: <code>@st.cache_resource</code>.</p>
+
+<pre><code># In app.py
+
+@st.cache_resource
+def initialize_agent() -&gt; Agent:
+    """ This function now only runs ONCE per user session. """
+    return Agent(
+        name="Video AI Summarizer",
+        model=Gemini(id="gemini-2.0-flash-lite"),
+        tools=[DuckDuckGoTools()], # We'll explore this in Part 2
+        markdown=True,
+    )
+
+# The cached agent is retrieved instantly on subsequent reruns.
+multimodal_agent = initialize_agent()
+</code></pre>
+
+<p>By adding this decorator, I told Streamlit to create the <code>Agent</code> object once and store it in cache. On every subsequent interaction, the app retrieves the already-initialized agent instantly. This simple change transformed the user experience from sluggish to seamless.</p>
+
+<h2>Onward to True Intelligence</h2>
+
+<p>We’ve successfully engineered a solid, performant, and robust pipeline. We can securely handle video uploads, navigate the complexities of asynchronous APIs, and efficiently manage our AI agent's lifecycle.</p>
+
+<p>Want to dive into the code yourself? You can find the entire project, including a detailed README with setup instructions, on my <a href="https://github.com/GoJo-Rika/Video-Summarizer">GitHub repository</a>.</p>
+
+<p>But this is just the data pipeline. The real intelligence—the agent's ability to reason, analyze, and use tools—is yet to be built. How do we instruct our agent to perform complex reasoning? And how do we empower it to autonomously use its web search tool to find information that doesn't exist in the video?</p>
+
+<p>In <strong><a href="posts/building-an-intelligent-video-analyst-crafting-the-agents-brain-part-2.html">Part 2</a></strong>, we will dive into the heart of the <code>Agno</code> framework. We'll craft the prompts that guide our agent's analysis, enable it to use its search tool intelligently, and bring the full vision of our AI Video Summarizer to life. Stay tuned</p>
+
+
+            
+
+            </main>
+
+            <!-- Sidebar with Post Info and Keywords -->
+            <aside>
+              <!-- Part of a series navigation -->
+              
+              <section class="series-navigation-sidebar">
+                <h4>This post is part of a series.</h4>
+                
+                
+                <a href="posts/building-an-intelligent-video-analyst-crafting-the-agents-brain-part-2.html" class="series-link">Read Part 2 →</a>
+                
+              </section>
+              
+
+
+            <!-- Post Information Section -->
+            <section>
+                <h2 class="section-heading">Post Information</h2>
+                <div class="competency-item-sidebar">
+                    <h3 class="competency-title-sidebar">Building an Intelligent Video Analyst: The Foundational Pipeline (Part 1)</h3>
+                    <p class="section-label">Published on: 2025-09-21</p>
+                    
+                      <a href="https://github.com/GoJo-Rika/Video-Summarizer" class="sidebar-button" target="_blank" rel="noopener noreferrer">
+                          <i class="fab fa-github"></i> View on GitHub
+                      </a>
+                    
+                </div>
+            </section>
+
+            <!-- Technologies & Keywords Section -->
+            <section>
+                <h2 class="section-heading">Technologies & Keywords</h2>
+                <div class="tech-stack">
+                    
+                    
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                    
+                        <span class="tag">Python</span>
+                    
+                        <span class="tag">Streamlit</span>
+                    
+                        <span class="tag">Agno</span>
+                    
+                        <span class="tag">Google Gemini</span>
+                    
+                        <span class="tag">DuckDuckGo API</span>
+                    
+                        <span class="tag">google-generativeai</span>
+                    
+                        <span class="tag">python-dotenv</span>
+                    
+                        <span class="tag">Agentic AI</span>
+                    
+                        <span class="tag">Multimodal AI</span>
+                    
+                        <span class="tag">Generative AI</span>
+                    
+                        <span class="tag">LLM</span>
+                    
+                        <span class="tag">Video Analysis</span>
+                    
+                        <span class="tag">AI Agent</span>
+                    
+                        <span class="tag">Prompt Engineering</span>
+                    
+                        <span class="tag">Asynchronous API</span>
+                    
+                        <span class="tag">Data Pipeline</span>
+                    
+                        <span class="tag">Natural Language Processing</span>
+                    
+                </div>
+            </section>
+            </aside>
+
+            <!-- Add this navigation block inside the container, after the <aside> -->
+            <nav class="post-navigation">
+            <!-- OLDER POST LINK LOGIC -->
+            
+                <!-- Otherwise, link to the chronologically older post (standard behavior) -->
+                <a href="posts/multi-agent-chaos-when-ai-agents-wouldnt-cooperate.html" class="nav-link prev-link">
+                    <span class="arrow">←</span>
+                    <span class="nav-text">
+                        <span class="nav-label">Older Post</span>
+                        Multi-Agent Chaos: When AI Agents Wouldn&#39;t Cooperate
+                    </span>
+                </a>
+            
+
+            <!-- NEWER POST LINK LOGIC -->
+            
+                <!-- If this is Part 1, the "Newer" link MUST be Part 2 -->
+                <a href="posts/building-an-intelligent-video-analyst-crafting-the-agents-brain-part-2.html" class="nav-link next-link">
+                    <span class="nav-text">
+                        <span class="nav-label">Read Part 2</span>
+                        Building an Intelligent Video Analyst: The Foundational Pipeline
+                    </span>
+                    <span class="arrow">→</span>
+                </a>
+            
+            </nav>
+
+        </div>
+    </div>
+
+    <footer class="page-footer">
+      <div class="container">
+        <p>© 2025 Mit Patel. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Prism JS for Code Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+
+    <!-- ADD THIS LINE TO LOAD THE PYTHON LANGUAGE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <!-- ADD THIS LINE for the Toolbar Plugin's JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+
+    <!-- ADD THIS LINE FOR THE COPY BUTTON PLUGIN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+    <!-- ===== Style Switcher Start ===== -->
+    <div class="theme-toggle-container">
+        <div id="theme-toggle-icon" class="theme-icon">
+            <i class="fas"></i>
+        </div>
+    </div>
+    <!-- ===== Style Switcher End ===== -->
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Info -->
+    <title>Multi-Agent Chaos: When AI Agents Wouldn&#39;t Cooperate - Mit Patel</title>
+    <meta name="description" content="My journey to build an AI financial analyst started with a single, confused bot that failed miserably. The solution wasn&#39;t a better model, but a better...">
+    <meta name="author" content="Mit Patel">
+
+    <!-- Base URL to fix relative paths -->
+    <base href="../">
+
+    <!-- Open Graph Tags (for social media sharing) -->
+    <meta property="og:title" content="Multi-Agent Chaos: When AI Agents Wouldn&#39;t Cooperate">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="127.0.0.1:5500/posts/multi-agent-chaos-when-ai-agents-wouldnt-cooperate.html">
+    <meta property="og:image" content="127.0.0.1:5500/portfolio_media/photo_2.jpg">
+    <meta property="og:image:alt" content="Mit Patel Profile Image">
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Custom Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+          rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/modern_normalize.css" />
+    <link rel="stylesheet" href="css/html5bp.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/resume.css">
+    <link rel="stylesheet" href="css/post.css">
+
+    <!-- Icon & Favicon Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- ADD THIS LINE FOR THE TOOLBAR PLUGIN'S CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+
+    <!-- Set a theme color that matches your website's primary color -->
+    <meta name="theme-color" content="#fafafa">
+
+    <!-- Favicon for all browsers -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+
+    <!-- Apple touch icon for iOS devices -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
+
+    <!-- Web app manifest for Progressive Web Apps -->
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+
+<body>
+    <header class="page-header">
+      <div class="container">
+        <div class="header-top flex-responsive">
+          <div class="header-info">
+            <h1>Mit Patel's Blog</h1>
+            <nav>
+              <ul class="inline-list flex-responsive">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="blog.html">Blog Home</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <div class="page-content">
+        <div class="container">
+            <!-- Main Article Content -->
+            <main class="post-content-main">
+              <h1>Building a Multi-Agent Financial AI System: My Journey from Confusion to Clarity</h1>
+
+<p><em>Or how I learned to stop worrying and love coordinating AI agents</em></p>
+
+<hr />
+
+<h2>Why I Built This (And Why You Might Want To Too)</h2>
+
+<p>Let me be honest – I didn't start this project thinking I'd build a multi-agent system. I just wanted to automate my stock research because manually checking Yahoo Finance, reading analyst reports, and googling market sentiment was eating up way too much of my time. </p>
+
+<p>What started as "let me just pull some stock data with Python" turned into a fascinating deep dive into AI agents, and honestly, some pretty frustrating debugging sessions. But the end result? A system that can analyze any stock in seconds, pulling real-time data and current market sentiment simultaneously.</p>
+
+<p>If you're curious about AI agents, frustrated with manual financial research, or just want to see how different AI models can work together, this might be interesting for you.</p>
+
+<h2>The "Aha!" Moment: Why Multiple Agents?</h2>
+
+<p>My first attempt was simple – one AI agent with access to Yahoo Finance. It worked, but the analysis felt incomplete. I'd get great financial data but miss the context of what was happening in the market.</p>
+
+<p>Then I tried giving one agent access to both financial data AND web search. Big mistake. The agent got confused about which tool to use when, and the responses were inconsistent. Sometimes it would search the web for stock prices (which it already had access to via Yahoo Finance), other times it would try to get news from financial APIs.</p>
+
+<p>That's when I realized: <strong>different tasks need different specialists.</strong></p>
+
+<ul>
+<li><strong>Financial data extraction</strong>: Needs precision, structured queries, and understanding of financial metrics</li>
+<li><strong>Market research</strong>: Needs broad search capabilities, source evaluation, and context synthesis</li>
+</ul>
+
+<p>So I built two specialized agents and let a coordinator manage them. Game changer.</p>
+
+<h2>Setting Up: Where I Went Wrong (So You Don't Have To)</h2>
+
+<h3>The API Key Dance</h3>
+
+<p>Let's start with the painful part – getting your API keys sorted. I made this harder than it needed to be.</p>
+
+<p><strong>What I did wrong first:</strong></p>
+
+<pre><code># I thought I could just export these in terminal
+export GROQ_API_KEY="your_key_here"
+export AGNO_API_KEY="your_other_key_here"
+</code></pre>
+
+<p>This works... until you close your terminal. Then you're back to square one.</p>
+
+<p><strong>What actually works:</strong></p>
+
+<pre><code># Copy the sample file
+cp .env.sample .env
+
+# Edit .env with your actual keys
+GROQ_API_KEY=your_actual_groq_key_here
+AGNO_API_KEY=your_actual_agno_key_here
+</code></pre>
+
+<p>Pro tip: Get your Groq API key from <a href="https://console.groq.com/keys">console.groq.com</a> first. It's free and fast. The Agno key is only needed if you want the playground interface.</p>
+
+<h3>Dependencies Hell (And How I Escaped)</h3>
+
+<p>My requirements.txt went through several iterations:</p>
+
+<pre><code># Version 1 (didn't work)
+agno
+groq
+yfinance
+duckduckgo-search
+python-dotenv
+fastapi
+
+# Version 2 (worked but was slow)
+agno==0.1.0
+groq==0.8.0
+# ... specific versions
+
+# Final version (current)
+agno 
+groq
+yfinance
+duckduckgo-search
+python-dotenv
+fastapi[standard]  # This [standard] part was key!
+</code></pre>
+
+<p>The <code>fastapi[standard]</code> inclusion was crucial for the playground to work properly. Spent two hours debugging why the web interface wasn't starting before I figured this out.</p>
+
+<h2>The Code: How It Actually Works</h2>
+
+<h3>Agent Architecture (The Fun Part)</h3>
+
+<p>Here's the core of my system:</p>
+
+<pre><code># Web Search Agent - My "market researcher"
+web_search_agent = Agent(
+    name="Web Search Agent",
+    role="Search the web for the information",
+    model=Groq(id="llama-3.1-8b-instant"),
+    tools=[DuckDuckGoTools()],
+    instructions=["Always include sources"],
+    show_tool_calls=True,
+    markdown=True,
+)
+
+# Finance Agent - My "data analyst"
+finance_agent = Agent(
+    name="Finance AI Agent",
+    model=Groq(id="gemma2-9b-it"),
+    tools=[
+        YFinanceTools(
+            stock_price=True,
+            analyst_recommendations=True,
+            stock_fundamentals=True,
+            company_news=True,
+        ),
+    ],
+    instructions="Use tables to display the data",
+    show_tool_calls=True,
+    markdown=True,
+)
+
+# The coordinator - brings it all together
+multi_ai_agent = Agent(
+    team=[web_search_agent, finance_agent],
+    model=Groq(id="gemma2-9b-it"),
+    instructions=["Always include sources", "Use table to display the data"],
+    show_tool_calls=True,
+    markdown=True,
+)
+</code></pre>
+
+<h3>Why These Specific Models?</h3>
+
+<p>I experimented with different model combinations:</p>
+
+<ul>
+<li><strong>Llama 3.1 8B Instant</strong> for web search: Fast, good at parsing search results, doesn't overthink</li>
+<li><strong>Gemma2 9B IT</strong> for financial analysis: Better at structured data interpretation and mathematical reasoning</li>
+</ul>
+
+<p>Initially, I used the same model for both agents, but the web search agent was too slow, and the finance agent made too many unnecessary web searches.</p>
+
+<h3>The Tools: My Digital Swiss Army Knife</h3>
+
+<p><strong>YFinanceTools</strong> - This was surprisingly comprehensive:</p>
+
+<pre><code>YFinanceTools(
+    stock_price=True,              # Real-time prices
+    analyst_recommendations=True,   # Buy/sell/hold ratings
+    stock_fundamentals=True,       # P/E, market cap, etc.
+    company_news=True,            # Latest company-specific news
+)
+</code></pre>
+
+<p><strong>DuckDuckGoTools</strong> - My web search workhorse:</p>
+
+<ul>
+<li>No API limits (unlike Google)</li>
+<li>Good at finding recent news</li>
+<li>Automatically includes sources</li>
+<li>Doesn't get blocked by rate limits</li>
+</ul>
+
+<h3>The Workflow in Action</h3>
+
+<p>When I ask: <em>"Analyze Apple stock and give me the current sentiment"</em></p>
+
+<ol>
+<li><strong>Coordinator</strong> receives the query and thinks: "This needs both financial data and market research"</li>
+<li><strong>Finance Agent</strong> kicks in:
+<ul>
+<li>Calls <code>YFinanceTools.stock_price("AAPL")</code></li>
+<li>Calls <code>YFinanceTools.analyst_recommendations("AAPL")</code></li>
+<li>Formats data into neat tables</li>
+</ul></li>
+<li><strong>Web Search Agent</strong> simultaneously:
+<ul>
+<li>Searches for "Apple stock market sentiment news"</li>
+<li>Finds recent articles and analyst reports</li>
+<li>Provides source links</li>
+</ul></li>
+<li><strong>Coordinator</strong> combines everything into a comprehensive analysis</li>
+</ol>
+
+<p>The whole process takes about 30-60 seconds and gives me information that would take me 15-20 minutes to gather manually.</p>
+
+<h2>My Biggest Challenges (And How I Solved Them)</h2>
+
+<h3>Challenge 1: Agent Confusion</h3>
+
+<p><strong>Problem</strong>: My agents were stepping on each other's toes. The finance agent would try to search the web for stock prices it already had access to.</p>
+
+<p><strong>Solution</strong>: Clear role definitions and specific instructions. I learned that AI agents need very explicit boundaries.</p>
+
+<p><strong>What worked</strong>:</p>
+
+<pre><code># Instead of vague instructions
+instructions="Get financial information"
+
+# I became specific
+instructions="Use tables to display the data. Only use YFinance tools for financial data."
+</code></pre>
+
+<h3>Challenge 2: Inconsistent Output Formats</h3>
+
+<p><strong>Problem</strong>: Sometimes I'd get markdown tables, sometimes plain text, sometimes a mix.</p>
+
+<p><strong>Solution</strong>: Standardized instructions across all agents and enabled <code>markdown=True</code> everywhere.</p>
+
+<h3>Challenge 3: API Rate Limits</h3>
+
+<p><strong>Problem</strong>: During testing, I kept hitting rate limits with various APIs.</p>
+
+<p><strong>Solution</strong>: This is why I switched to DuckDuckGo for web search – no API limits, and it's actually quite good for financial news.</p>
+
+<h3>Challenge 4: Environment Variables Not Loading</h3>
+
+<p><strong>Problem</strong>: The classic "it works on my machine" scenario. Environment variables weren't loading consistently.</p>
+
+<p><strong>Solution</strong>: </p>
+
+<pre><code>from dotenv import load_dotenv
+load_dotenv()  # This MUST be called before accessing env vars
+</code></pre>
+
+<p>Such a simple fix, but it took me embarrassingly long to figure out.</p>
+
+<h2>What I Learned Along the Way</h2>
+
+<blockquote>
+  <ol>
+  <li>Agent Specialization is Key
+  Don't try to make one agent do everything. Specialized agents with clear roles perform much better than generalists.</li>
+  </ol>
+</blockquote>
+
+<blockquote>
+  <ol start="2">
+  <li>Instructions Matter More Than You Think
+  The difference between "get financial data" and "use tables to display financial data from YFinance tools only" is huge in terms of output quality.</li>
+  </ol>
+</blockquote>
+
+<blockquote>
+  <ol start="3">
+  <li>Tool Selection is Critical
+  I initially wanted to use multiple financial APIs, but YFinance alone covers 90% of what I need. Sometimes less is more.</li>
+  </ol>
+</blockquote>
+
+<blockquote>
+  <ol start="4">
+  <li>Debugging Multi-Agent Systems is... Interesting
+  Setting <code>show_tool_calls=True</code> was a lifesaver. Being able to see which agent called which tool when helped me understand the flow and debug issues.</li>
+  </ol>
+</blockquote>
+
+<blockquote>
+  <ol start="5">
+  <li>The Playground is Worth the Setup
+  Initially, I thought the playground was just a nice-to-have. Wrong. It's incredibly useful for testing different queries and understanding how agents respond to various inputs.</li>
+  </ol>
+</blockquote>
+
+<h2>My Takeaways and What's Next</h2>
+
+<h3>What Worked Really Well:</h3>
+
+<ul>
+<li><strong>Multi-agent architecture</strong>: The specialization approach paid off</li>
+<li><strong>Tool integration</strong>: YFinance + DuckDuckGo covers most financial research needs</li>
+<li><strong>Groq models</strong>: Fast, reliable, and cost-effective</li>
+<li><strong>Interactive playground</strong>: Great for experimentation</li>
+</ul>
+
+<h3>What I'd Do Differently:</h3>
+
+<ul>
+<li><strong>Start with clearer agent roles</strong>: Would have saved hours of debugging</li>
+<li><strong>Set up better error handling</strong>: Currently, if one agent fails, everything stops</li>
+<li><strong>Add more financial metrics</strong>: Could integrate more sophisticated analysis tools</li>
+</ul>
+
+<h3>What's Next:</h3>
+
+<p>I'm thinking about adding:</p>
+
+<ul>
+<li><strong>Portfolio analysis agent</strong>: For analyzing multiple stocks at once</li>
+<li><strong>Technical analysis tools</strong>: Chart patterns, indicators, etc.</li>
+<li><strong>Sentiment scoring</strong>: Quantifying market sentiment from news</li>
+<li><strong>Alert system</strong>: Notifications when stocks hit certain conditions</li>
+</ul>
+
+<h2>Want to Try It Yourself?</h2>
+
+<p>If you're interested in building something similar:</p>
+
+<ol>
+<li><strong>Start simple</strong>: One agent, one tool, one specific task</li>
+<li><strong>Add complexity gradually</strong>: Don't try to build everything at once</li>
+<li><strong>Test extensively</strong>: Use the playground to understand agent behavior</li>
+<li><strong>Focus on instructions</strong>: They're more important than you think</li>
+</ol>
+
+<p>The full code is available [in my repository], and honestly, half the learning was in the debugging process. Don't be discouraged if it doesn't work perfectly the first time – that's part of the fun.</p>
+
+<h2>Final Thoughts</h2>
+
+<p>Building this system taught me that AI agents are powerful, but they're not magic. They need clear instructions, appropriate tools, and careful coordination. The technology is there, but the art is in the orchestration.</p>
+
+<p>Also, there's something deeply satisfying about asking your computer "How's Tesla doing?" and getting a comprehensive analysis with real-time data, analyst opinions, and market context in under a minute.</p>
+
+<p>If you build something similar, I'd love to hear about it. What tools did you use? What challenges did you face? How did you solve them?</p>
+
+<hr />
+
+<p><em>Have questions about the implementation or want to share your own multi-agent adventures? Feel free to reach out or check out the code repository.</em></p>
+
+
+            
+
+            </main>
+
+            <!-- Sidebar with Post Info and Keywords -->
+            <aside>
+              <!-- Part of a series navigation -->
+              
+
+
+            <!-- Post Information Section -->
+            <section>
+                <h2 class="section-heading">Post Information</h2>
+                <div class="competency-item-sidebar">
+                    <h3 class="competency-title-sidebar">Multi-Agent Chaos: When AI Agents Wouldn&#39;t Cooperate</h3>
+                    <p class="section-label">Published on: 2025-09-20</p>
+                    
+                      <a href="https://github.com/GoJo-Rika/financial-ai-analyst" class="sidebar-button" target="_blank" rel="noopener noreferrer">
+                          <i class="fab fa-github"></i> View on GitHub
+                      </a>
+                    
+                </div>
+            </section>
+
+            <!-- Technologies & Keywords Section -->
+            <section>
+                <h2 class="section-heading">Technologies & Keywords</h2>
+                <div class="tech-stack">
+                    
+                    
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                        
+                            
+                        
+                    
+                    
+                        <span class="tag">Python</span>
+                    
+                        <span class="tag">Agno</span>
+                    
+                        <span class="tag">Groq</span>
+                    
+                        <span class="tag">Agentic AI</span>
+                    
+                        <span class="tag">Multi-Agent Systems</span>
+                    
+                        <span class="tag">FastAPI</span>
+                    
+                        <span class="tag">DuckDuckGoTools</span>
+                    
+                        <span class="tag">YFinanceTools</span>
+                    
+                        <span class="tag">Google API</span>
+                    
+                        <span class="tag">Multi-Agent AI System</span>
+                    
+                        <span class="tag">Financial Analysis</span>
+                    
+                        <span class="tag">Stock Market</span>
+                    
+                        <span class="tag">Investment Research</span>
+                    
+                        <span class="tag">Agent Coordination Patterns</span>
+                    
+                        <span class="tag">YFinance API</span>
+                    
+                        <span class="tag">Automation</span>
+                    
+                </div>
+            </section>
+            </aside>
+
+            <!-- Add this navigation block inside the container, after the <aside> -->
+            <nav class="post-navigation">
+            <!-- OLDER POST LINK LOGIC -->
+            
+                <!-- Otherwise, link to the chronologically older post (standard behavior) -->
+                <a href="posts/student-performance-prediction-when-simple-isnt-always-better.html" class="nav-link prev-link">
+                    <span class="arrow">←</span>
+                    <span class="nav-text">
+                        <span class="nav-label">Older Post</span>
+                        Student Performance Prediction: When Simple Isn&#39;t Always Better
+                    </span>
+                </a>
+            
+
+            <!-- NEWER POST LINK LOGIC -->
+            
+                <!-- Otherwise, link to the chronologically newer post (standard behavior) -->
+                <a href="posts/building-an-intelligent-video-analyst-the-foundational-pipeline-part-1.html" class="nav-link next-link">
+                    <span class="nav-text">
+                        <span class="nav-label">Newer Post</span>
+                        Building an Intelligent Video Analyst: The Foundational Pipeline (Part 1)
+                    </span>
+                    <span class="arrow">→</span>
+                </a>
+            
+            </nav>
+
+        </div>
+    </div>
+
+    <footer class="page-footer">
+      <div class="container">
+        <p>© 2025 Mit Patel. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Prism JS for Code Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+
+    <!-- ADD THIS LINE TO LOAD THE PYTHON LANGUAGE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <!-- ADD THIS LINE for the Toolbar Plugin's JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+
+    <!-- ADD THIS LINE FOR THE COPY BUTTON PLUGIN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+    <!-- ===== Style Switcher Start ===== -->
+    <div class="theme-toggle-container">
+        <div id="theme-toggle-icon" class="theme-icon">
+            <i class="fas"></i>
+        </div>
+    </div>
+    <!-- ===== Style Switcher End ===== -->
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
