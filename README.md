@@ -121,3 +121,14 @@ This project is a continuous work in progress. Here are some of the features and
 *   `[ ]` **Add read story section in project page:**
     *   In the project page, under the given project card, add a link to read the blog along with viewing it on github.
     *   The blog will be redirected to the 1st blog in the series.
+
+*   `[ ]` **Keep 3 projects columns:**
+    *   Need to make changes in `project_template` to make sure it includes 3 project cards in each row. (see `future-work/images/project-page.png`)
+
+*   `[ ]` **Add heading sections inside blog post page:**
+    *   In the blog post page, add page headings and links for easy scrolling and navigating through the page. 
+    *   This also helps in giving a brief of the blog post page.
+    *   See `future-work/images/blog-post-page.png` for reference and `future-work/images/reference-sample.png`
+
+*   `[ ]` **Architecture diagram and video or a gif:**
+    *   Add architecture diagram of the project or the blog or create a video doing a walkthrough of the project or a gif of the working ui.
