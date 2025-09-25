@@ -1,0 +1,454 @@
+{
+  "name": "Mit Patel",
+  "label": "Lecturer & AI/ML Developer",
+  "tech_stack_db": {
+    "Python": { "icon": "tech_icons/python.svg" },
+    "Docker": { "icon": "tech_icons/docker.svg" },
+    "AWS": { "icon": "tech_icons/aws.svg" },
+    "MLflow": { "icon": "tech_icons/mlflow.svg" },
+    "FastAPI": { "icon": "tech_icons/fastapi.png" },
+    "Streamlit": { "icon": "tech_icons/streamlit.svg" },
+    "Groq": { "icon": "tech_icons/groq.svg" },
+    "Agno": { "icon": "tech_icons/agno.png" },
+    "Apache Airflow": { "icon": "tech_icons/apache-airflow.svg" },
+    "Google Gemini": { "icon": "tech_icons/google-gemini.svg" },
+    "HuggingFace Transformers": { "icon": "tech_icons/hugging-face.svg" },
+    "Scikit-learn": { "icon": "tech_icons/scikit-learn.svg" },
+    "LangChain": { "icon": "tech_icons/langchain.svg" },
+    "LangGraph": { "icon": "tech_icons/langgraph.svg" },
+    "MongoDB": { "icon": "tech_icons/mongodb.svg" },
+    "Pandas": { "icon": "tech_icons/pandas.svg" },
+    "PyTorch": { "icon": "tech_icons/pytorch.svg" },
+    "TensorFlow": { "icon": "tech_icons/tensorflow.svg" },
+    "Weights & Biases": { "icon": "tech_icons/weights-and-biases.svg" },
+    "AWS API Gateway": { "icon": "tech_icons/aws-api-gateway.svg" },
+    "AWS EC2": { "icon": "tech_icons/aws-ec2.svg" },
+    "AWS S3": { "icon": "tech_icons/aws-s3.svg" },
+    "AWS Lambda": { "icon": "tech_icons/aws-lambda.svg" },
+    "AWS SageMaker": { "icon": "tech_icons/aws-sagemaker.svg" },
+    "AWS Athena": { "icon": "tech_icons/aws-athena.svg" },
+    "AWS DynamoDB": { "icon": "tech_icons/aws-dynamodb.svg" },
+    "AWS ECR": { "icon": "tech_icons/aws-ecr.svg" },
+    "AWS Elastic Beanstalk": { "icon": "tech_icons/aws-elastic-beanstalk.svg" },
+    "AWS EMR": { "icon": "tech_icons/aws-emr.svg" },
+    "AWS Glue": { "icon": "tech_icons/aws-glue.svg" },
+    "AWS Kinesis": { "icon": "tech_icons/aws-kinesis.svg" },
+    "AWS RDS": { "icon": "tech_icons/aws-rds.svg" },
+    "AWS Data Pipeline": { "icon": "tech_icons/aws-data-pipeline.svg" },
+    "Flask": { "icon": "tech_icons/flask.svg" },
+    "PySpark": { "icon": "tech_icons/apache-spark.svg" },
+    "Apache Kafka": { "icon": "tech_icons/apache-kafka.svg" },
+    "Azure": { "icon": "tech_icons/azure.svg" },
+    "Bash": { "icon": "tech_icons/bash.svg" },
+    "Git": { "icon": "tech_icons/git.svg" },
+    "GitHub Actions": { "icon": "tech_icons/github-actions.svg" },
+    "Grafana": { "icon": "tech_icons/grafana.svg" },
+    "GraphQL": { "icon": "tech_icons/graphql.svg" },
+    "Keras": { "icon": "tech_icons/keras.svg" },
+    "LaTeX": { "icon": "tech_icons/LaTeX.svg" },
+    "Llama Index": { "icon": "tech_icons/llamaindex-color.svg" },
+    "Markdown": { "icon": "tech_icons/markdown.svg" },
+    "Neo4j": { "icon": "tech_icons/neo4j.svg" },
+    "NumPy": { "icon": "tech_icons/numpy.svg" },
+    "Ollama": { "icon": "tech_icons/ollama.svg" },
+    "OpenCV": { "icon": "tech_icons/opencv.svg" },
+    "Open Web UI": { "icon": "tech_icons/openwebui.svg" },
+    "Postgres SQL": { "icon": "tech_icons/postgres-sql.svg" },
+    "Postman": { "icon": "tech_icons/postman.svg" },
+    "Prometheus": { "icon": "tech_icons/prometheus.svg" },
+    "R": { "icon": "tech_icons/r.svg" },
+    "Redis": { "icon": "tech_icons/redis.svg" },
+    "Replit": { "icon": "tech_icons/replit.svg" },
+    "n8n": { "icon": "tech_icons/n8n-color.svg" }
+  },
+  "about_me_prose": [
+    "I'm an educator and technologist who's spent the last 8 years building bridges between complex technical concepts and real-world applications. What started as a passion for teaching mathematics and IT has evolved into a deep expertise in data science, machine learning, and building production-ready systems.",
+    "My journey is a blend of academia and industry—from mentoring over 300 students at Dorset College to architecting scalable backend systems as a developer. This dual perspective allows me to not only build effective AI solutions but also to clearly articulate *how* and *why* they work.",
+    "When I'm not teaching or coding, I'm driven by a curiosity for how technology shapes our world. I'm passionate about MLOps, the practical side of deploying AI, and exploring the frontiers of generative models. This portfolio is a living document of my projects, my learnings, and my journey in the world of AI."
+  ],
+  "current_highlights": {
+    "role": "Assistant Lecturer",
+    "institution": "Dorset College",
+    "education": "Masters of Science in Data Analytics",
+    "project_title": "Network Security System - MLOps Project",
+    "project_slug": "from-messy-data-to-production-mlops-my-network-security-journey"
+  },
+  "currently_reading": [
+    { "title": "Designing Data-Intensive Applications", "author": "Martin Kleppmann" },
+    { "title": "The Three-Body Problem", "author": "Cixin Liu" }
+  ],
+  "personal_interests": ["Landscape Photography", "Competitive Chess", "Exploring historical sites in Ireland", "Perfecting my espresso shot"],
+
+  "image_path": "portfolio_media/photo_2.jpg",
+  "contact": {
+    "email": "patel.m9521@gmail.com",
+    "location": "Dublin, Ireland"
+  },
+  "summary": "Highly experienced and results-oriented lecturer with 7 years of expertise in educating and guiding students in mathematics, statistics, and programming. Possessing a Master's degree in Data Analytics and a strong foundation in Information Technology, I have successfully developed and delivered comprehensive curricula in core subjects such as Machine Learning, Data Analysis, and Python. Proven ability to simplify complex concepts, enhance student performance, and foster a positive learning environment. Driven to leverage my analytical, problem-solving, and programming skills, coupled with continuous upskilling in cutting-edge AI/ML technologies (including LLMs and MLOps), to contribute to innovative solutions in the Data Science domain, developing and implementing advanced machine learning models to solve complex business problems.",
+  "tldr": ["8+ years educator & AI/ML developer • 300+ students taught • 95% prediction accuracy on production ML systems • MLOps & Cloud Architecture expert • 15+ AI/ML projects deployed",
+  "Educator-turned-ML Engineer • Production MLOps systems • AWS/Serverless expert • Multi-agent AI systems • Teaching 300+ students while building cutting-edge AI solutions"],
+  "base_url": "127.0.0.1:5500",
+  "social_links": [
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/mitcpatel",
+      "svg_path": "img/linkedin.svg"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/GoJo-Rika",
+      "svg_path": "img/github.svg"
+    },
+    {
+      "label": "LeetCode",
+      "url": "https://leetcode.com/u/mitpatel_27/",
+      "svg_path": "img/leetcode__.svg"
+    },
+    {
+      "label": "HackerRank",
+      "url": "https://www.hackerrank.com/profile/patel_m9521",
+      "svg_path": "img/hackerrank.svg"
+    }
+  ],
+  "about_me": [
+    "I'm an educator and technologist who's spent the last 8 years building bridges between complex technical concepts and real-world applications. What started as a passion for teaching mathematics and IT fundamentals has evolved into a comprehensive expertise in data science, machine learning, and software development.",
+    "My journey began in 2017 at The SCIENCE Channel, where I discovered my knack for making abstract mathematical concepts click for students. I wasn't just teaching formulas – I was showing students how binary systems connect to everyday computing, how algorithmic thinking solves real problems, and how mathematical foundations power the technology around us. Those early years of mentoring students through competitive exams like GRE and JEE taught me that the best learning happens when you can connect theory to something tangible.",
+    "In 2021, I stepped into the industry as a Backend Developer Intern at Prelax InfoTech. This experience was a game-changer – I got to build actual products that people would use. I developed RESTful APIs that powered mobile apps, optimized database queries that made systems 40% faster, and even prototyped an e-commerce recommendation engine. Working with cross-functional teams, participating in code reviews, and seeing how my backend work directly impacted user experience gave me a whole new perspective on what it means to create meaningful technology.",
+    "Since 2022, I've been combining both worlds as an Assistant Lecturer at Dorset College. This role has let me channel my industry experience into teaching the next generation of developers. I've guided over 300 students through Python, machine learning, and data analysis, watching them grow from theoretical understanding to building real applications. There's something incredibly rewarding about seeing a student successfully deploy their first Flask web application or train their first machine learning model.",
+    "What drives me is this intersection of education and innovation. I don't just teach Python – I help students understand why certain design patterns matter. I don't just explain machine learning algorithms – I show students how to evaluate whether their model is actually solving the right problem. My approach has consistently achieved 92-96% project completion rates because I focus on making complex topics accessible and immediately applicable.",
+    "Today, I'm passionate about the evolving landscape of AI and machine learning. I've been diving deep into MLOps, exploring generative AI applications, and staying current with tools like LangChain, AWS services, and modern deployment practices. My technical toolkit spans from traditional backend development (Python, Flask, PostgreSQL) to cutting-edge AI/ML frameworks (PyTorch, TensorFlow, Scikit-learn), but what really excites me is using these tools to solve meaningful problems.",
+    "Whether I'm debugging a student's code, optimizing a database query, or experimenting with the latest AI models, I'm always thinking about how technology can create better learning experiences and more efficient solutions. That's what you'll find throughout this portfolio – a blend of technical depth, educational insight, and a genuine enthusiasm for building things that matter."
+  ],
+  "core_competencies": [
+    {
+      "title": "End-to-End ML Systems Architecture",
+      "description": "Proven ability to architect, build, and deploy entire machine learning solutions, taking projects from initial concept to production-ready applications."
+    },
+    {
+      "title": "MLOps & Production Pipelines",
+      "description": "Hands-on experience building modern, automated MLOps pipelines using tools like MLflow, Docker, and CI/CD for data validation, experiment tracking, and robust deployment."
+    },
+    {
+      "title": "Cloud Engineering (AWS)",
+      "description": "Strong command of core AWS services (SageMaker, Lambda, S3, EC2) to build, deploy, and manage scalable cloud infrastructure for AI/ML applications."
+    },
+    {
+      "title": "Full-Stack AI Application Development",
+      "description": "Skilled in building complete, user-facing products by integrating complex AI backends with interactive web frontends using frameworks like Streamlit and Flask."
+    },
+    {
+      "title": "AI Agent & Multimodal Systems",
+      "description": "Advanced experience in designing complex systems that integrate multiple AI models and tools to process and understand diverse data types including text, images, and video."
+    },
+    {
+      "title": "Applied Natural Language Processing (NLP)",
+      "description": "Deep, practical experience in applying NLP to solve diverse business problems, from text summarization with Transformers to building numerous RAG applications."
+    }
+  ],
+  "work_experience": [
+    {
+      "company": "Dorset College",
+      "position": "Assistant Lecturer",
+      "url": "https://dorset.ie/",
+      "start_date": "2022",
+      "end_date": "Present",
+      "summary": "Taught 300+ undergraduate students across Python, Data Analysis, Machine Learning, and Statistics, achieving 92-96% project completion rates and 88-90% course pass rates through practical, student-focused pedagogy.",
+      "highlights": [
+        "Designed and delivered industry-aligned curricula, regularly updating modules to reflect modern trends while ensuring accessibility for diverse academic backgrounds.",
+        "Led comprehensive Python and web development sessions using Flask, guiding students through building real applications (blog platform, banking system) covering environment setup, routing, templating, database integration with SQLAlchemy, and authentication.",
+        "Created structured project-based learning flow from theoretical foundation to hands-on implementation, integrating Git/GitHub for version control and culminating in end-to-end capstone projects that simulate real-world development workflows.",
+        "Conducted ML training sessions emphasizing classical algorithms, evaluation metrics, and real-world applications using Scikit-learn, Pandas, NumPy, and PyTorch, supporting students through guided statistical modeling projects.",
+        "Initiated cloud technology exposure through AWS Educate classes and integrated external platforms like DataCamp to enhance independent skill development beyond classroom instruction.",
+        "Mentored students on industry best practices including modular coding, documentation, reproducibility, and professional communication while promoting code clarity and testing without overwhelming beginners.",
+        "Integrated external learning platforms like DataCamp into the curriculum to support independent skill development and hands-on practice beyond classroom instruction.",
+        "Collaborated on curriculum development to ensure courses remained current and pedagogically sound. Balanced technical rigor with approachability to support both beginners and advanced learners."
+      ]
+    },
+    {
+      "company": "Prelax InfoTech",
+      "position": "Backend Developer Intern",
+      "url": "https://prelax.in/",
+      "start_date": "2021",
+      "end_date": "2021",
+      "summary": "Developed and maintained RESTful APIs using Flask to support Android and iOS applications, enabling secure user authentication and fast, consistent data exchange; improved API response times by 30%.",
+      "highlights": [
+        "Optimized SQL queries and managed MySQL databases, achieving 40-50% reduction in query execution time while improving data retrieval performance and system scalability.",
+        "Built and tested prototype e-commerce platform with recommendation engine using user behavior and purchase history to personalize suggestions, improving engagement by 25% in internal testing.",
+        "Documented backend features, API specifications, and database schemas using Swagger and Markdown, improving onboarding speed for new developers and ensuring consistent communication with front-end and QA teams.",
+        "Utilized comprehensive development toolkit including Postman for API testing, Git & GitHub for version control, and Docker for containerizing backend services for local testing and deployment simulation.",
+        "Participated in agile development processes including code reviews, sprint planning, and bug tracking while collaborating cross-functionally with front-end and product teams."
+      ]
+    },
+    {
+      "company": "The SCIENCE Channel",
+      "position": "Lecturer in Mathematics & IT",
+      "url": null,
+      "start_date": "2017",
+      "end_date": "2021",
+      "summary": "Designed and delivered modern curriculum for Mathematics and IT subjects, integrating digital tools like GeoGebra and Desmos to enhance visualization, interactive learning, and student engagement.",
+      "highlights": [
+        "Introduced students to foundational computing concepts including logic gates, binary and number system conversions, programming fundamentals, and basic networking, providing early exposure to computer science principles.",
+        "Taught essential problem-solving and algorithmic thinking, reinforcing skills that connect mathematics to real-world technology applications such as data processing, automation, and systems design.",
+        "Mentored students for competitive entrance exams (GRE, Cambridge, CAT, JEE, CET, CPT), creating structured study plans and mock exams that led to successful outcomes in higher education admissions.",
+        "Assessed student progress using diverse evaluation methods including assignments, projects, and oral reviews to ensure understanding and retention while providing individualized academic support.",
+        "Contributed to educational innovation by participating in federal proposal drafting to advocate for technology integration in mathematics education and student-centered, adaptive teaching approaches."
+      ]
+    }
+  ],
+  "volunteer_experience": [
+  ],
+  "education": [
+    {
+      "institution": "Dublin Business School",
+      "location": "Dublin, Ireland",
+      "url": "https://www.dbs.ie/",
+      "degrees": [
+        "Masters of Science in Data Analytics"
+      ],
+      "honors": [],
+      "gpa_cumulative": null,
+      "gpa_major": null,
+      "graduation_date": "September 2022"
+    },
+    {
+      "institution": "FCRIT (Vashi), Mumbai University",
+      "location": "Mumbai, India",
+      "url": "https://fcrit.ac.in/",
+      "degrees": [
+        "Bachelor of Engineering in Information Technology"
+      ],
+      "honors": [],
+      "awards": ["Best Dissertation Project Award"],
+      "gpa_cumulative": null,
+      "gpa_major": null,
+      "graduation_date": "May 2017"
+    }
+  ],
+  "technical_skills_categorized": [
+    {
+      "category": "Languages",
+      "skills": ["Python", "SQL", "R", "JavaScript"]
+    },
+    {
+      "category": "AI & Machine Learning",
+      "skills": ["Scikit-learn", "Pandas", "PyTorch", "LangChain", "HuggingFace Transformers", "Google Gemini", "Groq", "AWS Bedrock", "Agno", "Ollama", "TensorFlow", "CrewAI"]
+    },
+    {
+      "category": "Cloud & MLOps",
+      "skills": ["AWS (SageMaker, Lambda, S3, EC2, IAM, ECR, API Gateway)", "MLflow", "Docker", "CI/CD (GitHub Actions)", "Git", "Dagshub"]
+    },
+    {
+      "category": "Databases",
+      "skills": ["SQL (MySQL, SQLite)", "MongoDB", "FAISS", "LanceDB"]
+    },
+    {
+      "category": "Web Development & Tools",
+      "skills": ["FastAPI", "Flask", "Streamlit", "Jupyter Notebooks", "Swagger", "Postman", "REST APIs"]
+    }
+  ],
+  "interests": [
+  ],
+  "technologies_used": [ "Boto3", "Weights & Biases", "Jupyter Notebooks", "AWS Elastic Beanstalk", "google-generativeai", "Transformers", "PyPDF2", "DuckDuckGoTools", "YFinanceTools", "Google API", "Joblib", "NumPy", "Matplotlib", "Seaborn", "Plotly", "OpenAI API", "uvicorn", "Gemma Model", "Google Gemini 2.0", "RESTful API", "Pydantic", "python-box", "ensure", "nltk", "torch", "pymongo", "Tensorboard", "Hyperopt"],
+  
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native Speaker"
+    },
+    {
+      "language": "Hindi",
+      "fluency": "Native Speaker"
+    },
+    {
+      "language": "Gujarati",
+      "fluency": "Native Speaker"
+    }
+  ],
+  "references": [
+  ],
+  "awards_certifications": [
+    {
+      "name": "Google Cloud Certified Professional Data Engineer",
+      "issuer": "Google Cloud",
+      "date": null,
+      "url": null
+    }
+  ],
+  "projects_db": {
+    "network-security": {
+    "title": "Network Security System - MLOps Project",
+    "github_url": "https://github.com/GoJo-Rika/Network-Security-System-MLOps-Project",
+    "summary": {
+      "resume_page": "Built **production-ready MLOps pipeline** achieving **automated threat detection** for phishing URLs and malicious network traffic through **end-to-end ML lifecycle management**. Implemented **modular pipeline architecture** with **real-time prediction API**, **automated data validation**, and **drift detection capabilities** using **Python**, **scikit-learn**, **FastAPI**, and **MLflow**. Deployed scalable system on **AWS** with **CI/CD automation** via **GitHub Actions**, **ECR containerization**, and **S3 storage**, enabling **automated model retraining** and serving production traffic with **experiment tracking** and **schema validation**.", 
+      "project_page": "Developed a production-ready MLOps pipeline for malicious URL detection to significantly reduce cybersecurity threats. Deployed a robust, real-time batch prediction system with FastAPI, delivering 35% faster inference."
+    },
+    "image": "project_images/network-architecture.jpg",
+    "featured": true,
+    "core_technologies": ["Python", "MLflow", "AWS", "Docker", "FastAPI", "MongoDB"],
+    "keywords": ["CI/CD automation", "Schema Validation", "Production-ready MLOps Pipeline"],
+    "blogs": [
+      {
+        "title": "From Messy Data to Production MLOps (Part 1)",
+        "publish_date": "2025-06-18",
+        "markdown_file": "blog_posts/network_security_blog_part_1_pipeline_foundation.md",
+        "next_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-2",
+        "content": "My journey began with a classic MLOps mistake: underestimating messy data. My model worked locally, but I spent weeks debugging failures until a breakthrough came from implementing rigorous **data validation schemas** and **drift detection**. This post covers the foundational engineering—modular architecture, custom logging, and experiment tracking—that's essential *before* you even think about the cloud. It’s the story of building a resilient pipeline from the ground up."
+      },
+      {
+        "title": "From Messy Data to Production MLOps (Part 2)",
+        "publish_date": "2025-06-19",
+        "markdown_file": "blog_posts/network_security_blog_part_2_cloud_deployment.md",
+        "previous_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-1",
+        "content": "With a working local pipeline, the 'easy' part was next: deployment. This turned into a multi-day AWS nightmare. After successfully automating the CI/CD pipeline with GitHub Actions, the app was live but unreachable. The culprit? A single, critical line of code related to container networking. This post dives into the humbling, real-world challenges of cloud infrastructure, debugging EC2 security groups, and the final 'aha!' moment that brought the entire system online."
+      }
+    ]
+  },
+  "aws-sagemaker-ml-pipeline": {
+    "title": "AWS SageMaker Machine Learning Pipeline - Mobile Price Classification System",
+    "github_url": "https://github.com/GoJo-Rika/aws-sagemaker",
+    "summary": {
+      "resume_page": "Achieved **95% prediction accuracy** by engineering **production-ready ML pipeline** using **AWS SageMaker** and **Random Forest classification** for mobile price category prediction. Implemented **cloud-native architecture** integrating **S3 data lakes**, **IAM security policies**, and **CloudWatch monitoring** with **automated model deployment workflows**. Demonstrated **MLOps best practices** through **local-to-cloud development patterns**, **comprehensive error handling**, and **model versioning**, delivering enterprise-grade solution for **ML Engineering**, **Cloud Architecture**, and **Data Science** applications.", 
+      "project_page": "Engineered a cloud-native ML pipeline on AWS SageMaker for mobile price classification, achieving 95% prediction accuracy. Integrated S3, IAM, and CloudWatch for a complete, automated MLOps workflow."
+    },
+    "image": "",
+    "featured": true,
+    "core_technologies": ["AWS SageMaker", "AWS S3", "IAM", "Boto3", "Python", "CloudWatch", "Scikit-learn", "Pandas", "AWS", "Jupyter Notebooks"],
+    "keywords": ["Cloud-native Architecture", "MLOps Best Practices", "Model Versioning", "Model Registry"],
+    "blogs": [
+      {
+        "title": "When SageMaker Humbled Me: A Cloud-Native ML Reality Check",
+        "publish_date": "2025-06-25",
+        "markdown_file": "blog_posts/aws_sagemaker_blog_post.md",
+        "next_part_slug": "",
+        "content": "My confidence took a hit when my first SageMaker training job failed with a cryptic error message. I had assumed cloud ML would be straightforward - just upload data and train, right? Wrong. The learning curve was steep, especially understanding **IAM roles** and **S3 permissions**. I wasted an entire weekend debugging why my training script couldn't access the data bucket. The real challenge was transitioning from local Jupyter notebooks to **cloud-native architecture**. My breakthrough moment came when I finally grasped the importance of **proper error handling** and **logging strategies**. Initially, I was flying blind when jobs failed, but implementing comprehensive logging made debugging much easier. The mobile price prediction accuracy improved from 78% to 95% once I properly configured **hyperparameter tuning**. This project taught me that cloud platforms are powerful but require disciplined engineering practices. The key lesson? **Infrastructure is just as important as the algorithm**."
+      }
+    ]
+  },
+  "finance-ai": {
+    "title": "Multi-Agent Financial AI System",
+    "github_url": "https://github.com/GoJo-Rika/financial-ai-analyst",
+    "summary": {
+      "resume_page": "**Reduced manual research time by 95%** by building **multi-agent AI system** using **Python**, **Groq AI models**, and **Agno framework** for automated stock analysis. Orchestrated **specialized AI agents** with **Yahoo Finance API integration** and **web search capabilities**, implementing **agent coordination patterns** and **task distribution algorithms**. Developed **interactive Streamlit interface** delivering **real-time market data**, **analyst recommendations**, and **sentiment analysis** with **comprehensive financial insights** and **automated report generation**.", 
+      "project_page": "Built a multi-agent AI system using Groq and the Agno framework to automate stock analysis, reducing manual research time by over 95%. Orchestrated specialized agents for data gathering, analysis, and reporting."
+    },
+    "image": "",
+    "featured": true,
+    "core_technologies": ["Python", "Agno", "Groq", "DuckDuckGoTools", "YFinanceTools", "Streamlit", "Google API", "Multi-Agent AI"],
+    "keywords": ["Multi-Agent AI System", "Specialized AI Agents", "Agent Coordination Patterns", "Task Distribution Algorithms", "Financial Data Analysis", "Automated Report Generation"],
+    "blogs": [
+      {
+        "title": "Multi-Agent Chaos: When AI Agents Wouldn't Cooperate",
+        "publish_date": "2025-06-15",
+        "markdown_file": "blog_posts/financial_ai_blog_post.md",
+        "next_part_slug": "",
+        "content": "My agents were fighting each other instead of collaborating. The financial analysis system was supposed to have smooth **agent coordination**, but initially, they kept making redundant API calls and conflicting recommendations. I underestimated how complex **task distribution** would be. The breakthrough came when I implemented proper **state management** and **communication protocols** between agents. Debugging was a nightmare - I had to build custom logging to track which agent was doing what. The Yahoo Finance API rate limits caught me off guard, causing the system to crash during peak trading hours. I solved this by implementing **intelligent caching** and **request queuing**. The most satisfying moment was seeing the research time drop from hours to minutes once the agents learned to work together. This project taught me that **multi-agent systems require careful orchestration** - they're not just multiple independent scripts. The key insight? **Agent coordination is harder than individual agent intelligence**."
+      }
+    ]
+  },
+  "text-summarizer": {
+    "title": "Text Summarizer Using HuggingFace Transformers",
+    "github_url": "https://github.com/GoJo-Rika/Text-Summarizer",
+    "summary": {
+      "resume_page": "Achieved **ROUGE-optimized summarization performance** by developing **production-ready text summarization system** processing conversational data and meeting transcripts. Implemented **end-to-end ML pipeline** with **HuggingFace Transformers (Pegasus model)**, **data ingestion/transformation pipelines**, and **fine-tuning on SAMSum dataset** via **Google Colab GPU**. Deployed **RESTful API** with **FastAPI**, **Docker containerization**, **Weights & Biases experiment tracking**, and **comprehensive logging**, delivering **scalable ML service** with **automated pipeline stages** and **seamless deployment capabilities**.", 
+      "project_page": ""
+    },
+    "image": "",
+    "featured": true,
+    "core_technologies": ["HuggingFace Transformers", "PyTorch", "FastAPI", "Docker", "Python", "Weights & Biases", "NLP"],
+    "keywords": ["End-to-End ML Pipeline", "Modular Pipeline Architecture", "Containerized Deployment", "MLOps Practices", "ROUGE Evaluation", "Automated Pipeline Stages", "Experiment Tracking", "RESTful API"],
+    "blogs": [
+      {
+        "title": "Transformer Fine-Tuning: When GPUs Became My Best Friend",
+        "publish_date": "2025-06-24",
+        "markdown_file": "blog_posts/text_summarizer_blog_post.md",
+        "next_part_slug": "",
+        "content": "Fine-tuning the Pegasus model was my first real encounter with **GPU computing**, and it was humbling. My initial attempts kept running out of memory, and I didn't understand why. The breakthrough came when I learned about **gradient accumulation** and **batch size optimization**. I spent days tweaking hyperparameters, watching training losses bounce around unpredictably. The real challenge was getting the **data preprocessing pipeline** right - tokenization issues caused my model to produce gibberish summaries initially. I had to rebuild the entire **data ingestion workflow** three times before getting it right. The ROUGE scores were disappointing at first, but implementing **proper evaluation metrics** helped me understand what the model was actually learning. Docker deployment was another headache - my container kept crashing due to memory issues. This project taught me that **transformer models are powerful but resource-intensive**. The key lesson? **Understanding your compute constraints is crucial for successful model deployment**."
+      }
+    ]
+  },
+  "multi-ai-agent-system": {
+    "title": "Multi-Tier AI Agent System with Vector Database Integration",
+    "github_url": "https://github.com/GoJo-Rika/Basic-Agents",
+    "summary": {
+      "resume_page": "Engineered **multi-tier AI agent architecture** implementing **three progressive complexity levels** from simple web-search agents to **coordinated multi-agent teams** for financial analysis. Integrated **multiple AI models (Groq, Gemini, OpenAI)** with **vector database (LanceDB)** for **knowledge management**, **hybrid search capabilities**, and **PDF knowledge bases**. Demonstrated **advanced agent coordination**, **domain-specific expertise**, and **scalable agent orchestration** using **Python**, **Agno framework**, and **DuckDuckGo/YFinance APIs**.", 
+      "project_page": ""
+    },
+    "image": "",
+    "featured": true,
+    "core_technologies": ["Python", "Agno", "Google Gemini", "Groq", "LanceDB", "Google API", "DuckDuckGo", "AI Agents"],
+    "keywords": ["Multi-tier AI Agents Architecture", "Knowledge Management", "Hybrid Search Capabilities"],
+    "blogs": [
+      {
+        "title": "Vector Database Nightmares: When Embeddings Don't Embed",
+        "publish_date": "2025-06-13",
+        "markdown_file": "blog_posts/basic_agents_blog_post_v3.md",
+        "next_part_slug": "",
+        "content": "Building the **multi-tier agent system** seemed straightforward until I hit the vector database wall. My embeddings weren't clustering properly, and similarity search was returning irrelevant results. I spent weeks debugging why **LanceDB** wasn't performing as expected - turns out my **chunking strategy** was terrible. The real challenge was **coordinating multiple AI models** with different response formats and latencies. My agents kept timing out or producing conflicting outputs. The breakthrough came when I implemented **proper error handling** and **fallback mechanisms**. Initially, I naively assumed all AI models would behave similarly, but each had unique quirks. The financial analysis became much more accurate once I figured out how to **balance different data sources** and **agent expertise**. This project taught me that **vector databases require careful tuning** and that **agent coordination is an art, not a science**. The key insight? **Different AI models need different handling strategies**."
+      }
+    ]
+  },
+  "docs-rag-system": {
+    "title": "Intelligent Document Q&A System with RAG Architecture",
+    "github_url": "https://github.com/GoJo-Rika/Document-QA-Using-Gemma-Groq",
+    "summary": {
+      "resume_page": "Delivered **sub-second query response times** by developing **enterprise-grade RAG application** enabling natural language querying of large PDF document collections. Implemented **end-to-end document processing pipeline** with **vector embeddings**, **similarity search**, and **context-aware response generation** using **Groq API (Gemma model)**, **Google Generative AI embeddings**, and **FAISS vector database**. Built **production-ready application** with **optimized chunking strategies**, **session management**, and **Streamlit frontend**, demonstrating expertise in **AI/ML engineering** and **scalable vector database architecture**.", 
+      "project_page": "" 
+    },
+    "image": "",
+    "featured": true,
+    "core_technologies": ["Python", "LangChain", "Streamlit", "FAISS", "Google API", "PyPDF2", "RAG"],
+    "keywords": ["Text Chunking", "PDF parsing", "Vector Embeddings", "Similarity Search", "Document Processing", "Semantic Search"],
+    "blogs": [
+      {
+        "title": "RAG Reality: When Documents Refuse to Answer Questions",
+        "publish_date": "2025-04-23",
+        "markdown_file": "blog_posts/document_qa_blog_post.md",
+        "next_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-2",
+        "content": "My RAG system was confidently giving wrong answers, and I couldn't figure out why. The document **chunking strategy** was my biggest mistake - I was splitting text randomly instead of preserving semantic meaning. Users were getting frustrated with irrelevant responses, and I was losing confidence in the system. The breakthrough came when I implemented **semantic chunking** and **overlap strategies**. The **FAISS vector database** performance was another challenge - queries were taking too long, especially with large document collections. I had to learn about **index optimization** and **query batching**. The most embarrassing moment was when the system couldn't answer basic questions about documents it had just processed. This led me to implement **context verification** and **confidence scoring**. The **sub-second response time** achievement only came after extensive **caching optimization**. This project taught me that **RAG systems need careful tuning of every component**. The key lesson? **Garbage in, garbage out applies especially to document processing**."
+      }
+    ]
+  },
+  "student-performance": {
+    "title": "Student Performance Prediction System - End-to-End ML Engineering Project",
+    "github_url": "https://github.com/GoJo-Rika/Student-Performance-Project",
+    "summary": {
+      "resume_page": "Achieved **90%+ prediction accuracy** by developing **end-to-end ML web application** predicting student math scores, bridging the gap between experimental ML models and **production-ready systems**. Architected **modular Flask application** with **scikit-learn pipelines**, **comprehensive logging**, and **exception handling**, deploying on **AWS EC2** using **Elastic Beanstalk** with **automated model selection** from 7 algorithms. Delivered **production-ready ML system** demonstrating **ML engineering**, **cloud deployment**, and **software architecture principles** for data science and full-stack development applications.", 
+      "project_page": "" 
+    },
+    "image": "",
+    "featured": true,
+    "core_technologies": ["AWS", "Python", "Flask", "Scikit-learn", "Pandas", "NumPy", "AWS EC2", "AWS Elastic Beanstalk"],
+    "keywords": ["scikit-learn pipeline", "ML Pipelines", "Model Deployment", "Cloud Deployment (AWS)", "End-to-End ML Web Application", "Modular Architecture", "Comprehensive Loggings", "Production-ready Systems"],
+    "blogs": [
+      {
+        "title": "Student Performance Prediction: When Simple Isn't Always Better",
+        "publish_date": "2025-06-21",
+        "markdown_file": "blog_posts/student_performance_blog_v2.md",
+        "next_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-2",
+        "content": "I overcomplicated everything initially, trying to use advanced deep learning for what turned out to be a **classical ML problem**. My neural network was overfitting terribly, and I was chasing diminishing returns. The humbling moment came when a simple **Random Forest outperformed my complex architecture**. Deployment on **AWS Elastic Beanstalk** was my first real production experience, and it was messier than expected. My Flask app kept crashing due to memory leaks I hadn't noticed during local testing. The **model comparison framework** took longer to build than the actual models - I learned that **proper evaluation infrastructure** is crucial. The biggest challenge was handling **real-time predictions** reliably. Users would input edge cases that broke my preprocessing pipeline. This project taught me that **production systems need robust error handling** and that **simpler solutions often work better**. The key insight? **Focus on reliability over complexity**."
+      }
+    ]
+  },
+  "blog-content-generator": {
+    "title": "AI-Powered Blog Content Generator | AWS Serverless Architecture",
+    "github_url": "https://github.com/GoJo-Rika/genai-with-aws-bedrock-lambda-apigateway",
+    "summary": {
+      "resume_page": "Built **production-ready serverless API** leveraging **AWS Bedrock's Meta Llama 3** for automated blog content generation with **scalable cloud infrastructure**. Architected **end-to-end serverless solution** integrating **Lambda functions**, **API Gateway**, and **S3 storage** with **comprehensive IAM security policies**. Implemented **robust error handling**, **timeout management**, and **logging strategies** for **reliable cloud service orchestration**, demonstrating expertise in **serverless architecture patterns**, **AI model integration**, and **scalable infrastructure design**.", 
+      "project_page": ""
+    },
+    "image": "",
+    "featured": true,
+    "core_technologies": ["AWS Bedrock", "AWS Lambda", "AWS API Gateway", "AWS S3", "Python", "Boto3", "IAM", "Meta Llama", "AWS CloudWatch"],
+    "keywords": ["Scalable Cloud Infrastructure", "Serverless Architecture Patterns", "End-to-End Serverless Solution", "Timeout Management", "AI Model Integration", "Robust Error Handling", "Logging Strategies"],
+    "blogs": [
+      {
+        "title": "Serverless Struggles: When Lambda Functions Have Limits",
+        "publish_date": "2025-07-02",
+        "markdown_file": "blog_posts/gen_ai_with_aws_bedrock_blog_post.md",
+        "next_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-2",
+        "content": "My first **serverless deployment** was a disaster. The **Lambda function** kept timing out because I didn't understand the **15-minute execution limit**. I was trying to generate long-form content that exceeded these constraints. The breakthrough came when I implemented **streaming responses** and **chunked processing**. **IAM permissions** were my nemesis - I spent days debugging why my function couldn't access **S3 buckets**. The learning curve for **AWS Bedrock** was steep, especially understanding how to optimize **LLM API calls**. My content generation was inconsistent until I learned proper **prompt engineering** and **response formatting**. The most frustrating part was debugging **cold starts** - my API would randomly become slow for the first few requests. This project taught me that **serverless architecture requires different thinking** than traditional deployments. The key lesson? **Understand your platform's constraints before building**."
+      }
+    ]
+  }
+  }
+}

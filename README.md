@@ -108,3 +108,16 @@ This project is a continuous work in progress. Here are some of the features and
 *   `[ ]` **Update architecture diagram link in markdown file**
     * by simply adding `../` or `/` should work on local system, but that does not solve the problem in static `html` page
     * the current approach solves the issue for `html` page but when previewing the `markdown` file, the **image** is not shown (both in **local** as well as in **github repos**)
+
+*   `[ ]` **Make changes for 3 blog series:**
+    *   If there are 3 blogs which are written, then link them properly and make sure it works.
+    *   The current version does not do that (it loops over the middle blog in `Text Summarizer`)
+
+*   `[ ]` **Organise data inside `json` file:**
+    *   Keep the data in a structured format so there are no duplicates.
+    *   The data for a project/blog must be together (`project_db`) to make it easier to edit details like Github URLs, blog images, project card thumbnail, blog home page summary, etc, etc, etc.
+    *   Follow the structure given in `update-data.json` and `project_db.json` in `future-work/` folder.
+
+*   `[ ]` **Add read story section in project page:**
+    *   In the project page, under the given project card, add a link to read the blog along with viewing it on github.
+    *   The blog will be redirected to the 1st blog in the series.

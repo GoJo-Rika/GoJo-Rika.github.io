@@ -1,0 +1,177 @@
+"projects_db": {
+  "network-security": {
+    "title": "Network Security System - MLOps Project",
+    "github_url": "https://github.com/GoJo-Rika/Network-Security-System-MLOps-Project",
+    "summary": {
+      "resume_page": "Built **production-ready MLOps pipeline** achieving **automated threat detection** for phishing URLs and malicious network traffic through **end-to-end ML lifecycle management**. Implemented **modular pipeline architecture** with **real-time prediction API**, **automated data validation**, and **drift detection capabilities** using **Python**, **scikit-learn**, **FastAPI**, and **MLflow**. Deployed scalable system on **AWS** with **CI/CD automation** via **GitHub Actions**, **ECR containerization**, and **S3 storage**, enabling **automated model retraining** and serving production traffic with **experiment tracking** and **schema validation**.", 
+      "project_page": "Developed a production-ready MLOps pipeline for malicious URL detection to significantly reduce cybersecurity threats. Deployed a robust, real-time batch prediction system with FastAPI, delivering 35% faster inference.", 
+    },
+    "image": "project_images/network-architecture.jpg",
+    "featured": true,
+    "core_technologies": ["Python", "MLflow", "AWS", "Docker", "FastAPI", "MongoDB"],
+    "keywords": ["CI/CD automation", "Schema Validation", "Production-ready MLOps Pipeline"],
+    "blogs": [
+      {
+        "title": "From Messy Data to Production MLOps (Part 1)",
+        "publish_date": "2025-06-18",
+        "markdown_file": "blogs/network_security_blog_part_1_pipeline_foundation.md",
+        "next_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-2",
+        "content": "My journey began with a classic MLOps mistake: underestimating messy data. My model worked locally, but I spent weeks debugging failures until a breakthrough came from implementing rigorous **data validation schemas** and **drift detection**. This post covers the foundational engineering—modular architecture, custom logging, and experiment tracking—that's essential *before* you even think about the cloud. It’s the story of building a resilient pipeline from the ground up."
+      },
+      {
+        "title": "From Messy Data to Production MLOps (Part 2)",
+        "publish_date": "2025-06-19",
+        "markdown_file": "blogs/network_security_blog_part_2_cloud_deployment.md",
+        "previous_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-1",
+        "content": "With a working local pipeline, the 'easy' part was next: deployment. This turned into a multi-day AWS nightmare. After successfully automating the CI/CD pipeline with GitHub Actions, the app was live but unreachable. The culprit? A single, critical line of code related to container networking. This post dives into the humbling, real-world challenges of cloud infrastructure, debugging EC2 security groups, and the final 'aha!' moment that brought the entire system online."
+      }
+    ]
+  },
+  "aws-sagemaker-ml-pipeline": {
+    "title": "AWS SageMaker Machine Learning Pipeline - Mobile Price Classification System",
+    "github_url": "https://github.com/GoJo-Rika/aws-sagemaker",
+    "summary": {
+      "resume_page": "Achieved **95% prediction accuracy** by engineering **production-ready ML pipeline** using **AWS SageMaker** and **Random Forest classification** for mobile price category prediction. Implemented **cloud-native architecture** integrating **S3 data lakes**, **IAM security policies**, and **CloudWatch monitoring** with **automated model deployment workflows**. Demonstrated **MLOps best practices** through **local-to-cloud development patterns**, **comprehensive error handling**, and **model versioning**, delivering enterprise-grade solution for **ML Engineering**, **Cloud Architecture**, and **Data Science** applications.", 
+      "project_page": "Engineered a cloud-native ML pipeline on AWS SageMaker for mobile price classification, achieving 95% prediction accuracy. Integrated S3, IAM, and CloudWatch for a complete, automated MLOps workflow.", 
+    },
+    "image": "",
+    "featured": true,
+    "core_technologies": ["AWS SageMaker", "AWS S3", "IAM", "Boto3", "Python", "CloudWatch", "Scikit-learn", "Pandas", "AWS", "Jupyter Notebooks"],
+    "keywords": ["Cloud-native Architecture", "MLOps Best Practices", "Model Versioning", "Model Registry"],
+    "blogs": [
+      {
+        "title": "When SageMaker Humbled Me: A Cloud-Native ML Reality Check",
+        "publish_date": "2025-06-25",
+        "markdown_file": "blogs/aws_sagemaker_blog_post.md",
+        "next_part_slug": "",
+        "content": "My confidence took a hit when my first SageMaker training job failed with a cryptic error message. I had assumed cloud ML would be straightforward - just upload data and train, right? Wrong. The learning curve was steep, especially understanding **IAM roles** and **S3 permissions**. I wasted an entire weekend debugging why my training script couldn't access the data bucket. The real challenge was transitioning from local Jupyter notebooks to **cloud-native architecture**. My breakthrough moment came when I finally grasped the importance of **proper error handling** and **logging strategies**. Initially, I was flying blind when jobs failed, but implementing comprehensive logging made debugging much easier. The mobile price prediction accuracy improved from 78% to 95% once I properly configured **hyperparameter tuning**. This project taught me that cloud platforms are powerful but require disciplined engineering practices. The key lesson? **Infrastructure is just as important as the algorithm**."
+      }
+    ]
+  },
+  "finance-ai": {
+    "title": "Multi-Agent Financial AI System",
+    "github_url": "https://github.com/GoJo-Rika/financial-ai-analyst",
+    "summary": {
+      "resume_page": "**Reduced manual research time by 95%** by building **multi-agent AI system** using **Python**, **Groq AI models**, and **Agno framework** for automated stock analysis. Orchestrated **specialized AI agents** with **Yahoo Finance API integration** and **web search capabilities**, implementing **agent coordination patterns** and **task distribution algorithms**. Developed **interactive Streamlit interface** delivering **real-time market data**, **analyst recommendations**, and **sentiment analysis** with **comprehensive financial insights** and **automated report generation**.", 
+      "project_page": "Built a multi-agent AI system using Groq and the Agno framework to automate stock analysis, reducing manual research time by over 95%. Orchestrated specialized agents for data gathering, analysis, and reporting.", 
+    },
+    "image": "",
+    "featured": true,
+    "core_technologies": ["Python", "Agno", "Groq", "DuckDuckGoTools", "YFinanceTools", "Streamlit", "Google API", "Multi-Agent AI"],
+    "keywords": ["Multi-Agent AI System", "Specialized AI Agents", "Agent Coordination Patterns", "Task Distribution Algorithms", "Financial Data Analysis", "Automated Report Generation"],
+    "blogs": [
+      {
+        "title": "Multi-Agent Chaos: When AI Agents Wouldn't Cooperate",
+        "publish_date": "2025-06-15",
+        "markdown_file": "blogs/financial_ai_blog_post.md",
+        "next_part_slug": "",
+        "content": "My agents were fighting each other instead of collaborating. The financial analysis system was supposed to have smooth **agent coordination**, but initially, they kept making redundant API calls and conflicting recommendations. I underestimated how complex **task distribution** would be. The breakthrough came when I implemented proper **state management** and **communication protocols** between agents. Debugging was a nightmare - I had to build custom logging to track which agent was doing what. The Yahoo Finance API rate limits caught me off guard, causing the system to crash during peak trading hours. I solved this by implementing **intelligent caching** and **request queuing**. The most satisfying moment was seeing the research time drop from hours to minutes once the agents learned to work together. This project taught me that **multi-agent systems require careful orchestration** - they're not just multiple independent scripts. The key insight? **Agent coordination is harder than individual agent intelligence**."
+      }
+    ]
+  },
+  "text-summarizer": {
+    "title": "Text Summarizer Using HuggingFace Transformers",
+    "github_url": "https://github.com/GoJo-Rika/Text-Summarizer",
+    "summary": {
+      "resume_page": "Achieved **ROUGE-optimized summarization performance** by developing **production-ready text summarization system** processing conversational data and meeting transcripts. Implemented **end-to-end ML pipeline** with **HuggingFace Transformers (Pegasus model)**, **data ingestion/transformation pipelines**, and **fine-tuning on SAMSum dataset** via **Google Colab GPU**. Deployed **RESTful API** with **FastAPI**, **Docker containerization**, **Weights & Biases experiment tracking**, and **comprehensive logging**, delivering **scalable ML service** with **automated pipeline stages** and **seamless deployment capabilities**.", 
+      "project_page": "", 
+    },
+    "image": "",
+    "featured": true,
+    "core_technologies": ["HuggingFace Transformers", "PyTorch", "FastAPI", "Docker", "Python", "Weights & Biases", "NLP"],
+    "keywords": ["End-to-End ML Pipeline", "Modular Pipeline Architecture", "Containerized Deployment", "MLOps Practices", "ROUGE Evaluation", "Automated Pipeline Stages", "Experiment Tracking", "RESTful API"],
+    "blogs": [
+      {
+        "title": "Transformer Fine-Tuning: When GPUs Became My Best Friend",
+        "publish_date": "2025-06-24",
+        "markdown_file": "blogs/text_summarizer_blog_post.md",
+        "next_part_slug": "",
+        "content": "Fine-tuning the Pegasus model was my first real encounter with **GPU computing**, and it was humbling. My initial attempts kept running out of memory, and I didn't understand why. The breakthrough came when I learned about **gradient accumulation** and **batch size optimization**. I spent days tweaking hyperparameters, watching training losses bounce around unpredictably. The real challenge was getting the **data preprocessing pipeline** right - tokenization issues caused my model to produce gibberish summaries initially. I had to rebuild the entire **data ingestion workflow** three times before getting it right. The ROUGE scores were disappointing at first, but implementing **proper evaluation metrics** helped me understand what the model was actually learning. Docker deployment was another headache - my container kept crashing due to memory issues. This project taught me that **transformer models are powerful but resource-intensive**. The key lesson? **Understanding your compute constraints is crucial for successful model deployment**."
+      }
+    ]
+  },
+  "multi-ai-agent-system": {
+    "title": "Multi-Tier AI Agent System with Vector Database Integration",
+    "github_url": "https://github.com/GoJo-Rika/Basic-Agents",
+    "summary": {
+      "resume_page": "Engineered **multi-tier AI agent architecture** implementing **three progressive complexity levels** from simple web-search agents to **coordinated multi-agent teams** for financial analysis. Integrated **multiple AI models (Groq, Gemini, OpenAI)** with **vector database (LanceDB)** for **knowledge management**, **hybrid search capabilities**, and **PDF knowledge bases**. Demonstrated **advanced agent coordination**, **domain-specific expertise**, and **scalable agent orchestration** using **Python**, **Agno framework**, and **DuckDuckGo/YFinance APIs**.", 
+      "project_page": "", 
+    },
+    "image": "",
+    "featured": true,
+    "core_technologies": ["Python", "Agno", "Google Gemini", "Groq", "LanceDB", "Google API", "DuckDuckGo", "AI Agents"],
+    "keywords": ["Multi-tier AI Agents Architecture", "Knowledge Management", "Hybrid Search Capabilities"],
+    "blogs": [
+      {
+        "title": "Vector Database Nightmares: When Embeddings Don't Embed",
+        "publish_date": "2025-06-13",
+        "markdown_file": "blogs/basic_agents_blog_post_v3.md",
+        "next_part_slug": "",
+        "content": "Building the **multi-tier agent system** seemed straightforward until I hit the vector database wall. My embeddings weren't clustering properly, and similarity search was returning irrelevant results. I spent weeks debugging why **LanceDB** wasn't performing as expected - turns out my **chunking strategy** was terrible. The real challenge was **coordinating multiple AI models** with different response formats and latencies. My agents kept timing out or producing conflicting outputs. The breakthrough came when I implemented **proper error handling** and **fallback mechanisms**. Initially, I naively assumed all AI models would behave similarly, but each had unique quirks. The financial analysis became much more accurate once I figured out how to **balance different data sources** and **agent expertise**. This project taught me that **vector databases require careful tuning** and that **agent coordination is an art, not a science**. The key insight? **Different AI models need different handling strategies**."
+      }
+    ]
+  },
+  "docs-rag-system": {
+    "title": "Intelligent Document Q&A System with RAG Architecture",
+    "github_url": "https://github.com/GoJo-Rika/Document-QA-Using-Gemma-Groq",
+    "summary": {
+      "resume_page": "Delivered **sub-second query response times** by developing **enterprise-grade RAG application** enabling natural language querying of large PDF document collections. Implemented **end-to-end document processing pipeline** with **vector embeddings**, **similarity search**, and **context-aware response generation** using **Groq API (Gemma model)**, **Google Generative AI embeddings**, and **FAISS vector database**. Built **production-ready application** with **optimized chunking strategies**, **session management**, and **Streamlit frontend**, demonstrating expertise in **AI/ML engineering** and **scalable vector database architecture**.", 
+      "project_page": "", 
+    },
+    "image": "",
+    "featured": true,
+    "core_technologies": ["Python", "LangChain", "Streamlit", "FAISS", "Google API", "PyPDF2", "RAG"],
+    "keywords": ["Text Chunking", "PDF parsing", "Vector Embeddings", "Similarity Search", "Document Processing", "Semantic Search"],
+    "blogs": [
+      {
+        "title": "RAG Reality: When Documents Refuse to Answer Questions",
+        "publish_date": "2025-04-23",
+        "markdown_file": "blogs/document_qa_blog_post.md",
+        "next_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-2",
+        "content": "My RAG system was confidently giving wrong answers, and I couldn't figure out why. The document **chunking strategy** was my biggest mistake - I was splitting text randomly instead of preserving semantic meaning. Users were getting frustrated with irrelevant responses, and I was losing confidence in the system. The breakthrough came when I implemented **semantic chunking** and **overlap strategies**. The **FAISS vector database** performance was another challenge - queries were taking too long, especially with large document collections. I had to learn about **index optimization** and **query batching**. The most embarrassing moment was when the system couldn't answer basic questions about documents it had just processed. This led me to implement **context verification** and **confidence scoring**. The **sub-second response time** achievement only came after extensive **caching optimization**. This project taught me that **RAG systems need careful tuning of every component**. The key lesson? **Garbage in, garbage out applies especially to document processing**."
+      }
+    ]
+  },
+  "student-performance": {
+    "title": "Student Performance Prediction System - End-to-End ML Engineering Project",
+    "github_url": "https://github.com/GoJo-Rika/Student-Performance-Project",
+    "summary": {
+      "resume_page": "Achieved **90%+ prediction accuracy** by developing **end-to-end ML web application** predicting student math scores, bridging the gap between experimental ML models and **production-ready systems**. Architected **modular Flask application** with **scikit-learn pipelines**, **comprehensive logging**, and **exception handling**, deploying on **AWS EC2** using **Elastic Beanstalk** with **automated model selection** from 7 algorithms. Delivered **production-ready ML system** demonstrating **ML engineering**, **cloud deployment**, and **software architecture principles** for data science and full-stack development applications.", 
+      "project_page": "", 
+    },
+    "image": "",
+    "featured": true,
+    "core_technologies": ["AWS", "Python", "Flask", "Scikit-learn", "Pandas", "NumPy", "AWS EC2", "AWS Elastic Beanstalk"],
+    "keywords": ["scikit-learn pipeline", "ML Pipelines", "Model Deployment", "Cloud Deployment (AWS)", "End-to-End ML Web Application", "Modular Architecture", "Comprehensive Loggings", "Production-ready Systems"],
+    "blogs": [
+      {
+        "title": "Student Performance Prediction: When Simple Isn't Always Better",
+        "publish_date": "2025-06-21",
+        "markdown_file": "blogs/student_performance_blog_v2.md",
+        "next_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-2",
+        "content": "I overcomplicated everything initially, trying to use advanced deep learning for what turned out to be a **classical ML problem**. My neural network was overfitting terribly, and I was chasing diminishing returns. The humbling moment came when a simple **Random Forest outperformed my complex architecture**. Deployment on **AWS Elastic Beanstalk** was my first real production experience, and it was messier than expected. My Flask app kept crashing due to memory leaks I hadn't noticed during local testing. The **model comparison framework** took longer to build than the actual models - I learned that **proper evaluation infrastructure** is crucial. The biggest challenge was handling **real-time predictions** reliably. Users would input edge cases that broke my preprocessing pipeline. This project taught me that **production systems need robust error handling** and that **simpler solutions often work better**. The key insight? **Focus on reliability over complexity**."
+      }
+    ]
+  },
+  "blog-content-generator": {
+    "title": "AI-Powered Blog Content Generator | AWS Serverless Architecture",
+    "github_url": "https://github.com/GoJo-Rika/genai-with-aws-bedrock-lambda-apigateway",
+    "summary": {
+      "resume_page": "Built **production-ready serverless API** leveraging **AWS Bedrock's Meta Llama 3** for automated blog content generation with **scalable cloud infrastructure**. Architected **end-to-end serverless solution** integrating **Lambda functions**, **API Gateway**, and **S3 storage** with **comprehensive IAM security policies**. Implemented **robust error handling**, **timeout management**, and **logging strategies** for **reliable cloud service orchestration**, demonstrating expertise in **serverless architecture patterns**, **AI model integration**, and **scalable infrastructure design**.", 
+      "project_page": "", 
+    },
+    "image": "",
+    "featured": true,
+    "core_technologies": ["AWS Bedrock", "AWS Lambda", "AWS API Gateway", "AWS S3", "Python", "Boto3", "IAM", "Meta Llama", "AWS CloudWatch"],
+    "keywords": ["Scalable Cloud Infrastructure", "Serverless Architecture Patterns", "End-to-End Serverless Solution", "Timeout Management", "AI Model Integration", "Robust Error Handling", "Logging Strategies"],
+    "blogs": [
+      {
+        "title": "Serverless Struggles: When Lambda Functions Have Limits",
+        "publish_date": "2025-07-02",
+        "markdown_file": "blogs/gen_ai_with_aws_bedrock_blog_post.md",
+        "next_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-2",
+        "content": "My first **serverless deployment** was a disaster. The **Lambda function** kept timing out because I didn't understand the **15-minute execution limit**. I was trying to generate long-form content that exceeded these constraints. The breakthrough came when I implemented **streaming responses** and **chunked processing**. **IAM permissions** were my nemesis - I spent days debugging why my function couldn't access **S3 buckets**. The learning curve for **AWS Bedrock** was steep, especially understanding how to optimize **LLM API calls**. My content generation was inconsistent until I learned proper **prompt engineering** and **response formatting**. The most frustrating part was debugging **cold starts** - my API would randomly become slow for the first few requests. This project taught me that **serverless architecture requires different thinking** than traditional deployments. The key lesson? **Understand your platform's constraints before building**."
+      }
+    ]
+  }
+}
