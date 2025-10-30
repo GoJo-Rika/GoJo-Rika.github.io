@@ -89,13 +89,16 @@
       "live_demo_url": null
     }
   ],
-  "about_me_prose": [
-    "I'm an educator and technologist who's spent the last 8 years building bridges between complex technical concepts and real-world applications. What started as a passion for teaching mathematics and IT has evolved into a deep expertise in data science, machine learning, and building production-ready systems.",
-    "My journey is a blend of academia and industry—from mentoring over 300 students at Dorset College to architecting scalable backend systems as a developer. This dual perspective allows me to not only build effective AI solutions but also to clearly articulate *how* and *why* they work.",
-    "When I'm not teaching or coding, I'm driven by a curiosity for how technology shapes our world. I'm passionate about MLOps, the practical side of deploying AI, and exploring the frontiers of generative models. This portfolio is a living document of my projects, my learnings, and my journey in the world of AI."
+  "about_me_full_prose": [
+    { "type": "paragraph", "content": "I'm an educator-turned-AI Engineer who has spent the last 8 years bridging the gap between complex technical concepts and real-world, production-ready applications. My journey is a blend of academia and industry—from mentoring over **300 students at Dorset College (achieving 92-96% project completion rates)** to architecting scalable backend systems as a developer. This dual perspective allows me to not only build effective AI solutions but also to clearly articulate *how* and *why* they work." },
+    { "type": "paragraph", "content": "A guiding principle in my life and work comes from the Bhagavad Gita: **\"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions. Never consider yourself the cause of the results of your activities, nor be attached to inaction.\"** To me, this is a powerful reminder to focus on the process—to build with integrity and to solve problems with dedication, knowing the true reward is in the act of creation itself." },
+    { "type": "paragraph", "content": "This mindset extends to how I approach teamwork, where I am a firm believer in the \"1+1 philosophy.\" I believe the most robust and innovative solutions come not from one person carrying the entire burden, but from a collaborative effort where each member contributes their piece. It’s the difference between a single pillar and an arch, where multiple stones work together to create a structure far stronger than any single component." },
+    { "type": "subheading", "content": "Current Focus & Beyond the Code" },
+    { "type": "paragraph", "content": "I'm currently immersed in the rapidly evolving landscape of generative and agentic AI. I am actively developing advanced RAG (Retrieval-Augmented Generation) applications using LangChain and LangGraph, and exploring workflow automation with tools like n8n. My learning journey continues with building sophisticated multi-agent systems and integrating them with **MCP (Model Context Protocol) servers**—a new paradigm for AI tool use." },
+    { "type": "paragraph", "content": "Beyond the keyboard, I am always sharpening my foundational knowledge with essential texts like **\"Deep Learning\" by Ian Goodfellow** and **\"Hands-On Machine Learning\" by Aurélien Géron**. My passion for problem-solving extends into my hobbies, where I enjoy tackling **logic puzzles** (Sudoku, Kakuro), **speedcubing**, and playing **chess**. And, of course, I am on an endless quest for the **perfect espresso shot**." }
   ],
   "current_highlights": {
-    "role": "Assistant Lecturer",
+    "role": "Assistant Lecturer & AI/ML Developer",
     "institution": "Dorset College",
     "education": "Masters of Science in Data Analytics",
     "project_title": "Network Security System - MLOps Project",

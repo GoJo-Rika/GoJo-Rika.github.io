@@ -766,3 +766,12 @@ input:checked + .slider:before {
   height: 100%; /* Make the SVG fill the wrapper */
   fill: currentColor; /* Make the SVG inherit the link color */
 }
+
+/* Add this to your CSS file */
+.sub-heading {
+  font-size: 1.2rem; /* Slightly smaller than h2 */
+  font-weight: 600;  /* Bolder to create emphasis */
+  margin-top: 2rem;    /* Add space above the subheading */
+  margin-bottom: 1rem;
+  text-align: left; /* Keep it aligned with the prose */
+}

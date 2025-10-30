@@ -143,34 +143,14 @@
           <!-- About Me Section -->
           <section>
             <h2 class="section-heading">About Me</h2>
-            {% for paragraph in about_me_prose %}
-              <p>{{ paragraph | markdown_to_html | safe }}</p>
+            {% for item in about_me_full_prose %}
+              {% if item.type == 'subheading' %}
+                <h4 class="sub-heading">{{ item.content }}</h4>
+              {% else %}
+                <p>{{ item.content | markdown_to_html | safe }}</p>
+              {% endif %}
             {% endfor %}
           </section>
-
-          <!-- Currently Reading Section -->
-          {% if currently_reading %}
-          <section>
-            <h2 class="section-heading">Currently Reading</h2>
-            <ul class="reading-list">
-              {% for book in currently_reading %}
-                <li><strong>{{ book.title }}</strong> by {{ book.author }}</li>
-              {% endfor %}
-            </ul>
-          </section>
-          {% endif %}
-
-          <!-- Personal Interests Section -->
-          {% if personal_interests %}
-          <section>
-            <h2 class="section-heading">Interests</h2>
-            <div class="tech-stack">
-              {% for interest in personal_interests %}
-                <span class="tag">{{ interest }}</span>
-              {% endfor %}
-            </div>
-          </section>
-          {% endif %}
         </main>
 
         <!-- Sidebar Section -->
