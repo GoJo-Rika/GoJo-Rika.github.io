@@ -767,7 +767,6 @@ input:checked + .slider:before {
   fill: currentColor; /* Make the SVG inherit the link color */
 }
 
-/* Add this to your CSS file */
 .sub-heading {
   font-size: 1.2rem; /* Slightly smaller than h2 */
   font-weight: 600;  /* Bolder to create emphasis */
