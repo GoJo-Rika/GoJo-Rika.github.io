@@ -53,7 +53,8 @@
   font-size: 0.9em;
   line-height: 1.5;
   margin: 1.5em 0;
-  position: relative;
+  position: relative !important;
+  /* Must stay relative for the copy button to anchor */
 }
 
 .post-content-main pre code {
@@ -141,10 +142,12 @@ aside .tech-stack {
 }
 
 /* ===== CUSTOM COPY-TO-CLIPBOARD BUTTON STYLING ===== */
-.copy-code-btn {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+.post-content-main pre>.copy-code-btn {
+  position: absolute !important;
+  top: 0.5rem !important;
+  right: 0.5rem !important;
+  left: auto !important;
+  bottom: auto !important;
   padding: 0.4rem;
   background: transparent;
   color: var(--code-text-color);
@@ -156,17 +159,18 @@ aside .tech-stack {
   /* Always clearly visible */
   transition: opacity 0.2s, color 0.2s, background-color 0.2s;
   border-radius: 4px;
+  z-index: 10;
 }
 
-.post-content-main pre:hover .copy-code-btn {
+.post-content-main pre:hover>.copy-code-btn {
   opacity: 1;
 }
 
-.copy-code-btn:hover {
+.post-content-main pre>.copy-code-btn:hover {
   background-color: rgba(128, 128, 128, 0.3);
 }
 
-.copy-code-btn.copied {
+.post-content-main pre>.copy-code-btn.copied {
   color: var(--link-color);
   opacity: 1;
 }
