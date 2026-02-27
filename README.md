@@ -92,7 +92,7 @@ This portfolio is packed with features we've built from the ground up:
 
 This project is a continuous work in progress. Here are some of the features and improvements planned for the future:
 
-*   `[ ]` **Add a "Copy Code" Button to Code Blocks:** A final layer of polish for the blog, allowing visitors to easily copy code snippets. This was attempted but postponed due to complexities with Prism.js plugin interactions. The plan is to revisit this with a more robust library or custom implementation.
+*   `[x]` **Add a "Copy Code" Button to Code Blocks:** A final layer of polish for the blog, allowing visitors to easily copy code snippets. This was originally attempted with Prism.js plugins, but has now been resolved directly using a custom Javascript implementation to sidestep the plugin issues.
 
 *   `[ ]` **Integrate a CSS Framework (e.g., Bootstrap):** To further improve the responsive design and accelerate the addition of new UI components, I plan to refactor the custom CSS to use a professional framework. This will involve updating the HTML templates to use the framework's class system.
 
