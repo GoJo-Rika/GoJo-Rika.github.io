@@ -21,10 +21,64 @@ document.addEventListener('DOMContentLoaded', function () {
     applyTheme(savedTheme);
 
     // Listen for toggle clicks
-    themeToggle.addEventListener('click', function() {
+    themeToggle.addEventListener('click', function () {
         const currentTheme = localStorage.getItem('theme') || 'light';
         const newTheme = (currentTheme === 'dark') ? 'light' : 'dark';
         applyTheme(newTheme);
+    });
+
+    // Custom Copy to Clipboard for Code Blocks
+    const codeBlocks = document.querySelectorAll('pre');
+
+    // Create Toast Element for notification
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.innerText = 'Copied to clipboard';
+    document.body.appendChild(toast);
+
+    codeBlocks.forEach(block => {
+        // Create the copy button using an icon
+        const copyButton = document.createElement('button');
+        copyButton.className = 'copy-code-btn';
+        copyButton.innerHTML = '<i class="far fa-copy"></i>';
+        copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+
+        // Add the button to the pre block
+        block.appendChild(copyButton);
+
+        // Add the click event listener
+        copyButton.addEventListener('click', () => {
+            const code = block.querySelector('code');
+            let textToCopy = '';
+
+            if (code) {
+                textToCopy = code.innerText;
+            } else {
+                // Remove the button from the copied text if no inner code tag is found
+                const clone = block.cloneNode(true);
+                const btn = clone.querySelector('.copy-code-btn');
+                if (btn) clone.removeChild(btn);
+                textToCopy = clone.innerText;
+            }
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Show toast notification
+                toast.classList.add('show');
+
+                // Change icon to a checkmark
+                copyButton.innerHTML = '<i class="fas fa-check"></i>';
+                copyButton.classList.add('copied');
+
+                setTimeout(() => {
+                    // Hide toast and revert icon
+                    toast.classList.remove('show');
+                    copyButton.innerHTML = '<i class="far fa-copy"></i>';
+                    copyButton.classList.remove('copied');
+                }, 2500);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        });
     });
 });
 
