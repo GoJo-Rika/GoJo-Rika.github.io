@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,8 +25,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Custom Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-          rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/modern_normalize.css" />
@@ -35,7 +37,9 @@
     <link rel="stylesheet" href="css/post.css">
 
     <!-- Icon & Favicon Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 
     <!-- Set a theme color that matches your website's primary color -->
@@ -54,84 +58,85 @@
 
 <body>
     <header class="page-header">
-      <div class="container">
-        <div class="header-top flex-responsive">
-          <div class="header-info">
-            <h1>{{ name }}'s Blog</h1>
-            <nav>
-              <ul class="inline-list flex-responsive">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="resume.html">Resume</a></li>
-                <li><a href="blog.html">Blog Home</a></li>
-              </ul>
-            </nav>
-          </div>
+        <div class="container">
+            <div class="header-top flex-responsive">
+                <div class="header-info">
+                    <h1>{{ name }}'s Blog</h1>
+                    <nav>
+                        <ul class="inline-list flex-responsive">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="resume.html">Resume</a></li>
+                            <li><a href="blog.html">Blog Home</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
-      </div>
     </header>
-  
+
     <div class="page-content">
         <div class="container">
             <!-- Main Article Content -->
             <main class="post-content-main">
-              {{ post.detailed_content | safe }}
+                {{ post.detailed_content | safe }}
 
-            
+
 
             </main>
 
             <!-- Sidebar with Post Info and Keywords -->
             <aside>
-              <!-- Part of a series navigation -->
-              {% if post.next_part_slug or post.previous_part_slug %}
-              <section class="series-navigation-sidebar">
-                <h4>This post is part of a series.</h4>
-                {% if post.previous_part_slug %}
-                <a href="posts/{{ post.previous_part_slug }}.html" class="series-link">← Read Part 1</a>
-                {% endif %}
-                {% if post.next_part_slug %}
-                <a href="posts/{{ post.next_part_slug }}.html" class="series-link">Read Part 2 →</a>
-                {% endif %}
-              </section>
-              {% endif %}
-
-
-            <!-- Post Information Section -->
-            <section>
-                <h2 class="section-heading">Post Information</h2>
-                <div class="competency-item-sidebar">
-                    <h3 class="competency-title-sidebar">{{ post.title }}</h3>
-                    <p class="section-label">Published on: {{ post.publish_date }}</p>
-                    {% if post.github_url %}
-                      <a href="{{ post.github_url }}" class="sidebar-button" target="_blank" rel="noopener noreferrer">
-                          <i class="fab fa-github"></i> View on GitHub
-                      </a>
+                <!-- Part of a series navigation -->
+                {% if post.next_part_slug or post.previous_part_slug %}
+                <section class="series-navigation-sidebar">
+                    <h4>This post is part of a series.</h4>
+                    {% if post.previous_part_slug %}
+                    <a href="posts/{{ post.previous_part_slug }}.html" class="series-link">← Read Part 1</a>
                     {% endif %}
-                </div>
-            </section>
+                    {% if post.next_part_slug %}
+                    <a href="posts/{{ post.next_part_slug }}.html" class="series-link">Read Part 2 →</a>
+                    {% endif %}
+                </section>
+                {% endif %}
 
-            <!-- Technologies & Keywords Section -->
-            <section>
-                <h2 class="section-heading">Technologies & Keywords</h2>
-                <div class="tech-stack">
-                    {% set all_tags = post.core_technologies + post.keywords %}
-                    {% set unique_tags = [] %}
-                    {% for tag in all_tags %}
-                        {% if tag not in unique_tags %}
-                            {% set _ = unique_tags.append(tag) %}
+
+                <!-- Post Information Section -->
+                <section>
+                    <h2 class="section-heading">Post Information</h2>
+                    <div class="competency-item-sidebar">
+                        <h3 class="competency-title-sidebar">{{ post.title }}</h3>
+                        <p class="section-label">Published on: {{ post.publish_date }}</p>
+                        {% if post.github_url %}
+                        <a href="{{ post.github_url }}" class="sidebar-button" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
                         {% endif %}
-                    {% endfor %}
-                    {% for tag in unique_tags %}
+                    </div>
+                </section>
+
+                <!-- Technologies & Keywords Section -->
+                <section>
+                    <h2 class="section-heading">Technologies & Keywords</h2>
+                    <div class="tech-stack">
+                        {% set all_tags = post.core_technologies + post.keywords %}
+                        {% set unique_tags = [] %}
+                        {% for tag in all_tags %}
+                        {% if tag not in unique_tags %}
+                        {% set _ = unique_tags.append(tag) %}
+                        {% endif %}
+                        {% endfor %}
+                        {% for tag in unique_tags %}
                         <span class="tag">{{ tag }}</span>
-                    {% endfor %}
-                </div>
-            </section>
+                        {% endfor %}
+                    </div>
+                </section>
             </aside>
 
             <!-- Add this navigation block inside the container, after the <aside> -->
             <nav class="post-navigation">
-            <!-- OLDER POST LINK LOGIC -->
-            {% if post.previous_part_slug %}
+                <!-- OLDER POST LINK LOGIC -->
+                {% if post.previous_part_slug %}
                 <!-- If this is Part 2, the "Older" link MUST be Part 1 -->
                 <a href="posts/{{ post.previous_part_slug }}.html" class="nav-link prev-link">
                     <span class="arrow">←</span>
@@ -140,7 +145,7 @@
                         {{ post.title | replace(" (Part 2)", "") }}
                     </span>
                 </a>
-            {% elif post.next_post %}
+                {% elif post.next_post %}
                 <!-- Otherwise, link to the chronologically older post (standard behavior) -->
                 <a href="posts/{{ post.next_post.slug }}.html" class="nav-link prev-link">
                     <span class="arrow">←</span>
@@ -149,13 +154,13 @@
                         {{ post.next_post.title }}
                     </span>
                 </a>
-            {% else %}
+                {% else %}
                 <!-- Empty div to maintain layout if there's no older post -->
                 <div></div>
-            {% endif %}
+                {% endif %}
 
-            <!-- NEWER POST LINK LOGIC -->
-            {% if post.next_part_slug %}
+                <!-- NEWER POST LINK LOGIC -->
+                {% if post.next_part_slug %}
                 <!-- If this is Part 1, the "Newer" link MUST be Part 2 -->
                 <a href="posts/{{ post.next_part_slug }}.html" class="nav-link next-link">
                     <span class="nav-text">
@@ -164,7 +169,7 @@
                     </span>
                     <span class="arrow">→</span>
                 </a>
-            {% elif post.previous_post %}
+                {% elif post.previous_post %}
                 <!-- Otherwise, link to the chronologically newer post (standard behavior) -->
                 <a href="posts/{{ post.previous_post.slug }}.html" class="nav-link next-link">
                     <span class="nav-text">
@@ -173,16 +178,16 @@
                     </span>
                     <span class="arrow">→</span>
                 </a>
-            {% endif %}
+                {% endif %}
             </nav>
 
         </div>
     </div>
 
     <footer class="page-footer">
-      <div class="container">
-        <p>© {{ current_year }} {{ name }}. All rights reserved.</p>
-      </div>
+        <div class="container">
+            <p>© {{ current_year }} {{ name }}. All rights reserved.</p>
+        </div>
     </footer>
 
     <!-- Prism JS for Code Highlighting -->
@@ -199,7 +204,33 @@
     </div>
     <!-- ===== Style Switcher End ===== -->
 
+    <!-- ===== Search Feature Start ===== -->
+    <button id="search-fab" class="search-fab" aria-label="Search blog posts">
+        <i class="fas fa-magnifying-glass"></i>
+    </button>
+
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-modal">
+            <div class="search-header">
+                <i class="fas fa-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="Search blog posts…" autocomplete="off">
+                <span class="search-kbd">⌘K</span>
+                <button id="search-clear-btn" class="search-action-btn" aria-label="Clear search"
+                    style="display:none;"><i class="fas fa-delete-left"></i></button>
+                <button id="search-close-btn" class="search-action-btn" aria-label="Close search"><i
+                        class="fas fa-xmark"></i></button>
+            </div>
+            <div id="search-results" class="search-results">
+                <p class="search-hint">Type at least 2 characters to search…</p>
+            </div>
+        </div>
+    </div>
+    <!-- ===== Search Feature End ===== -->
+
+    <script src="js/search-index.js"></script>
+    <script src="js/search.js"></script>
     <script src="js/app.js"></script>
 
 </body>
+
 </html>

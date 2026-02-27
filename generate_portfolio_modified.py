@@ -155,8 +155,25 @@ with Path("projects.html").open("w", encoding="utf-8") as f:
 with Path("tech-stack.html").open("w", encoding="utf-8") as f:
     f.write(tech_stack_output)
 
+# Generate search index for client-side blog search
+search_entries = []
+for post in blog_posts:
+    entry = {
+        "title": post["title"],
+        "slug": post["slug"],
+        "date": post["publish_date"],
+        "summary": post.get("content", ""),
+        "tags": post.get("core_technologies", []) + post.get("keywords", []),
+    }
+    search_entries.append(entry)
+
+search_index_js = "const SEARCH_INDEX = " + json.dumps(search_entries, indent=2) + ";\n"
+with Path("js/search-index.js").open("w", encoding="utf-8") as f:
+    f.write(search_index_js)
+
 print("HTML files generated successfully!")
 print("Individual blog posts have been generated in the 'posts' directory.")
+print("Search index generated at js/search-index.js.")
 
 # There are 18 keys in the JSON data that are used in the templates:
 # name
