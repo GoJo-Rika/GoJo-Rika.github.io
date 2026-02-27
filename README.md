@@ -98,7 +98,7 @@ This project is a continuous work in progress. Here are some of the features and
 
 *   `[ ]` **Implement a Direct Contact Form:** To provide an alternative to the `mailto:` link, I plan to integrate a third-party service (like Formspree) to handle direct message submissions from a form on the contact page. This will require setting up the service and adding a `<form>` element to the `contact_template.html`.
 
-*   `[ ]` **Add Search Functionality:** Implement a client-side search feature (using JavaScript) to allow users to search for keywords across all blog posts.
+*   `[x]` **Add Search Functionality:** Implemented a client-side search feature using vanilla JavaScript. A search index is auto-generated at build time and a floating search button (with ⌘K shortcut) opens a modal overlay to search across all blog post titles, summaries, and tags.
 
 *   `[ ]` **Content Expansion:**
     *   Add more projects to the `json` file.
