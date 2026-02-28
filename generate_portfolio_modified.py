@@ -77,7 +77,9 @@ blog_posts = sorted(
     reverse=True
 )
 
-# 3. Now that every post has a slug, add previous/next post information
+# 3. Now that every post has a slug, add previous/next post information and series part resolution
+slug_to_post = {post['slug']: post for post in blog_posts}
+
 for i, post in enumerate(blog_posts):
     post['next_post'] = None
     post['previous_post'] = None
@@ -85,6 +87,21 @@ for i, post in enumerate(blog_posts):
         post['next_post'] = blog_posts[i + 1]
     if i > 0:
         post['previous_post'] = blog_posts[i - 1]
+
+    # Dynamically extract series part number from title, e.g. " (Part 2)" -> "2"
+    part_match = re.search(r'\(Part (\d+)\)', post['title'])
+    if part_match:
+        post['part_num'] = part_match.group(1)
+
+for post in blog_posts:
+    if post.get('previous_part_slug'):
+        prev_post = slug_to_post.get(post['previous_part_slug'])
+        if prev_post and prev_post.get('part_num'):
+             post['previous_part_num'] = prev_post['part_num']
+    if post.get('next_part_slug'):
+        next_post = slug_to_post.get(post['next_part_slug'])
+        if next_post and next_post.get('part_num'):
+             post['next_part_num'] = next_post['part_num']
 
 # 4. Finally, process each post to create its HTML file
 for post in blog_posts:

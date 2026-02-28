@@ -91,10 +91,12 @@
                 <section class="series-navigation-sidebar">
                     <h4>This post is part of a series.</h4>
                     {% if post.previous_part_slug %}
-                    <a href="posts/{{ post.previous_part_slug }}.html" class="series-link">← Read Part 1</a>
+                    <a href="posts/{{ post.previous_part_slug }}.html" class="series-link">← Read Part {{
+                        post.previous_part_num }}</a>
                     {% endif %}
                     {% if post.next_part_slug %}
-                    <a href="posts/{{ post.next_part_slug }}.html" class="series-link">Read Part 2 →</a>
+                    <a href="posts/{{ post.next_part_slug }}.html" class="series-link">Read Part {{ post.next_part_num
+                        }} →</a>
                     {% endif %}
                 </section>
                 {% endif %}
@@ -137,12 +139,12 @@
             <nav class="post-navigation">
                 <!-- OLDER POST LINK LOGIC -->
                 {% if post.previous_part_slug %}
-                <!-- If this is Part 2, the "Older" link MUST be Part 1 -->
+                <!-- Link back to the previous part dynamically -->
                 <a href="posts/{{ post.previous_part_slug }}.html" class="nav-link prev-link">
                     <span class="arrow">←</span>
                     <span class="nav-text">
-                        <span class="nav-label">Read Part 1</span>
-                        {{ post.title | replace(" (Part 2)", "") }}
+                        <span class="nav-label">Read Part {{ post.previous_part_num }}</span>
+                        {{ post.title.split(' (Part ')[0] }}
                     </span>
                 </a>
                 {% elif post.next_post %}
@@ -161,11 +163,11 @@
 
                 <!-- NEWER POST LINK LOGIC -->
                 {% if post.next_part_slug %}
-                <!-- If this is Part 1, the "Newer" link MUST be Part 2 -->
+                <!-- Link forward to the next part dynamically -->
                 <a href="posts/{{ post.next_part_slug }}.html" class="nav-link next-link">
                     <span class="nav-text">
-                        <span class="nav-label">Read Part 2</span>
-                        {{ post.title | replace(" (Part 1)", "") }}
+                        <span class="nav-label">Read Part {{ post.next_part_num }}</span>
+                        {{ post.title.split(' (Part ')[0] }}
                     </span>
                     <span class="arrow">→</span>
                 </a>
