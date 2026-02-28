@@ -1,4 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+    // ===== Scroll Progress Bar =====
+    const progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress-bar';
+    document.body.appendChild(progressBar);
+
+    let ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            requestAnimationFrame(function () {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressBar.style.width = progress + '%';
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
     const themeToggle = document.getElementById('theme-toggle-icon');
     const icon = themeToggle.querySelector('i');
 
@@ -27,59 +47,61 @@ document.addEventListener('DOMContentLoaded', function () {
         applyTheme(newTheme);
     });
 
-    // Custom Copy to Clipboard for Code Blocks
-    const codeBlocks = document.querySelectorAll('pre');
+    // Custom Copy to Clipboard for Code Blocks (blog posts only)
+    const codeBlocks = document.querySelectorAll('.post-content-main pre');
 
-    // Create Toast Element for notification
-    const toast = document.createElement('div');
-    toast.className = 'toast-notification';
-    toast.innerText = 'Copied to clipboard';
-    document.body.appendChild(toast);
+    // Only create the toast if there are code blocks on this page
+    if (codeBlocks.length > 0) {
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.innerText = 'Copied to clipboard';
+        document.body.appendChild(toast);
 
-    codeBlocks.forEach(block => {
-        // Create the copy button using an icon
-        const copyButton = document.createElement('button');
-        copyButton.className = 'copy-code-btn';
-        copyButton.innerHTML = '<i class="far fa-copy"></i>';
-        copyButton.setAttribute('aria-label', 'Copy code to clipboard');
+        codeBlocks.forEach(block => {
+            // Create the copy button using an icon
+            const copyButton = document.createElement('button');
+            copyButton.className = 'copy-code-btn';
+            copyButton.innerHTML = '<i class="far fa-copy"></i>';
+            copyButton.setAttribute('aria-label', 'Copy code to clipboard');
 
-        // Add the button to the pre block
-        block.appendChild(copyButton);
+            // Add the button to the pre block
+            block.appendChild(copyButton);
 
-        // Add the click event listener
-        copyButton.addEventListener('click', () => {
-            const code = block.querySelector('code');
-            let textToCopy = '';
+            // Add the click event listener
+            copyButton.addEventListener('click', () => {
+                const code = block.querySelector('code');
+                let textToCopy = '';
 
-            if (code) {
-                textToCopy = code.innerText;
-            } else {
-                // Remove the button from the copied text if no inner code tag is found
-                const clone = block.cloneNode(true);
-                const btn = clone.querySelector('.copy-code-btn');
-                if (btn) clone.removeChild(btn);
-                textToCopy = clone.innerText;
-            }
+                if (code) {
+                    textToCopy = code.innerText;
+                } else {
+                    // Remove the button from the copied text if no inner code tag is found
+                    const clone = block.cloneNode(true);
+                    const btn = clone.querySelector('.copy-code-btn');
+                    if (btn) clone.removeChild(btn);
+                    textToCopy = clone.innerText;
+                }
 
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                // Show toast notification
-                toast.classList.add('show');
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    // Show toast notification
+                    toast.classList.add('show');
 
-                // Change icon to a checkmark
-                copyButton.innerHTML = '<i class="fas fa-check"></i>';
-                copyButton.classList.add('copied');
+                    // Change icon to a checkmark
+                    copyButton.innerHTML = '<i class="fas fa-check"></i>';
+                    copyButton.classList.add('copied');
 
-                setTimeout(() => {
-                    // Hide toast and revert icon
-                    toast.classList.remove('show');
-                    copyButton.innerHTML = '<i class="far fa-copy"></i>';
-                    copyButton.classList.remove('copied');
-                }, 2500);
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
+                    setTimeout(() => {
+                        // Hide toast and revert icon
+                        toast.classList.remove('show');
+                        copyButton.innerHTML = '<i class="far fa-copy"></i>';
+                        copyButton.classList.remove('copied');
+                    }, 2500);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
             });
         });
-    });
+    }
 });
 
 

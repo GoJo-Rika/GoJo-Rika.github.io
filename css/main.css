@@ -809,6 +809,20 @@ input:checked+.slider:before {
   /* Keep it aligned with the prose */
 }
 
+/* ===== SCROLL PROGRESS BAR ===== */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: var(--link-color);
+  box-shadow: 0 0 8px var(--link-color);
+  z-index: 9999;
+  transition: width 0.05s linear;
+  pointer-events: none;
+}
+
 /* ===== SEARCH FEATURE ===== */
 
 /* Floating Search Button (bottom-left) */
