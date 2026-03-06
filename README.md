@@ -109,7 +109,7 @@ This project is a continuous work in progress. Here are some of the features and
     * by simply adding `../` or `/` should work on local system, but that does not solve the problem in static `html` page
     * the current approach solves the issue for `html` page but when previewing the `markdown` file, the **image** is not shown (both in **local** as well as in **github repos**)
 
-*   `[ ]` **Make changes for 3 blog series:**
+*   `[x]` **Make changes for 3 blog series:**
     *   If there are 3 blogs which are written, then link them properly and make sure it works.
     *   The current version does not do that (it loops over the middle blog in `Text Summarizer`)
 
@@ -132,3 +132,7 @@ This project is a continuous work in progress. Here are some of the features and
 
 *   `[ ]` **Architecture diagram and video or a gif:**
     *   Add architecture diagram of the project or the blog or create a video doing a walkthrough of the project or a gif of the working ui.
+
+*   `[x]` **Add horizontal progress scroll bar:**
+    *   Add horizontal progress scroll bar to the top of the page to make it easier for users to navigate the page.
+
