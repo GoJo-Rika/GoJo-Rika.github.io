@@ -92,31 +92,37 @@
                     <h2 class="section-heading">Recent Posts</h2>
 
                     <!-- blogs -->
-                    {% for post in blogs %}
-                    <article class="blog-post" data-tags="{{ post.core_technologies | join(',') | lower }}">
-                        <h3 class="post-meta">
-                            <a href="posts/{{ post.slug }}.html">{{ post.title }}</a>
-                        </h3>
+                    <div id="blog-posts-container">
+                        {% for post in blogs %}
+                        <article class="blog-post" data-tags="{{ post.core_technologies | join(',') | lower }}">
+                            <h3 class="post-meta">
+                                <a href="posts/{{ post.slug }}.html">{{ post.title }}</a>
+                            </h3>
 
-                        <p class="section-label">Published on: {{ post.publish_date }}</p>
-                        {% if post.content %}
-                        <p>{{ post.content | markdown_to_html | safe }}</p>
-                        {% endif %}
-
-                        <div class="tech-stack">
-                            {% if post.technologies %}
-                            {% for tech in post.core_technologies %}
-                            <span class="tag">{{ tech }}</span>
-                            {% endfor %}
-
-                            {% for keyword in post.keywords %}
-                            <span class="tag">{{ keyword }}</span>
-                            {% endfor %}
+                            <p class="section-label">Published on: {{ post.publish_date }}</p>
+                            {% if post.content %}
+                            <p>{{ post.content | markdown_to_html | safe }}</p>
                             {% endif %}
-                        </div>
 
-                    </article>
-                    {% endfor %}
+                            <div class="tech-stack">
+                                {% if post.technologies %}
+                                {% for tech in post.core_technologies %}
+                                <span class="tag">{{ tech }}</span>
+                                {% endfor %}
+
+                                {% for keyword in post.keywords %}
+                                <span class="tag">{{ keyword }}</span>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+
+                        </article>
+                        {% endfor %}
+                    </div>
+
+                    <div class="load-more-wrapper" style="text-align: center; margin-top: 2rem;">
+                        <button id="load-more-btn" class="load-more-btn">Load More Posts</button>
+                    </div>
                 </section>
             </main>
 
@@ -144,28 +150,64 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const tagContainer = document.getElementById('tag-filter-container');
-                const blogPosts = document.querySelectorAll('.blog-post');
+                const blogPosts = Array.from(document.querySelectorAll('.blog-post'));
+                const loadMoreBtn = document.getElementById('load-more-btn');
 
-                tagContainer.addEventListener('click', function (e) {
-                    // Only run if a filter-tag button was clicked
-                    if (e.target.matches('.filter-tag')) {
-                        // Update the active button style
-                        tagContainer.querySelectorAll('.filter-tag').forEach(btn => btn.classList.remove('active'));
-                        e.target.classList.add('active');
+                let currentMax = 5;
+                const POSTS_PER_PAGE = 5;
+                let currentFilter = 'all';
 
-                        const selectedTag = e.target.getAttribute('data-tag').toLowerCase();
+                function updatePostsDisplay() {
+                    let visibleCount = 0;
 
-                        // Loop through all blog posts and show/hide them
-                        blogPosts.forEach(post => {
-                            const postTags = post.getAttribute('data-tags');
-                            if (selectedTag === 'all' || postTags.includes(selectedTag)) {
-                                post.style.display = 'block'; // Show the post
-                            } else {
-                                post.style.display = 'none'; // Hide the post
-                            }
-                        });
+                    // Filter posts
+                    const matchingPosts = blogPosts.filter(post => {
+                        const postTags = post.getAttribute('data-tags');
+                        return currentFilter === 'all' || postTags.includes(currentFilter);
+                    });
+
+                    // Hide all posts first
+                    blogPosts.forEach(post => { post.style.display = 'none'; });
+
+                    // Show up to currentMax matching posts
+                    for (let i = 0; i < matchingPosts.length; i++) {
+                        if (i < currentMax) {
+                            matchingPosts[i].style.display = 'block';
+                            visibleCount++;
+                        }
                     }
-                });
+
+                    // Update Load More button visibility
+                    if (visibleCount >= matchingPosts.length) {
+                        loadMoreBtn.style.display = 'none';
+                    } else {
+                        loadMoreBtn.style.display = 'inline-block';
+                    }
+                }
+
+                if (tagContainer) {
+                    tagContainer.addEventListener('click', function (e) {
+                        if (e.target.matches('.filter-tag')) {
+                            // Update the active button style
+                            tagContainer.querySelectorAll('.filter-tag').forEach(btn => btn.classList.remove('active'));
+                            e.target.classList.add('active');
+
+                            currentFilter = e.target.getAttribute('data-tag').toLowerCase();
+                            currentMax = POSTS_PER_PAGE; // Reset max matches when filter changes
+                            updatePostsDisplay();
+                        }
+                    });
+                }
+
+                if (loadMoreBtn) {
+                    loadMoreBtn.addEventListener('click', function () {
+                        currentMax += POSTS_PER_PAGE;
+                        updatePostsDisplay();
+                    });
+                }
+
+                // Initial display update
+                updatePostsDisplay();
             });
         </script>
         <style>
@@ -199,6 +241,24 @@
                 text-align: left;
                 margin-right: 0;
                 /* Remove the old horizontal margin */
+            }
+
+            /* Load more button styles */
+            .load-more-btn {
+                padding: 10px 24px;
+                border: 2px solid var(--link-color, #0077cc);
+                border-radius: 6px;
+                background-color: transparent;
+                color: var(--link-color, #0077cc);
+                font-weight: bold;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+            }
+
+            .load-more-btn:hover {
+                background-color: var(--link-color, #0077cc);
+                color: #fff;
             }
         </style>
 

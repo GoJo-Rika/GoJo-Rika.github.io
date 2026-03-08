@@ -136,7 +136,7 @@ This project is a continuous work in progress. Here are some of the features and
 *   `[x]` **Add horizontal progress scroll bar:**
     *   Add horizontal progress scroll bar to the top of the page to make it easier for users to navigate the page.
 
-* `[ ]` **Add dynamic pagination for blog page:**
+* `[x]` **Add dynamic pagination for blog page:**
     *   Add dynamic pagination for blog page to make it easier for users to navigate through the blog posts. --> `Load More Posts` button at the end of the blog page. (see [`future-work/images/dynamic-pagination.png`](future-work/images/dynamic-pagination.png))
 
 * `[ ]` **Add table of contents in posts page:**
