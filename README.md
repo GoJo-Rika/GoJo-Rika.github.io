@@ -4,7 +4,7 @@
 
 This repository contains the complete source code and content for my personal portfolio website, built by Mit Patel. It's a fully static site generated using Python, Jinja2, and a custom build script, designed to be a living document of my projects, skills, and technical learnings. 
 
-The entire site is generated from a single, centralized JSON database (`portfolio-mit_v1.json`), making it incredibly easy to maintain and update.
+The entire site is generated from a single, centralized [`JSON database`](portfolio-mit_v1.json), making it incredibly easy to maintain and update.
 
 **Live Site:** [gojo-rika.github.io](https://gojo-rika.github.io/)
 
@@ -28,8 +28,8 @@ This approach gives me the best of both worlds:
 
 This portfolio is packed with features we've built from the ground up:
 
-*   **Centralized Data Management:** All content (project details, blog posts, skills, etc.) is managed in a single `updated-data.json` file, acting as a "single source of truth."
-*   **Dynamic Site Generation:** A Python script (`generate_portfolio_modified.py`) serves as the build engine.
+*   **Centralized Data Management:** All content (project details, blog posts, skills, etc.) is managed in a single [`updated-data.json`](future-work/updated-data.json) file, acting as a "single source of truth."
+*   **Dynamic Site Generation:** A Python script ([`generate_portfolio_modified.py`](generate_portfolio_modified.py)) serves as the build engine.
 *   **Multi-Page Architecture:** Includes separate, fully-featured pages for:
     *   **Homepage:** A personal introduction and high-level summary.
     *   **Resume:** A clean, professional resume layout.
@@ -84,7 +84,7 @@ This portfolio is packed with features we've built from the ground up:
     python generate_portfolio_modified.py
     ```
 
-6.  **View the site:** Open any of the generated `.html` files (like `index.html`) in your browser.
+6.  **View the site:** Open any of the generated `.html` files (like [`index.html`](index.html)) in your browser.
 
 ---
 
