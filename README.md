@@ -88,17 +88,13 @@ This portfolio is packed with features we've built from the ground up:
 
 ---
 
-## Future Roadmap & To-Do List
+## Future Roadmap & To-Do List ---> Total: 18, Completed: 11; 09.03.2026
 
 This project is a continuous work in progress. Here are some of the features and improvements planned for the future:
-
-*   `[x]` **Add a "Copy Code" Button to Code Blocks:** A final layer of polish for the blog, allowing visitors to easily copy code snippets. This was originally attempted with Prism.js plugins, but has now been resolved directly using a custom Javascript implementation to sidestep the plugin issues.
 
 *   `[ ]` **Integrate a CSS Framework (e.g., Bootstrap):** To further improve the responsive design and accelerate the addition of new UI components, I plan to refactor the custom CSS to use a professional framework. This will involve updating the HTML templates to use the framework's class system.
 
 *   `[ ]` **Implement a Direct Contact Form:** To provide an alternative to the `mailto:` link, I plan to integrate a third-party service (like Formspree) to handle direct message submissions from a form on the contact page. This will require setting up the service and adding a `<form>` element to the [`contact_template.html`](contact_template.html).
-
-*   `[x]` **Add Search Functionality:** Implemented a client-side search feature using vanilla JavaScript. A search index is auto-generated at build time and a floating search button (with ⌘K shortcut) opens a modal overlay to search across all blog post titles, summaries, and tags.
 
 *   `[ ]` **Content Expansion:**
     *   Add more projects to the [`json`](portfolio-mit_v1.json) file.
@@ -106,48 +102,53 @@ This project is a continuous work in progress. Here are some of the features and
     *   Continue to expand and refine the `tech_stack` with new skills.
 
 *   `[ ]` **Update architecture diagram link in markdown file**
-    * by simply adding `../` or `/` should work on local system, but that does not solve the problem in static `html` page
-    * the current approach solves the issue for `html` page but when previewing the `markdown` file, the **image** is not shown (both in **local** as well as in **github repos**)
-
-*   `[x]` **Make changes for 3 blog series:**
-    *   If there are 3 blogs which are written, then link them properly and make sure it works.
-    *   The current version does not do that (it loops over the middle blog in `Text Summarizer`)
+    *   by simply adding `../` or `/` should work on local system, but that does not solve the problem in static `html` page
+    *   the current approach solves the issue for `html` page but when previewing the `markdown` file, the **image** is not shown (both in **local** as well as in **github repos**)
 
 *   `[ ]` **Organise data inside `json` file:**
     *   Keep the data in a structured format so there are no duplicates.
     *   The data for a project/blog must be together ([`project_db`](future-work/project_db.json)) to make it easier to edit details like Github URLs, blog images, project card thumbnail, blog home page summary, etc, etc, etc.
     *   Follow the structure given in [`update-data.json`](future-work/updated-data.json) and [`project_db.json`](future-work/project_db.json) in [`future-work`](future-work/) folder.
 
-*   `[ ]` **Add read story section in project page:**
-    *   In the project page, under the given project card, add a link to read the blog along with viewing it on github.
-    *   The blog will be redirected to the 1st blog in the series.
+*   `[ ]` **Architecture diagram and video or a gif:**
+    *   Add architecture diagram of the project or the blog or create a video doing a walkthrough of the project or a gif of the working ui.
 
-*   `[ ]` **Keep 3 projects columns:**
-    *   Need to make changes in [`project_template`](projects_template.html) to make sure it includes 3 project cards in each row. (see [`future-work/images/project-page.png`](future-work/images/project-page.png))
+*   `[ ]` **Clean individual html files by removing extra white space:**
+    *   Remove extra white space from individual html files to make them more readable. (see [`future-work/images/unclean-html-code-block.png`](future-work/images/unclean-html-code-block.png))
 
-*   `[ ]` **Add heading sections inside blog post page:**
+*   `[x]` **Add a "Copy Code" Button to Code Blocks:** -- 27.02.2026
+    *   A final layer of polish for the blog, allowing visitors to easily copy code snippets. This was originally attempted with Prism.js plugins, but has now been resolved directly using a custom Javascript implementation to sidestep the plugin issues.
+
+*   `[x]` **Add Search Functionality:** -- 27.02.2026
+    *   Implemented a client-side search feature using vanilla JavaScript. A search index is auto-generated at build time and a floating search button (with ⌘K shortcut) opens a modal overlay to search across all blog post titles, summaries, and tags.
+
+*   `[x]` **Make changes for 3 blog series:** -- 28.02.2026
+    *   If there are 3 blogs which are written, then link them properly and make sure it works.
+    *   The current version does not do that (it loops over the middle blog in `Text Summarizer`)
+
+*   `[x]` **Add horizontal progress scroll bar:** -- 06.03.2026
+    *   Add horizontal progress scroll bar to the top of the page to make it easier for users to navigate the page.
+
+*   `[x]` **Add dynamic pagination for blog page:** -- 08.03.2026
+    *   Add dynamic pagination for blog page to make it easier for users to navigate through the blog posts. --> `Load More Posts` button at the end of the blog page. (see [`future-work/images/dynamic-pagination.png`](future-work/images/dynamic-pagination.png))
+
+*   `[x]` **Add heading sections inside blog post page:** -- 09.03.2026
     *   In the blog post page, add page headings and links for easy scrolling and navigating through the page. 
     *   This also helps in giving a brief of the blog post page.
     *   See [`future-work/images/blog-post-page.png`](future-work/images/blog-post-page.png) for reference and [`future-work/images/reference-sample.png`](future-work/images/reference-sample.png)
 
-*   `[ ]` **Architecture diagram and video or a gif:**
-    *   Add architecture diagram of the project or the blog or create a video doing a walkthrough of the project or a gif of the working ui.
-
-*   `[x]` **Add horizontal progress scroll bar:**
-    *   Add horizontal progress scroll bar to the top of the page to make it easier for users to navigate the page.
-
-* `[x]` **Add dynamic pagination for blog page:**
-    *   Add dynamic pagination for blog page to make it easier for users to navigate through the blog posts. --> `Load More Posts` button at the end of the blog page. (see [`future-work/images/dynamic-pagination.png`](future-work/images/dynamic-pagination.png))
-
-* `[x]` **Add table of contents in posts page:**
+*   `[x]` **Add table of contents in posts page:** -- 09.03.2026
     *   Add table of contents in posts page to make it easier for users to navigate through the blog posts. (see [`future-work/images/table-of-content-2.png`](future-work/images/table-of-content-2.png) and [`future-work/images/table-of-content-3.png`](future-work/images/table-of-content-3.png))
 
-* `[ ]` **Add a section in blog page to show the number of posts:**
-    *   Add a section in blog page to show the number of posts. (see `future-work/images/number-of-posts.png`)
-
-* `[ ]` **Clean individual html files by removing extra white space:**
-    *   Remove extra white space from individual html files to make them more readable. (see [`future-work/images/unclean-html-code-block.png`](future-work/images/unclean-html-code-block.png))
-
-* `[x]` **Modify the code such that the sidebar is fixed in the page while scrolling down (sticky positioning):**
+*   `[x]` **Modify the code such that the sidebar is fixed in the page while scrolling down (sticky positioning):** -- 09.03.2026
     *   where the sidebar (or an element) remains fixed in place while the rest of the page scrolls—is called "sticky positioning" in web design. (see [`future-work/images/sticky-positioning-highlight-01.png`](future-work/images/sticky-positioning-highlight-01.png) and [`future-work/images/sticky-positioning-highlight-02.png`](future-work/images/sticky-positioning-highlight-02.png))
-    
+
+*   `[x]` **Keep 3 projects columns:**
+    *   Need to make changes in [`project_template`](projects_template.html) to make sure it includes 3 project cards in each row. (see [`future-work/images/project-page.png`](future-work/images/project-page.png))
+
+*   `[x]` **Add read story section in project page:**
+    *   In the project page, under the given project card, add a link to read the blog along with viewing it on github.
+    *   The blog will be redirected to the 1st blog in the series.
+
+*   `[x]` **Add a section in blog page to show the number of posts:**
+    *   Add a section in blog page to show the number of posts. (see `future-work/images/number-of-posts.png`)
