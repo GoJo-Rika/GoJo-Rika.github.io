@@ -139,7 +139,7 @@ This project is a continuous work in progress. Here are some of the features and
 * `[x]` **Add dynamic pagination for blog page:**
     *   Add dynamic pagination for blog page to make it easier for users to navigate through the blog posts. --> `Load More Posts` button at the end of the blog page. (see [`future-work/images/dynamic-pagination.png`](future-work/images/dynamic-pagination.png))
 
-* `[ ]` **Add table of contents in posts page:**
+* `[x]` **Add table of contents in posts page:**
     *   Add table of contents in posts page to make it easier for users to navigate through the blog posts. (see [`future-work/images/table-of-content-2.png`](future-work/images/table-of-content-2.png) and [`future-work/images/table-of-content-3.png`](future-work/images/table-of-content-3.png))
 
 * `[ ]` **Add a section in blog page to show the number of posts:**
@@ -148,6 +148,6 @@ This project is a continuous work in progress. Here are some of the features and
 * `[ ]` **Clean individual html files by removing extra white space:**
     *   Remove extra white space from individual html files to make them more readable. (see [`future-work/images/unclean-html-code-block.png`](future-work/images/unclean-html-code-block.png))
 
-* `[ ]` **Modify the code such that the sidebar is fixed in the page while scrolling down (sticky positioning):**
+* `[x]` **Modify the code such that the sidebar is fixed in the page while scrolling down (sticky positioning):**
     *   where the sidebar (or an element) remains fixed in place while the rest of the page scrolls—is called "sticky positioning" in web design. (see [`future-work/images/sticky-positioning-highlight-01.png`](future-work/images/sticky-positioning-highlight-01.png) and [`future-work/images/sticky-positioning-highlight-02.png`](future-work/images/sticky-positioning-highlight-02.png))
     
