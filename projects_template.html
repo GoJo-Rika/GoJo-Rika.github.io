@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>{{ name }} - Projects</title>
@@ -7,12 +8,17 @@
     <base href="./">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/modern_normalize.css" />
     <link rel="stylesheet" href="css/html5bp.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
     <header class="page-header">
         <div class="container">
@@ -52,17 +58,24 @@
                                     <strong>Tech Stack:</strong>
                                     <div class="tech-icons">
                                         {% for tech_name in project.technologies %}
-                                            {% set tech_data = tech_stack_db[tech_name] %}
-                                            {% if tech_data and tech_data.icon %}
-                                                <img src="{{ tech_data.icon }}" alt="{{ tech_name }} logo" title="{{ tech_name }}">
-                                            {% endif %}
+                                        {% set tech_data = tech_stack_db[tech_name] %}
+                                        {% if tech_data and tech_data.icon %}
+                                        <img src="{{ tech_data.icon }}" alt="{{ tech_name }} logo"
+                                            title="{{ tech_name }}">
+                                        {% endif %}
                                         {% endfor %}
                                     </div>
                                 </div>
                                 <div class="project-links">
-                                    <a href="{{ project.github_url }}" class="project-button" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                                    <a href="{{ project.github_url }}" class="project-button" target="_blank"
+                                        rel="noopener noreferrer">View on GitHub</a>
+                                    {% if project.blog_slug %}
+                                    <a href="posts/{{ project.blog_slug }}.html" class="project-button blog-link">Read
+                                        the Story</a>
+                                    {% endif %}
                                     {% if project.live_demo_url %}
-                                    <a href="{{ project.live_demo_url }}" class="project-button live-demo" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                                    <a href="{{ project.live_demo_url }}" class="project-button live-demo"
+                                        target="_blank" rel="noopener noreferrer">Live Demo</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -82,18 +95,40 @@
 
     <!-- ===== Style Switcher & JS ===== -->
     <div class="theme-toggle-container">
-      <div id="theme-toggle-icon" class="theme-icon"><i class="fas"></i></div>
+        <div id="theme-toggle-icon" class="theme-icon"><i class="fas"></i></div>
     </div>
     <script src="js/app.js"></script>
 
     <!-- ===== In-house CSS for this page ===== -->
     <style>
-        .projects-container { display: block; }
+        .page-content {
+            padding-top: 3rem !important;
+        }
+
+        .page-content .projects-container {
+            display: block !important;
+            max-width: 1350px !important;
+            margin: 0 auto !important;
+        }
+
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2rem;
         }
+
+        @media (min-width: 48rem) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 75rem) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         .project-card {
             background-color: var(--card-bg-color);
             border: 1px solid var(--border-color);
@@ -103,29 +138,48 @@
             flex-direction: column;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
+
         .project-image img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
+
         .project-content {
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
-        .project-title { font-size: 1.25rem; margin-bottom: 0.75rem; }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
         .project-summary {
             font-size: 0.95rem;
             line-height: 1.6;
-            flex-grow: 1; /* Pushes links to the bottom */
+            flex-grow: 1;
+            /* Pushes links to the bottom */
         }
-        .project-tech { margin-top: 1rem; }
-        .tech-icons { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+
+        .project-tech {
+            margin-top: 1rem;
+        }
+
+        .tech-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
         .tech-icons span {
             background-color: var(--tag-bg-color);
             color: var(--tag-text-color);
@@ -133,11 +187,15 @@
             border-radius: 4px;
             font-size: 0.8rem;
         }
+
         .project-links {
             margin-top: 1.5rem;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
             gap: 1rem;
         }
+
         .project-button {
             padding: 8px 16px;
             border: 1px solid var(--link-color);
@@ -147,23 +205,40 @@
             font-weight: bold;
             transition: all 0.2s;
         }
+
         .project-button:hover {
             background-color: var(--link-color);
             color: #fff !important;
         }
+
+        .project-button.blog-link {
+            background-color: var(--link-color);
+            color: #fff !important;
+            border-color: var(--link-color);
+        }
+
+        .project-button.blog-link:hover {
+            filter: brightness(1.1);
+        }
+
         .tech-icons img {
-            height: 32px; /* Control the size of the icons */
+            height: 32px;
+            /* Control the size of the icons */
             width: 32px;
-            object-fit: contain; /* Ensure icons scale nicely without distortion */
+            object-fit: contain;
+            /* Ensure icons scale nicely without distortion */
             transition: transform 0.2s ease;
             color: var(--text-color);
         }
+
         .tech-icons img:hover {
-                transform: scale(1.15);
+            transform: scale(1.15);
         }
+
         body.dark .tech-icons img {
             filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
         }
     </style>
 </body>
+
 </html>

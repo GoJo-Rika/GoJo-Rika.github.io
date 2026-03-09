@@ -7,12 +7,13 @@ import markdown2
 from jinja2 import Environment, FileSystemLoader
 import re
 
+
 def slugify(text):
     text = text.lower()
     # Replace spaces and underscores with hyphens
-    text = re.sub(r'[\s_]+', '-', text)
+    text = re.sub(r"[\s_]+", "-", text)
     # Remove all non-alphanumeric characters except hyphens
-    text = re.sub(r'[^a-z0-9-]', '', text)
+    text = re.sub(r"[^a-z0-9-]", "", text)
     return text
 
 
@@ -55,7 +56,7 @@ env.filters["markdown_to_html_resume"] = markdown_to_html_resume
 index_template = env.get_template("index_template.html")
 resume_template = env.get_template("resume_template.html")
 blog_template = env.get_template("blog_template.html")
-post_template = env.get_template("post_template.html") # <-- Load the new post template
+post_template = env.get_template("post_template.html")  # <-- Load the new post template
 contact_template = env.get_template("contact_template.html")
 projects_template = env.get_template("projects_template.html")
 tech_stack_template = env.get_template("tech_stack_template.html")
@@ -68,40 +69,40 @@ Path("posts").mkdir(exist_ok=True)
 
 # 1. First, add a slug to EVERY post object
 for post in data.get("blogs", []):
-    post['slug'] = slugify(post['title'])
+    post["slug"] = slugify(post["title"])
 
 # 2. NOW, sort all blog posts by date
 blog_posts = sorted(
     data.get("blogs", []),
     key=lambda x: datetime.strptime(x["publish_date"], "%Y-%m-%d"),
-    reverse=True
+    reverse=True,
 )
 
 # 3. Now that every post has a slug, add previous/next post information and series part resolution
-slug_to_post = {post['slug']: post for post in blog_posts}
+slug_to_post = {post["slug"]: post for post in blog_posts}
 
 for i, post in enumerate(blog_posts):
-    post['next_post'] = None
-    post['previous_post'] = None
+    post["next_post"] = None
+    post["previous_post"] = None
     if i + 1 < len(blog_posts):
-        post['next_post'] = blog_posts[i + 1]
+        post["next_post"] = blog_posts[i + 1]
     if i > 0:
-        post['previous_post'] = blog_posts[i - 1]
+        post["previous_post"] = blog_posts[i - 1]
 
     # Dynamically extract series part number from title, e.g. " (Part 2)" -> "2"
-    part_match = re.search(r'\(Part (\d+)\)', post['title'])
+    part_match = re.search(r"\(Part (\d+)\)", post["title"])
     if part_match:
-        post['part_num'] = part_match.group(1)
+        post["part_num"] = part_match.group(1)
 
 for post in blog_posts:
-    if post.get('previous_part_slug'):
-        prev_post = slug_to_post.get(post['previous_part_slug'])
-        if prev_post and prev_post.get('part_num'):
-             post['previous_part_num'] = prev_post['part_num']
-    if post.get('next_part_slug'):
-        next_post = slug_to_post.get(post['next_part_slug'])
-        if next_post and next_post.get('part_num'):
-             post['next_part_num'] = next_post['part_num']
+    if post.get("previous_part_slug"):
+        prev_post = slug_to_post.get(post["previous_part_slug"])
+        if prev_post and prev_post.get("part_num"):
+            post["previous_part_num"] = prev_post["part_num"]
+    if post.get("next_part_slug"):
+        next_post = slug_to_post.get(post["next_part_slug"])
+        if next_post and next_post.get("part_num"):
+            post["next_part_num"] = next_post["part_num"]
 
 # 4. Finally, process each post to create its HTML file
 for post in blog_posts:
@@ -111,7 +112,7 @@ for post in blog_posts:
         if md_filepath.exists():
             with md_filepath.open("r", encoding="utf-8") as f:
                 markdown_content = f.read()
-            post['detailed_content'] = markdown2.markdown(
+            post["detailed_content"] = markdown2.markdown(
                 markdown_content, extras=["fenced-code-blocks", "code-friendly"]
             )
 
@@ -120,16 +121,12 @@ for post in blog_posts:
             with output_path.open("w", encoding="utf-8") as f:
                 f.write(post_output)
         else:
-            print(f"Warning: Markdown file not found for blog '{post['title']}': {md_filepath}")
+            print(
+                f"Warning: Markdown file not found for blog '{post['title']}': {md_filepath}"
+            )
 
 # Update the main data dictionary with the sorted and processed posts
-data['blogs'] = blog_posts
-
-# Render the template with the data
-html_output = index_template.render(**data)
-resume_output = resume_template.render(**data)
-projects_output = projects_template.render(**data)
-
+data["blogs"] = blog_posts
 
 # Collect all unique tags from all blog posts
 all_tags = set()
@@ -141,6 +138,22 @@ for post in data.get("blogs", []):
 # Convert set to a sorted list for consistent order
 sorted_tags = sorted(list(all_tags))
 
+# Match featured projects to their starting blog post
+for project in data.get("featured_projects", []):
+    github_url = project.get("github_url")
+    if github_url:
+        # Search backwards so we find earliest dates first (Part 1s)
+        for post in reversed(blog_posts):
+            if post.get("github_url") == github_url and not post.get(
+                "previous_part_slug"
+            ):
+                project["blog_slug"] = post["slug"]
+                break
+
+# Render the template with the data
+html_output = index_template.render(**data)
+resume_output = resume_template.render(**data)
+projects_output = projects_template.render(**data)
 
 # Find and update the line below to pass the new 'tags' variable
 blog_output = blog_template.render(tags=sorted_tags, **data)

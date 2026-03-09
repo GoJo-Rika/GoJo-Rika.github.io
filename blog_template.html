@@ -89,7 +89,14 @@
         <div class="container">
             <main>
                 <section>
-                    <h2 class="section-heading">Recent Posts</h2>
+                    <h2 class="section-heading">
+                        <span style="display: inline-flex; align-items: baseline; gap: 0.5rem;">
+                            Recent Posts
+                            <span
+                                style="font-size: 0.65em; font-weight: 500; opacity: 0.6; text-transform: uppercase; font-style: italic; letter-spacing: 0.5px;">Total
+                                Posts: {{ blogs | length }}</span>
+                        </span>
+                    </h2>
 
                     <!-- blogs -->
                     <div id="blog-posts-container">
