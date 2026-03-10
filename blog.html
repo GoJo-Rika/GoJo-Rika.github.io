@@ -89,14 +89,104 @@
         <div class="container">
             <main>
                 <section>
-                    <h2 class="section-heading">
-                        <span style="display: inline-flex; align-items: baseline; gap: 0.5rem;">
-                            Recent Posts
-                            <span
-                                style="font-size: 0.65em; font-weight: 500; opacity: 0.6; text-transform: uppercase; font-style: italic; letter-spacing: 0.5px;">Total
-                                Posts: 12</span>
-                        </span>
-                    </h2>
+                    <div class="blog-heading-row">
+                        <h2 class="section-heading">
+                            <span style="display: inline-flex; align-items: baseline; gap: 0.5rem;">
+                                Recent Posts
+                                <span
+                                    style="font-size: 0.65em; font-weight: 500; opacity: 0.6; text-transform: uppercase; font-style: italic; letter-spacing: 0.5px;">Total
+                                    Posts: 12</span>
+                            </span>
+                        </h2>
+                        <!-- Mobile filter toggle button (hidden on desktop) -->
+                        <button id="mobile-filter-toggle" class="mobile-filter-toggle"
+                            aria-label="Filter by technology">
+                            <i class="fas fa-filter"></i>
+                            <span class="mobile-filter-label">Filter</span>
+                        </button>
+                    </div>
+
+                    <!-- Mobile filter dropdown (hidden by default, shown on toggle) -->
+                    <div id="mobile-filter-panel" class="mobile-filter-panel">
+                        <div id="mobile-tag-filter-container" class="mobile-tag-container">
+                            <button class="tag filter-tag active" data-tag="all">Show All</button>
+                            
+                            <button class="tag filter-tag" data-tag="aws">AWS</button>
+                            
+                            <button class="tag filter-tag" data-tag="aws ec2">AWS EC2</button>
+                            
+                            <button class="tag filter-tag" data-tag="aws ecr">AWS ECR</button>
+                            
+                            <button class="tag filter-tag" data-tag="aws elastic beanstalk">AWS Elastic Beanstalk</button>
+                            
+                            <button class="tag filter-tag" data-tag="aws s3">AWS S3</button>
+                            
+                            <button class="tag filter-tag" data-tag="aws sagemaker">AWS SageMaker</button>
+                            
+                            <button class="tag filter-tag" data-tag="agentic ai">Agentic AI</button>
+                            
+                            <button class="tag filter-tag" data-tag="agno">Agno</button>
+                            
+                            <button class="tag filter-tag" data-tag="cloudwatch">CloudWatch</button>
+                            
+                            <button class="tag filter-tag" data-tag="dagshub">Dagshub</button>
+                            
+                            <button class="tag filter-tag" data-tag="docker">Docker</button>
+                            
+                            <button class="tag filter-tag" data-tag="duckduckgo api">DuckDuckGo API</button>
+                            
+                            <button class="tag filter-tag" data-tag="duckduckgotools">DuckDuckGoTools</button>
+                            
+                            <button class="tag filter-tag" data-tag="fastapi">FastAPI</button>
+                            
+                            <button class="tag filter-tag" data-tag="flask">Flask</button>
+                            
+                            <button class="tag filter-tag" data-tag="github actions">GitHub Actions</button>
+                            
+                            <button class="tag filter-tag" data-tag="google api">Google API</button>
+                            
+                            <button class="tag filter-tag" data-tag="google gemini">Google Gemini</button>
+                            
+                            <button class="tag filter-tag" data-tag="groq">Groq</button>
+                            
+                            <button class="tag filter-tag" data-tag="huggingface transformers">HuggingFace Transformers</button>
+                            
+                            <button class="tag filter-tag" data-tag="mlops">MLOps</button>
+                            
+                            <button class="tag filter-tag" data-tag="mlflow">MLflow</button>
+                            
+                            <button class="tag filter-tag" data-tag="mongodb">MongoDB</button>
+                            
+                            <button class="tag filter-tag" data-tag="multi-agent systems">Multi-Agent Systems</button>
+                            
+                            <button class="tag filter-tag" data-tag="nlp">NLP</button>
+                            
+                            <button class="tag filter-tag" data-tag="numpy">NumPy</button>
+                            
+                            <button class="tag filter-tag" data-tag="pandas">Pandas</button>
+                            
+                            <button class="tag filter-tag" data-tag="pytorch">PyTorch</button>
+                            
+                            <button class="tag filter-tag" data-tag="python">Python</button>
+                            
+                            <button class="tag filter-tag" data-tag="scikit-learn">Scikit-learn</button>
+                            
+                            <button class="tag filter-tag" data-tag="streamlit">Streamlit</button>
+                            
+                            <button class="tag filter-tag" data-tag="tensorboard">TensorBoard</button>
+                            
+                            <button class="tag filter-tag" data-tag="weights &amp; biases">Weights &amp; Biases</button>
+                            
+                            <button class="tag filter-tag" data-tag="yfinancetools">YFinanceTools</button>
+                            
+                            <button class="tag filter-tag" data-tag="google-generativeai">google-generativeai</button>
+                            
+                            <button class="tag filter-tag" data-tag="python-dotenv">python-dotenv</button>
+                            
+                            <button class="tag filter-tag" data-tag="torchvision">torchvision</button>
+                            
+                        </div>
+                    </div>
 
                     <!-- blogs -->
                     <div id="blog-posts-container">
@@ -397,8 +487,11 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const tagContainer = document.getElementById('tag-filter-container');
+                const mobileTagContainer = document.getElementById('mobile-tag-filter-container');
                 const blogPosts = Array.from(document.querySelectorAll('.blog-post'));
                 const loadMoreBtn = document.getElementById('load-more-btn');
+                const mobileFilterToggle = document.getElementById('mobile-filter-toggle');
+                const mobileFilterPanel = document.getElementById('mobile-filter-panel');
 
                 let currentMax = 5;
                 const POSTS_PER_PAGE = 5;
@@ -432,17 +525,48 @@
                     }
                 }
 
+                // Sync active state across both filter containers
+                function syncFilterState(clickedTag, sourceContainer) {
+                    const allContainers = [tagContainer, mobileTagContainer].filter(Boolean);
+                    const selectedTag = clickedTag.getAttribute('data-tag').toLowerCase();
+
+                    allContainers.forEach(container => {
+                        container.querySelectorAll('.filter-tag').forEach(btn => {
+                            btn.classList.remove('active');
+                            if (btn.getAttribute('data-tag').toLowerCase() === selectedTag) {
+                                btn.classList.add('active');
+                            }
+                        });
+                    });
+
+                    currentFilter = selectedTag;
+                    currentMax = POSTS_PER_PAGE;
+                    updatePostsDisplay();
+                }
+
+                // Desktop sidebar filter
                 if (tagContainer) {
                     tagContainer.addEventListener('click', function (e) {
                         if (e.target.matches('.filter-tag')) {
-                            // Update the active button style
-                            tagContainer.querySelectorAll('.filter-tag').forEach(btn => btn.classList.remove('active'));
-                            e.target.classList.add('active');
-
-                            currentFilter = e.target.getAttribute('data-tag').toLowerCase();
-                            currentMax = POSTS_PER_PAGE; // Reset max matches when filter changes
-                            updatePostsDisplay();
+                            syncFilterState(e.target, tagContainer);
                         }
+                    });
+                }
+
+                // Mobile filter dropdown
+                if (mobileTagContainer) {
+                    mobileTagContainer.addEventListener('click', function (e) {
+                        if (e.target.matches('.filter-tag')) {
+                            syncFilterState(e.target, mobileTagContainer);
+                        }
+                    });
+                }
+
+                // Mobile filter toggle button
+                if (mobileFilterToggle && mobileFilterPanel) {
+                    mobileFilterToggle.addEventListener('click', function () {
+                        const isOpen = mobileFilterPanel.classList.toggle('open');
+                        mobileFilterToggle.classList.toggle('active', isOpen);
                     });
                 }
 
@@ -458,7 +582,7 @@
             });
         </script>
         <style>
-            /* Add some basic styling for the active button */
+            /* ===== Filter Tag Base Styles ===== */
             .filter-tag {
                 cursor: pointer;
                 border: 1px solid transparent;
@@ -467,27 +591,20 @@
             .filter-tag.active {
                 border-color: var(--link-color, #0077cc);
                 background-color: #cceeff;
-                /* A light blue to indicate selection */
                 color: #000;
             }
 
-            /* Add these new rules to the <style> block at the bottom */
-
-            /* Target the container to stack the buttons vertically */
+            /* Desktop sidebar filter layout */
             #tag-filter-container {
                 display: flex;
                 flex-direction: column;
-                /* This is the key change */
                 gap: 0.5rem;
-                /* Adds space between the stacked buttons */
             }
 
-            /* Make the buttons full-width and aligned left */
             #tag-filter-container .filter-tag {
                 width: 100%;
                 text-align: left;
                 margin-right: 0;
-                /* Remove the old horizontal margin */
             }
 
             /* Load more button styles */
@@ -506,6 +623,109 @@
             .load-more-btn:hover {
                 background-color: var(--link-color, #0077cc);
                 color: #fff;
+            }
+
+            /* ===== Blog Heading Row ===== */
+            .blog-heading-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+
+            .blog-heading-row .section-heading {
+                flex: 1;
+                margin-bottom: 0;
+            }
+
+            /* ===== Mobile Filter Toggle Button ===== */
+            .mobile-filter-toggle {
+                display: none;
+                /* Hidden by default on desktop */
+            }
+
+            /* ===== Mobile Filter Panel ===== */
+            .mobile-filter-panel {
+                display: none;
+                /* Hidden by default */
+            }
+
+            /* ===== Mobile / Tablet: show filter button, hide sidebar ===== */
+            @media (max-width: 48rem) {
+
+                /* Hide the desktop sidebar completely on mobile */
+                aside {
+                    display: none !important;
+                }
+
+                /* Show the mobile filter toggle button */
+                .mobile-filter-toggle {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.4rem;
+                    padding: 8px 14px;
+                    border: 1px solid var(--border-color);
+                    border-radius: 6px;
+                    background-color: var(--card-bg-color);
+                    color: var(--text-color);
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    flex-shrink: 0;
+                    font-family: inherit;
+                }
+
+                .mobile-filter-toggle i {
+                    font-size: 0.85rem;
+                    color: var(--link-color);
+                }
+
+                .mobile-filter-toggle:hover,
+                .mobile-filter-toggle.active {
+                    border-color: var(--link-color);
+                    color: var(--link-color);
+                }
+
+                /* Mobile filter panel (dropdown) */
+                .mobile-filter-panel {
+                    display: none;
+                    /* Still hidden until .open is added */
+                }
+
+                .mobile-filter-panel.open {
+                    display: block;
+                    margin-bottom: 1.5rem;
+                    padding: 1rem;
+                    background-color: var(--card-bg-color);
+                    border: 1px solid var(--border-color);
+                    border-radius: 8px;
+                    animation: filterSlideDown 0.25s ease-out;
+                }
+
+                @keyframes filterSlideDown {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-8px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                /* Mobile tag container: horizontal wrap layout */
+                .mobile-tag-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 0.5rem;
+                }
+
+                .mobile-tag-container .filter-tag {
+                    font-size: 0.85rem;
+                    padding: 4px 10px;
+                }
             }
         </style>
 
