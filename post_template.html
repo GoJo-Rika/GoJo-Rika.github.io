@@ -211,6 +211,24 @@
     <!-- ADD THIS LINE TO LOAD THE PYTHON LANGUAGE -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 
+    <!-- ===== Mobile TOC Start ===== -->
+    <button id="mobile-toc-toggle" class="mobile-toc-toggle" aria-label="Table of contents">
+        <i class="fas fa-list-ul"></i>
+    </button>
+
+    <div id="mobile-toc-overlay" class="mobile-toc-overlay">
+        <div class="mobile-toc-panel">
+            <div class="mobile-toc-header">
+                <span class="mobile-toc-title">On This Page</span>
+                <button id="mobile-toc-close" class="mobile-toc-close" aria-label="Close">
+                    <i class="fas fa-xmark"></i>
+                </button>
+            </div>
+            <div id="mobile-toc-container" class="mobile-toc-container"></div>
+        </div>
+    </div>
+    <!-- ===== Mobile TOC End ===== -->
+
     <!-- ===== Style Switcher Start ===== -->
     <div class="theme-toggle-container">
         <div id="theme-toggle-icon" class="theme-icon">
@@ -399,6 +417,175 @@
             margin-right: 0.4rem;
             color: gray;
         }
+
+        /* ===== Mobile TOC Floating Button ===== */
+        .mobile-toc-toggle {
+            display: none;
+            /* Hidden by default — shown via JS + media query */
+        }
+
+        /* ===== Mobile TOC Overlay ===== */
+        .mobile-toc-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .mobile-toc-overlay.open {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            animation: tocFadeIn 0.2s ease-out;
+        }
+
+        @keyframes tocFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes tocSlideUp {
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-toc-panel {
+            background: var(--bg-color);
+            border-radius: 16px 16px 0 0;
+            width: 100%;
+            max-width: 500px;
+            max-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
+            animation: tocSlideUp 0.3s ease-out;
+        }
+
+        .mobile-toc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .mobile-toc-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .mobile-toc-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .mobile-toc-close:hover {
+            background: var(--card-bg-color);
+        }
+
+        .mobile-toc-container {
+            overflow-y: auto;
+            padding: 0.75rem 1.25rem 1.5rem;
+        }
+
+        .mobile-toc-container .toc-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .mobile-toc-container .toc-link {
+            display: block;
+            color: var(--text-color);
+            text-decoration: none;
+            line-height: 1.4;
+            padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+            border-left: 2px solid transparent;
+            border-radius: 0 6px 6px 0;
+            transition: all 0.15s ease;
+            font-size: 0.95rem;
+        }
+
+        .mobile-toc-container .toc-link:hover,
+        .mobile-toc-container .toc-link:active {
+            background: var(--card-bg-color);
+            color: var(--link-color);
+            border-left-color: var(--link-color);
+        }
+
+        /* ===== Mobile: hide sidebar TOC, show toggle, stack nav ===== */
+        @media (max-width: 48rem) {
+            .post-sidebar-left {
+                display: none !important;
+            }
+
+            .mobile-toc-toggle.has-toc {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: fixed;
+                bottom: 5.5rem;
+                right: 1.25rem;
+                z-index: 50;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                border: 1px solid var(--border-color);
+                background: var(--card-bg-color);
+                color: var(--link-color);
+                font-size: 1.15rem;
+                cursor: pointer;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+                transition: all 0.2s ease;
+            }
+
+            .mobile-toc-toggle.has-toc:hover,
+            .mobile-toc-toggle.has-toc:active {
+                border-color: var(--link-color);
+                box-shadow: 0 4px 16px rgba(0, 119, 204, 0.2);
+                transform: scale(1.05);
+            }
+
+            /* Stack prev/next navigation vertically */
+            .post-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-link {
+                width: 100%;
+            }
+
+            .next-link {
+                text-align: left;
+                justify-content: flex-start;
+            }
+        }
     </style>
 
     <script>
@@ -473,6 +660,58 @@
             });
 
             tocContainer.appendChild(tocList);
+
+            // ===== Mobile TOC: clone into overlay =====
+            const mobileTocContainer = document.getElementById('mobile-toc-container');
+            const mobileTocToggle = document.getElementById('mobile-toc-toggle');
+            const mobileTocOverlay = document.getElementById('mobile-toc-overlay');
+            const mobileTocClose = document.getElementById('mobile-toc-close');
+
+            if (mobileTocContainer && mobileTocToggle) {
+                // Show the floating toggle button (CSS will only display it on mobile)
+                mobileTocToggle.classList.add('has-toc');
+
+                // Clone the TOC list into the mobile panel
+                const mobileList = tocList.cloneNode(true);
+                mobileTocContainer.appendChild(mobileList);
+
+                // Handle link clicks in mobile TOC
+                mobileList.querySelectorAll('.toc-link').forEach(mobileLink => {
+                    mobileLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = mobileLink.getAttribute('href').substring(1);
+                        const targetEl = document.getElementById(targetId);
+                        if (targetEl) {
+                            // Close overlay
+                            mobileTocOverlay.classList.remove('open');
+                            // Navigate
+                            history.pushState(null, null, '#' + targetId);
+                            setTimeout(() => {
+                                targetEl.scrollIntoView({ behavior: 'smooth' });
+                            }, 100);
+                        }
+                    });
+                });
+
+                // Toggle button opens overlay
+                mobileTocToggle.addEventListener('click', () => {
+                    mobileTocOverlay.classList.toggle('open');
+                });
+
+                // Close button
+                if (mobileTocClose) {
+                    mobileTocClose.addEventListener('click', () => {
+                        mobileTocOverlay.classList.remove('open');
+                    });
+                }
+
+                // Click backdrop to close
+                mobileTocOverlay.addEventListener('click', (e) => {
+                    if (e.target === mobileTocOverlay) {
+                        mobileTocOverlay.classList.remove('open');
+                    }
+                });
+            }
 
             // Scrollspy logic
             function updateScrollSpy() {
