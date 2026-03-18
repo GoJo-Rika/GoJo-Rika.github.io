@@ -495,15 +495,18 @@
 
                 let currentMax = 5;
                 const POSTS_PER_PAGE = 5;
-                let currentFilter = 'all';
+                // Multi-select: Set of active filter tags (empty = show all)
+                let activeFilters = new Set();
 
                 function updatePostsDisplay() {
                     let visibleCount = 0;
 
-                    // Filter posts
+                    // Filter posts: if no filters active, show all; otherwise OR logic
                     const matchingPosts = blogPosts.filter(post => {
-                        const postTags = post.getAttribute('data-tags');
-                        return currentFilter === 'all' || postTags.includes(currentFilter);
+                        if (activeFilters.size === 0) return true;
+                        const postTags = post.getAttribute('data-tags').split(',');
+                        // OR: show post if ANY of its tags match ANY active filter
+                        return postTags.some(tag => activeFilters.has(tag.trim()));
                     });
 
                     // Hide all posts first
@@ -525,22 +528,40 @@
                     }
                 }
 
-                // Sync active state across both filter containers
-                function syncFilterState(clickedTag, sourceContainer) {
+                // Sync the visual active state across both filter containers
+                function syncFilterUI() {
                     const allContainers = [tagContainer, mobileTagContainer].filter(Boolean);
-                    const selectedTag = clickedTag.getAttribute('data-tag').toLowerCase();
 
                     allContainers.forEach(container => {
                         container.querySelectorAll('.filter-tag').forEach(btn => {
-                            btn.classList.remove('active');
-                            if (btn.getAttribute('data-tag').toLowerCase() === selectedTag) {
-                                btn.classList.add('active');
+                            const tag = btn.getAttribute('data-tag').toLowerCase();
+                            if (tag === 'all') {
+                                // "Show All" is active when no filters are selected
+                                btn.classList.toggle('active', activeFilters.size === 0);
+                            } else {
+                                btn.classList.toggle('active', activeFilters.has(tag));
                             }
                         });
                     });
+                }
 
-                    currentFilter = selectedTag;
-                    currentMax = POSTS_PER_PAGE;
+                // Handle a filter tag click
+                function handleFilterClick(clickedBtn) {
+                    const tag = clickedBtn.getAttribute('data-tag').toLowerCase();
+
+                    if (tag === 'all') {
+                        // "Show All" clicked — clear all filters
+                        activeFilters.clear();
+                    } else if (activeFilters.has(tag)) {
+                        // Already active — deselect it (toggle off)
+                        activeFilters.delete(tag);
+                    } else {
+                        // Not active — add it (multi-select)
+                        activeFilters.add(tag);
+                    }
+
+                    currentMax = POSTS_PER_PAGE; // Reset pagination on filter change
+                    syncFilterUI();
                     updatePostsDisplay();
                 }
 
@@ -548,7 +569,7 @@
                 if (tagContainer) {
                     tagContainer.addEventListener('click', function (e) {
                         if (e.target.matches('.filter-tag')) {
-                            syncFilterState(e.target, tagContainer);
+                            handleFilterClick(e.target);
                         }
                     });
                 }
@@ -557,23 +578,45 @@
                 if (mobileTagContainer) {
                     mobileTagContainer.addEventListener('click', function (e) {
                         if (e.target.matches('.filter-tag')) {
-                            syncFilterState(e.target, mobileTagContainer);
+                            handleFilterClick(e.target);
                         }
                     });
                 }
 
                 // Mobile filter toggle button
                 if (mobileFilterToggle && mobileFilterPanel) {
-                    mobileFilterToggle.addEventListener('click', function () {
+                    mobileFilterToggle.addEventListener('click', function (e) {
+                        e.stopPropagation();
                         const isOpen = mobileFilterPanel.classList.toggle('open');
                         mobileFilterToggle.classList.toggle('active', isOpen);
                     });
+
+                    // Close mobile filter when clicking outside
+                    document.addEventListener('click', function (e) {
+                        if (!mobileFilterPanel.contains(e.target) && !mobileFilterToggle.contains(e.target)) {
+                            mobileFilterPanel.classList.remove('open');
+                            mobileFilterToggle.classList.remove('active');
+                        }
+                    });
                 }
 
+                // Load More Posts — scroll to the first newly visible post
                 if (loadMoreBtn) {
                     loadMoreBtn.addEventListener('click', function () {
+                        const previousMax = currentMax;
                         currentMax += POSTS_PER_PAGE;
                         updatePostsDisplay();
+
+                        // Find the first newly revealed post and scroll to it
+                        const visiblePosts = blogPosts.filter(p => p.style.display !== 'none');
+                        if (visiblePosts.length > previousMax) {
+                            const firstNewPost = visiblePosts[previousMax];
+                            if (firstNewPost) {
+                                setTimeout(() => {
+                                    firstNewPost.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }, 50);
+                            }
+                        }
                     });
                 }
 
