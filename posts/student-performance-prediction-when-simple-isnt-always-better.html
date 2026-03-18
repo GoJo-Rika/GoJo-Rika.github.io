@@ -536,6 +536,21 @@ def predict(self, features: pd.DataFrame) -&gt; object:
             gap: 2rem;
             max-width: 1550px;
             margin: 0 auto;
+            padding: 0 1rem;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        /* Prevent horizontal overflow on the whole page */
+        .page-content {
+            overflow-x: hidden;
+        }
+
+        .post-center-column,
+        .post-content-main {
+            min-width: 0;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
 
         /* Adjustments for tablets and large desktop screens */
@@ -804,6 +819,31 @@ def predict(self, features: pd.DataFrame) -&gt; object:
 
         /* ===== Mobile: hide sidebar TOC, show toggle, stack nav ===== */
         @media (max-width: 48rem) {
+            /* Constrain all content to viewport */
+            .post-layout {
+                max-width: 100% !important;
+                padding: 0 1rem !important;
+            }
+
+            .post-center-column {
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            .post-content-main {
+                padding: 1rem 0 0 0 !important;
+            }
+
+            .post-content-main pre {
+                max-width: 100%;
+                overflow-x: auto;
+            }
+
+            .post-content-main img {
+                max-width: 100%;
+                height: auto;
+            }
+
             .post-sidebar-left {
                 display: none !important;
             }
@@ -848,6 +888,52 @@ def predict(self, features: pd.DataFrame) -&gt; object:
             .next-link {
                 text-align: left;
                 justify-content: flex-start;
+            }
+
+            /* Right sidebar: remove desktop border and make compact */
+            .post-sidebar-right {
+                border-left: none !important;
+                padding-left: 0 !important;
+                position: static !important;
+                max-height: none !important;
+                overflow-y: visible !important;
+            }
+
+            /* Compact post info card on mobile */
+            .post-sidebar-right .competency-item-sidebar {
+                padding: 1rem;
+                border: 1px solid var(--border-color);
+                border-radius: 8px;
+                background: var(--card-bg-color);
+            }
+
+            .post-sidebar-right .competency-title-sidebar {
+                font-size: 1rem;
+                margin-bottom: 0.25rem;
+            }
+
+            /* GitHub button: compact */
+            .post-sidebar-right .sidebar-button {
+                margin-top: 0.75rem;
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+
+            /* Tighter tech tags on mobile */
+            .post-sidebar-right .tech-stack {
+                gap: 0.35rem;
+            }
+
+            .post-sidebar-right .tech-stack .tag {
+                font-size: 0.8rem;
+                padding: 3px 8px;
+                margin-bottom: 0;
+            }
+
+            /* Series nav box: compact on mobile */
+            .series-navigation-sidebar {
+                padding: 1rem;
+                margin-bottom: 1.5rem;
             }
         }
     </style>
