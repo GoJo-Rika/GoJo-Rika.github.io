@@ -93,7 +93,7 @@
                         <h2 class="section-heading">
                             <span style="display: inline-flex; align-items: baseline; gap: 0.5rem;">
                                 Recent Posts
-                                <span
+                                <span id="total-posts-count"
                                     style="font-size: 0.65em; font-weight: 500; opacity: 0.6; text-transform: uppercase; font-style: italic; letter-spacing: 0.5px;">Total
                                     Posts: 12</span>
                             </span>
@@ -525,6 +525,12 @@
                         loadMoreBtn.style.display = 'none';
                     } else {
                         loadMoreBtn.style.display = 'inline-block';
+                    }
+
+                    // Update total posts counter
+                    const totalPostsEl = document.getElementById('total-posts-count');
+                    if (totalPostsEl) {
+                        totalPostsEl.textContent = 'Total Posts: ' + matchingPosts.length;
                     }
                 }
 
