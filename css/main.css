@@ -163,7 +163,7 @@ section {
   margin: 0 auto;
 }
 
-.page-content .container {
+.page-content .container:not(.post-layout) {
   display: grid;
   grid-template-columns: 1fr;
 }
@@ -459,7 +459,7 @@ blockquote {
     text-align: left;
   }
 
-  .page-content .container {
+  .page-content .container:not(.post-layout) {
     grid-template-columns: 2fr 1fr;
   }
 

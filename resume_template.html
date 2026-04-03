@@ -3,62 +3,30 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Site Info -->
     <title>{{ name }} - Resume</title>
     <meta name="description" content="{{ name }} - {{ summary }}">
     <meta name="author" content="{{ name }}">
-
-    <!-- Open Graph Tags: The title of the page for social media sharing. It can match the title tag or be more descriptive. -->
-    <meta property="og:title" content="{{ name }}">
-
-    <!-- Open Graph Tags: Typically set to "website" for static sites or "article" for content-heavy pages. -->
+    <meta property="og:title" content="{{ name }} - Resume">
     <meta property="og:type" content="website">
-
-    <!-- Open Graph Tags: The URL of the page, used to ensure link previews resolve to the correct page. -->
-    <!-- base_url -->
     <meta property="og:url" content="{{ base_url }}/resume.html">
-
-    <!-- Open Graph Tags: URL of an image that represents the page. Useful for link previews. -->
-    <!-- base_url -->
     <meta property="og:image" content="{{ base_url }}/{{ image_path }}">
-
-    <!-- Open Graph Tags: Provides an alternative text for the image to improve accessibility. -->
     <meta property="og:image:alt" content="{{ name }} Profile Image">
-
-    <!-- Preconnect for Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Custom Font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
           rel="stylesheet">
-    <!-- base_url -->
-
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/modern_normalize.css" />
+    <link rel="stylesheet" href="css/modern_normalize.css">
     <link rel="stylesheet" href="css/html5bp.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/resume.css">
-
-    <!-- Set a theme color that matches your website's primary color -->
     <meta name="theme-color" content="#fafafa">
-
-    <!-- Favicon for all browsers -->
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-
-    <!-- Apple touch icon for iOS devices -->
     <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
-
-    <!-- Web app manifest for Progressive Web Apps -->
     <link rel="manifest" href="/site.webmanifest">
-
-    <!-- Add an icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Content Security Policy: Uncomment to enhance security by restricting where content can be loaded from (useful for preventing certain attacks like XSS). Update if adding external sources (e.g., Google Fonts, Bootstrap CDN, analytics, etc). -->
-    <!-- <meta http-equiv="Content-Security-Policy" content=" default-src 'self'; script-src 'self' code.jquery.com; style-src 'self' fonts.googleapis.com; font-src fonts.gstatic.com; img-src 'self' images.examplecdn.com; "> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
   </head>
 
   <body>
@@ -66,29 +34,20 @@
       <div class="container">
         <div class="header-top flex-responsive">
           <div class="header-info">
-            <!-- name -->
             <h1>{{ name }}</h1>
-
-            <!-- contact -->
             {% if contact.email or contact.phone or contact.location %}
               <address>
                 <ul class="inline-list flex-responsive">
                   {% if contact.email %}
-                    <li>
-                      <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
-                    </li>
+                    <li><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></li>
                   {% endif %}
                   {% if contact.phone %}
-                    <li>
-                      <a href="tel:+{{ contact.phone | replace('-', '') }}">{{ contact.phone }}</a>
-                    </li>
+                    <li><a href="tel:+{{ contact.phone | replace('-', '') }}">{{ contact.phone }}</a></li>
                   {% endif %}
                   {% if contact.location %}<li>{{ contact.location }}</li>{% endif %}
                 </ul>
               </address>
             {% endif %}
-
-            <!-- summary -->
             {% if summary %}<p class="header-summary">{{ summary }}</p>{% endif %}
           </div>
         </div>
@@ -98,8 +57,6 @@
     <div class="page-content">
       <div class="container">
         <main>
-
-          <!-- work_experience -->
           {% if work_experience %}
             <section>
               <h2 class="section-heading">Work Experience</h2>
@@ -125,8 +82,6 @@
               {% endfor %}
             </section>
           {% endif %}
-
-          <!-- projects -->
           {% if projects %}
             <section>
               <h2 class="section-heading">Projects</h2>
@@ -152,16 +107,10 @@
             </section>
           {% endif %}
         </main>
-
-        <!-- Sidebar Section -->
         <aside>
-
-          <!-- Paste the button code here, inside a new section -->
           <section>
             <a href="assets/resume.pdf" download class="download-button">Download as PDF</a>
           </section>
-
-          <!-- education -->
           {% if education %}
             <section>
               <h2 class="section-heading">Education</h2>
@@ -188,20 +137,16 @@
                   {% endif %}
                   {% if edu.gpa_major or edu.gpa_cumulative or edu.graduation_date or edu.awards %}
                     {% if edu.graduation_date %}<p class="section-label">{{ edu.graduation_date }}</p>{% endif %}
-                    
                     {% for award in edu.awards %}
                       {% if award %}<p class="block">&ndash; {{ award }}</p>{% endif %}
                     {% endfor %}
-                      {% if edu.gpa_major %}<span class="block">GPA in Major: {{ edu.gpa_major }}</span>{% endif %}
-                      {% if edu.gpa_cumulative %}<span class="block">Cumulative GPA: {{ edu.gpa_cumulative }}</span>{% endif %}
-                    
+                    {% if edu.gpa_major %}<span class="block">GPA in Major: {{ edu.gpa_major }}</span>{% endif %}
+                    {% if edu.gpa_cumulative %}<span class="block">Cumulative GPA: {{ edu.gpa_cumulative }}</span>{% endif %}
                   {% endif %}
                 </section>
               {% endfor %}
             </section>
           {% endif %}
-
-          <!-- technical_skills_categorized -->
           {% if technical_skills_categorized %}
             <section>
               <h2 class="section-heading">Technical Skills</h2>
@@ -213,8 +158,6 @@
               {% endfor %}
             </section>
           {% endif %}
-
-          <!-- languages -->
           {% if languages %}
             <section>
               <h2 class="section-heading">Languages</h2>
@@ -228,8 +171,6 @@
               </ul>
             </section>
           {% endif %}
-
-          <!-- volunteer_experience -->
           {% if volunteer_experience %}
             <section>
               <h2 class="section-heading">Volunteer Experience</h2>
@@ -258,20 +199,16 @@
         </aside>
       </div>
     </div>
-    <script src="js/app.js"></script>
 
-    <!-- Add this right before the closing </body> tag -->
-    <script src="js/app.js"></script>
+    <footer class="page-footer">
+      <div class="container">
+        <p>© {{ current_year }} {{ name }}. All rights reserved.</p>
+      </div>
+    </footer>
 
-    <!-- ===== Style Switcher Start ===== -->
     <div class="theme-toggle-container">
-        <div id="theme-toggle-icon" class="theme-icon">
-            <i class="fas"></i>
-        </div>
+        <div id="theme-toggle-icon" class="theme-icon"><i class="fas"></i></div>
     </div>
-    <!-- ===== Style Switcher End ===== -->
-
     <script src="js/app.js"></script>
-  
   </body>
 </html>

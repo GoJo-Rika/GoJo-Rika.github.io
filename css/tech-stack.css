@@ -1,0 +1,58 @@
+/* ===== Tech Stack Page Styles ===== */
+
+.page-content .tech-stack-container {
+    display: block !important;
+    margin: 0 auto !important;
+    max-width: 1350px !important;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+}
+
+.tech-card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tech-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.tech-card-icon {
+    height: 64px;
+    width: 64px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    transition: transform 0.2s ease-in-out;
+}
+
+.tech-card-name {
+    font-weight: 600;
+    color: var(--text-color);
+    transition: color 0.2s ease-in-out;
+}
+
+body.dark .tech-card-icon {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+}
+
+.tech-card:hover .tech-card-icon {
+    transform: scale(1.15);
+}
+
+.tech-card:hover .tech-card-name {
+    color: var(--link-color);
+}

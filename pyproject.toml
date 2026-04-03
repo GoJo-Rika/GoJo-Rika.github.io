@@ -8,4 +8,9 @@ dependencies = [
     "jinja2==3.1.4",
     "markdown2>=2.5.4",
     "markupsafe==3.0.2",
+    "pillow>=12.1.1",
 ]
+
+[tool.ruff]
+select = ["E", "F", "ANN", "COM"]
+ignore = ["E501", "F401", "ANN201", "ANN001", "COM812"]

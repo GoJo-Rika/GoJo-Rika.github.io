@@ -5,63 +5,41 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Site Info -->
     <title>{{ name }} - Blog</title>
     <meta name="description" content="{{ name }} - {{ summary }}">
     <meta name="author" content="{{ name }}">
 
-    <!-- Open Graph Tags: The title of the page for social media sharing. It can match the title tag or be more descriptive. -->
+    <!-- Open Graph -->
     <meta property="og:title" content="{{ name }}">
-
-    <!-- Open Graph Tags: Typically set to "website" for static sites or "article" for content-heavy pages. -->
     <meta property="og:type" content="website">
-
-    <!-- Open Graph Tags: The URL of the page, used to ensure link previews resolve to the correct page. -->
-    <!-- base_url -->
     <meta property="og:url" content="{{ base_url }}/blog.html">
-
-    <!-- Open Graph Tags: URL of an image that represents the page. Useful for link previews. -->
-    <!-- base_url -->
     <meta property="og:image" content="{{ base_url }}/{{ image_path }}">
-
-    <!-- Open Graph Tags: Provides an alternative text for the image to improve accessibility. -->
     <meta property="og:image:alt" content="{{ name }} Profile Image">
 
-    <!-- Preconnect for Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Custom Font -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/modern_normalize.css" />
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/modern_normalize.css">
     <link rel="stylesheet" href="css/html5bp.css">
     <link rel="stylesheet" href="css/main.css">
-    <!-- <link rel="stylesheet" href="css/resume.css"> -->
+    <link rel="stylesheet" href="css/blog.css">
 
-    <!-- Set a theme color that matches your website's primary color -->
     <meta name="theme-color" content="#fafafa">
 
-    <!-- Favicon for all browsers -->
+    <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-
-    <!-- Apple touch icon for iOS devices -->
     <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
-
-    <!-- Web app manifest for Progressive Web Apps -->
     <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Add an icon library -->
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Content Security Policy: Uncomment to enhance security by restricting where content can be loaded from (useful for preventing certain attacks like XSS). Update if adding external sources (e.g., Google Fonts, Bootstrap CDN, analytics, etc). -->
-    <!-- <meta http-equiv="Content-Security-Policy" content=" default-src 'self'; script-src 'self' code.jquery.com; style-src 'self' fonts.googleapis.com; font-src fonts.gstatic.com; img-src 'self' images.examplecdn.com; "> -->
+        crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 
 <body>
@@ -69,8 +47,6 @@
         <div class="container">
             <div class="header-top flex-responsive">
                 <div class="header-info">
-
-                    <!-- name -->
                     <h1>{{ name }}'s Blog</h1>
                     <nav>
                         <ul class="inline-list flex-responsive">
@@ -85,6 +61,7 @@
             </div>
         </div>
     </header>
+
     <div class="page-content">
         <div class="container">
             <main>
@@ -98,15 +75,13 @@
                                     Posts: {{ blogs | length }}</span>
                             </span>
                         </h2>
-                        <!-- Mobile filter toggle button (hidden on desktop) -->
-                        <button id="mobile-filter-toggle" class="mobile-filter-toggle"
-                            aria-label="Filter by technology">
+                        <button id="mobile-filter-toggle" class="mobile-filter-toggle" aria-label="Filter by technology">
                             <i class="fas fa-filter"></i>
                             <span class="mobile-filter-label">Filter</span>
                         </button>
                     </div>
 
-                    <!-- Mobile filter dropdown (hidden by default, shown on toggle) -->
+                    <!-- Mobile filter dropdown -->
                     <div id="mobile-filter-panel" class="mobile-filter-panel">
                         <div id="mobile-tag-filter-container" class="mobile-tag-container">
                             <button class="tag filter-tag active" data-tag="all">Show All</button>
@@ -116,31 +91,27 @@
                         </div>
                     </div>
 
-                    <!-- blogs -->
+                    <!-- Blog post cards -->
                     <div id="blog-posts-container">
                         {% for post in blogs %}
                         <article class="blog-post" data-tags="{{ post.core_technologies | join(',') | lower }}">
                             <h3 class="post-meta">
                                 <a href="posts/{{ post.slug }}.html">{{ post.title }}</a>
                             </h3>
-
                             <p class="section-label">Published on: {{ post.publish_date }}</p>
                             {% if post.content %}
                             <p>{{ post.content | markdown_to_html | safe }}</p>
                             {% endif %}
-
                             <div class="tech-stack">
                                 {% if post.technologies %}
                                 {% for tech in post.core_technologies %}
                                 <span class="tag">{{ tech }}</span>
                                 {% endfor %}
-
                                 {% for keyword in post.keywords %}
                                 <span class="tag">{{ keyword }}</span>
                                 {% endfor %}
                                 {% endif %}
                             </div>
-
                         </article>
                         {% endfor %}
                     </div>
@@ -151,9 +122,8 @@
                 </section>
             </main>
 
-            <!-- Sidebar Section -->
+            <!-- Desktop sidebar filter -->
             <aside>
-                <!-- PASTE THE FILTER SECTION YOU CUT EARLIER RIGHT HERE -->
                 <section>
                     <h2 class="section-heading">Filter by Technology</h2>
                     <div id="tag-filter-container" class="tech-stack">
@@ -164,323 +134,24 @@
                     </div>
                 </section>
             </aside>
-
         </div>
     </div>
+
     <footer class="page-footer">
         <div class="container">
             <p>© {{ current_year }} {{ name }}. All rights reserved.</p>
         </div>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const tagContainer = document.getElementById('tag-filter-container');
-                const mobileTagContainer = document.getElementById('mobile-tag-filter-container');
-                const blogPosts = Array.from(document.querySelectorAll('.blog-post'));
-                const loadMoreBtn = document.getElementById('load-more-btn');
-                const mobileFilterToggle = document.getElementById('mobile-filter-toggle');
-                const mobileFilterPanel = document.getElementById('mobile-filter-panel');
-
-                let currentMax = 5;
-                const POSTS_PER_PAGE = 5;
-                // Multi-select: Set of active filter tags (empty = show all)
-                let activeFilters = new Set();
-
-                function updatePostsDisplay() {
-                    let visibleCount = 0;
-
-                    // Filter posts: if no filters active, show all; otherwise OR logic
-                    const matchingPosts = blogPosts.filter(post => {
-                        if (activeFilters.size === 0) return true;
-                        const postTags = post.getAttribute('data-tags').split(',');
-                        // OR: show post if ANY of its tags match ANY active filter
-                        return postTags.some(tag => activeFilters.has(tag.trim()));
-                    });
-
-                    // Hide all posts first
-                    blogPosts.forEach(post => { post.style.display = 'none'; });
-
-                    // Show up to currentMax matching posts
-                    for (let i = 0; i < matchingPosts.length; i++) {
-                        if (i < currentMax) {
-                            matchingPosts[i].style.display = 'block';
-                            visibleCount++;
-                        }
-                    }
-
-                    // Update Load More button visibility
-                    if (visibleCount >= matchingPosts.length) {
-                        loadMoreBtn.style.display = 'none';
-                    } else {
-                        loadMoreBtn.style.display = 'inline-block';
-                    }
-
-                    // Update total posts counter
-                    const totalPostsEl = document.getElementById('total-posts-count');
-                    if (totalPostsEl) {
-                        totalPostsEl.textContent = 'Total Posts: ' + matchingPosts.length;
-                    }
-                }
-
-                // Sync the visual active state across both filter containers
-                function syncFilterUI() {
-                    const allContainers = [tagContainer, mobileTagContainer].filter(Boolean);
-
-                    allContainers.forEach(container => {
-                        container.querySelectorAll('.filter-tag').forEach(btn => {
-                            const tag = btn.getAttribute('data-tag').toLowerCase();
-                            if (tag === 'all') {
-                                // "Show All" is active when no filters are selected
-                                btn.classList.toggle('active', activeFilters.size === 0);
-                            } else {
-                                btn.classList.toggle('active', activeFilters.has(tag));
-                            }
-                        });
-                    });
-                }
-
-                // Handle a filter tag click
-                function handleFilterClick(clickedBtn) {
-                    const tag = clickedBtn.getAttribute('data-tag').toLowerCase();
-
-                    if (tag === 'all') {
-                        // "Show All" clicked — clear all filters
-                        activeFilters.clear();
-                    } else if (activeFilters.has(tag)) {
-                        // Already active — deselect it (toggle off)
-                        activeFilters.delete(tag);
-                    } else {
-                        // Not active — add it (multi-select)
-                        activeFilters.add(tag);
-                    }
-
-                    currentMax = POSTS_PER_PAGE; // Reset pagination on filter change
-                    syncFilterUI();
-                    updatePostsDisplay();
-                }
-
-                // Desktop sidebar filter
-                if (tagContainer) {
-                    tagContainer.addEventListener('click', function (e) {
-                        if (e.target.matches('.filter-tag')) {
-                            handleFilterClick(e.target);
-                        }
-                    });
-                }
-
-                // Mobile filter dropdown
-                if (mobileTagContainer) {
-                    mobileTagContainer.addEventListener('click', function (e) {
-                        if (e.target.matches('.filter-tag')) {
-                            handleFilterClick(e.target);
-                        }
-                    });
-                }
-
-                // Mobile filter toggle button
-                if (mobileFilterToggle && mobileFilterPanel) {
-                    mobileFilterToggle.addEventListener('click', function (e) {
-                        e.stopPropagation();
-                        const isOpen = mobileFilterPanel.classList.toggle('open');
-                        mobileFilterToggle.classList.toggle('active', isOpen);
-                    });
-
-                    // Close mobile filter when clicking outside
-                    document.addEventListener('click', function (e) {
-                        if (!mobileFilterPanel.contains(e.target) && !mobileFilterToggle.contains(e.target)) {
-                            mobileFilterPanel.classList.remove('open');
-                            mobileFilterToggle.classList.remove('active');
-                        }
-                    });
-                }
-
-                // Load More Posts — scroll to the first newly visible post
-                if (loadMoreBtn) {
-                    loadMoreBtn.addEventListener('click', function () {
-                        const previousMax = currentMax;
-                        currentMax += POSTS_PER_PAGE;
-                        updatePostsDisplay();
-
-                        // Find the first newly revealed post and scroll to it
-                        const visiblePosts = blogPosts.filter(p => p.style.display !== 'none');
-                        if (visiblePosts.length > previousMax) {
-                            const firstNewPost = visiblePosts[previousMax];
-                            if (firstNewPost) {
-                                setTimeout(() => {
-                                    firstNewPost.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                }, 50);
-                            }
-                        }
-                    });
-                }
-
-                // Initial display update
-                updatePostsDisplay();
-            });
-        </script>
-        <style>
-            /* ===== Filter Tag Base Styles ===== */
-            .filter-tag {
-                cursor: pointer;
-                border: 1px solid transparent;
-            }
-
-            .filter-tag.active {
-                border-color: var(--link-color, #0077cc);
-                background-color: #cceeff;
-                color: #000;
-            }
-
-            /* Desktop sidebar filter layout */
-            #tag-filter-container {
-                display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            #tag-filter-container .filter-tag {
-                width: 100%;
-                text-align: left;
-                margin-right: 0;
-            }
-
-            /* Load more button styles */
-            .load-more-btn {
-                padding: 10px 24px;
-                border: 2px solid var(--link-color, #0077cc);
-                border-radius: 6px;
-                background-color: transparent;
-                color: var(--link-color, #0077cc);
-                font-weight: bold;
-                font-size: 1rem;
-                cursor: pointer;
-                transition: all 0.2s ease-in-out;
-            }
-
-            .load-more-btn:hover {
-                background-color: var(--link-color, #0077cc);
-                color: #fff;
-            }
-
-            /* ===== Blog Heading Row ===== */
-            .blog-heading-row {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 1rem;
-            }
-
-            .blog-heading-row .section-heading {
-                flex: 1;
-                margin-bottom: 0;
-            }
-
-            /* ===== Mobile Filter Toggle Button ===== */
-            .mobile-filter-toggle {
-                display: none;
-                /* Hidden by default on desktop */
-            }
-
-            /* ===== Mobile Filter Panel ===== */
-            .mobile-filter-panel {
-                display: none;
-                /* Hidden by default */
-            }
-
-            /* ===== Mobile / Tablet: show filter button, hide sidebar ===== */
-            @media (max-width: 48rem) {
-
-                /* Hide the desktop sidebar completely on mobile */
-                aside {
-                    display: none !important;
-                }
-
-                /* Show the mobile filter toggle button */
-                .mobile-filter-toggle {
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 0.4rem;
-                    padding: 8px 14px;
-                    border: 1px solid var(--border-color);
-                    border-radius: 6px;
-                    background-color: var(--card-bg-color);
-                    color: var(--text-color);
-                    font-size: 0.9rem;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: all 0.2s ease;
-                    flex-shrink: 0;
-                    font-family: inherit;
-                }
-
-                .mobile-filter-toggle i {
-                    font-size: 0.85rem;
-                    color: var(--link-color);
-                }
-
-                .mobile-filter-toggle:hover,
-                .mobile-filter-toggle.active {
-                    border-color: var(--link-color);
-                    color: var(--link-color);
-                }
-
-                /* Mobile filter panel (dropdown) */
-                .mobile-filter-panel {
-                    display: none;
-                    /* Still hidden until .open is added */
-                }
-
-                .mobile-filter-panel.open {
-                    display: block;
-                    margin-bottom: 1.5rem;
-                    padding: 1rem;
-                    background-color: var(--card-bg-color);
-                    border: 1px solid var(--border-color);
-                    border-radius: 8px;
-                    animation: filterSlideDown 0.25s ease-out;
-                }
-
-                @keyframes filterSlideDown {
-                    from {
-                        opacity: 0;
-                        transform: translateY(-8px);
-                    }
-
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-
-                /* Mobile tag container: horizontal wrap layout */
-                .mobile-tag-container {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 0.5rem;
-                }
-
-                .mobile-tag-container .filter-tag {
-                    font-size: 0.85rem;
-                    padding: 4px 10px;
-                }
-            }
-        </style>
-
     </footer>
 
-    <!-- ===== Style Switcher Start ===== -->
+    <!-- Theme toggle -->
     <div class="theme-toggle-container">
-        <div id="theme-toggle-icon" class="theme-icon">
-            <i class="fas"></i>
-        </div>
+        <div id="theme-toggle-icon" class="theme-icon"><i class="fas"></i></div>
     </div>
-    <!-- ===== Style Switcher End ===== -->
 
-    <!-- ===== Search Feature Start ===== -->
+    <!-- Search -->
     <button id="search-fab" class="search-fab" aria-label="Search blog posts">
         <i class="fas fa-magnifying-glass"></i>
     </button>
-
     <div id="search-overlay" class="search-overlay">
         <div class="search-modal">
             <div class="search-header">
@@ -497,10 +168,11 @@
             </div>
         </div>
     </div>
-    <!-- ===== Search Feature End ===== -->
 
+    <!-- Scripts -->
     <script src="js/search-index.js"></script>
     <script src="js/search.js"></script>
+    <script src="js/blog.js"></script>
     <script src="js/app.js"></script>
 
 </body>

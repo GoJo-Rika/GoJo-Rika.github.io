@@ -5,54 +5,48 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Site Info -->
     <title>Text Summarizer Journey: Serving the Model (Part 3) - Mit Patel</title>
-    <meta name="description" content="The final step in our MLOps journey is making the trained model useful. This post covers the &#34;last mile&#34; of deployment, showing how to wrap the text...">
+    <meta name="description" content="The final step in our MLOps journey is making the trained model useful. This post covers the &#34;last mile&#34; of deployment, showing how to wrap the text">
+    <meta name="keywords" content="HuggingFace Transformers, PyTorch, FastAPI, Docker, Python, Weights &amp; Biases, MLOps, NLP, End-to-End ML, Text Summarization, Deep Learning, Containerized Deployment, Experiment Tracking, RESTful API">
     <meta name="author" content="Mit Patel">
 
     <!-- Base URL to fix relative paths -->
     <base href="../">
 
-    <!-- Open Graph Tags (for social media sharing) -->
+    <!-- Open Graph -->
     <meta property="og:title" content="Text Summarizer Journey: Serving the Model (Part 3)">
+    <meta property="og:description" content="The final step in our MLOps journey is making the trained model useful. This post covers the &#34;last mile&#34; of deployment, showing how to wrap the text">
     <meta property="og:type" content="article">
     <meta property="og:url" content="127.0.0.1:5500/posts/text-summarizer-journey-serving-the-model-part-3.html">
     <meta property="og:image" content="127.0.0.1:5500/portfolio_media/photo_2.jpg">
     <meta property="og:image:alt" content="Mit Patel Profile Image">
 
-    <!-- Preconnect for Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Custom Font -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/modern_normalize.css" />
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/modern_normalize.css">
     <link rel="stylesheet" href="css/html5bp.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/resume.css">
     <link rel="stylesheet" href="css/post.css">
+    <link rel="stylesheet" href="css/post-layout.css">
 
-    <!-- Icon & Favicon Libraries -->
+    <!-- Code highlighting & icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 
-    <!-- Set a theme color that matches your website's primary color -->
     <meta name="theme-color" content="#fafafa">
 
-    <!-- Favicon for all browsers -->
+    <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
-
-    <!-- Apple touch icon for iOS devices -->
     <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
-
-    <!-- Web app manifest for Progressive Web Apps -->
     <link rel="manifest" href="/site.webmanifest">
 </head>
 
@@ -77,9 +71,8 @@
     <div class="page-content">
         <div class="container post-layout">
 
-            <!-- Left Sidebar for TOC -->
+            <!-- Left Sidebar: TOC -->
             <aside class="post-sidebar-left">
-                <!-- Table of Contents Section (Dynamically Generated) -->
                 <section id="toc-section" style="display: none;">
                     <h2 class="section-heading"
                         style="text-align: left; margin-bottom: 0.5rem; justify-content: flex-start;">On this page</h2>
@@ -87,7 +80,7 @@
                 </section>
             </aside>
 
-            <!-- Center Column: Article ONLY -->
+            <!-- Center: Article -->
             <div class="post-center-column">
                 <main class="post-content-main" style="padding: 2rem 0 0 0;">
                     <h1>Serving the World: Deploying the Summarizer with FastAPI and Docker</h1>
@@ -216,149 +209,53 @@ docker run -p 8080:8080 text-summarizer
 <p>Want to dive into the code yourself? You can find the entire project, including a detailed README with setup instructions, on my <strong><a href="https://github.com/GoJo-Rika/Text-Summarizer-Using-HuggingFace-Transformers">GitHub repository</a></strong>.</p>
 
                 </main>
-
             </div>
 
-            <!-- Right Sidebar with Post Info and Keywords -->
+            <!-- Right Sidebar: Post Info -->
             <aside class="post-sidebar-right">
-                <!-- Part of a series navigation -->
-                
                 <section class="series-navigation-sidebar">
                     <h4>This post is part of a series.</h4>
-                    
                     <a href="posts/text-summarizer-journey-the-ml-engine-room-part-2.html" class="series-link">← Read Part 2</a>
-                    
-                    
                 </section>
-                
 
-                <!-- Post Information Section -->
                 <section>
                     <h2 class="section-heading" style="justify-content: flex-start;">Post Information</h2>
                     <div class="competency-item-sidebar">
                         <h3 class="competency-title-sidebar" style="line-height: 1.4;">Text Summarizer Journey: Serving the Model (Part 3)</h3>
                         <p class="section-label">Published on: 2025-09-18</p>
-                        
                         <a href="https://github.com/GoJo-Rika/Text-Summarizer-Using-HuggingFace-Transformers" class="sidebar-button" target="_blank"
                             rel="noopener noreferrer">
                             <i class="fab fa-github"></i> View on GitHub
                         </a>
-                        
                     </div>
                 </section>
 
-                <!-- Technologies & Keywords Section -->
                 <section>
                     <h2 class="section-heading" style="justify-content: flex-start;">Technologies & Keywords</h2>
                     <div class="tech-stack">
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
                         <span class="tag" style="margin-bottom: 0.2rem;">HuggingFace Transformers</span>
-                        
                         <span class="tag" style="margin-bottom: 0.2rem;">PyTorch</span>
-                        
                         <span class="tag" style="margin-bottom: 0.2rem;">FastAPI</span>
-                        
                         <span class="tag" style="margin-bottom: 0.2rem;">Docker</span>
-                        
                         <span class="tag" style="margin-bottom: 0.2rem;">Python</span>
-                        
                         <span class="tag" style="margin-bottom: 0.2rem;">Weights &amp; Biases</span>
-                        
                         <span class="tag" style="margin-bottom: 0.2rem;">MLOps</span>
-                        
                         <span class="tag" style="margin-bottom: 0.2rem;">NLP</span>
-                        
                         <span class="tag" style="margin-bottom: 0.2rem;">End-to-End ML</span>
-                        
                         <span class="tag" style="margin-bottom: 0.2rem;">Text Summarization</span>
-                        
                         <span class="tag" style="margin-bottom: 0.2rem;">Deep Learning</span>
-                        
                         <span class="tag" style="margin-bottom: 0.2rem;">Containerized Deployment</span>
-                        
                         <span class="tag" style="margin-bottom: 0.2rem;">Experiment Tracking</span>
-                        
                         <span class="tag" style="margin-bottom: 0.2rem;">RESTful API</span>
-                        
                     </div>
                 </section>
             </aside>
 
-        </div> <!-- Close .post-layout grid -->
+        </div>
 
-        <!-- Navigation block entirely detached from the sidebars grid -->
+        <!-- Prev/Next Navigation -->
         <div class="container" style="max-width: 1550px; margin: 0 auto; padding: 0 1rem;">
             <nav class="post-navigation" style="width: 100%; box-sizing: border-box;">
-                <!-- OLDER POST LINK LOGIC -->
-                
-                <!-- Link back to the previous part dynamically -->
                 <a href="posts/text-summarizer-journey-the-ml-engine-room-part-2.html" class="nav-link prev-link">
                     <span class="arrow">←</span>
                     <span class="nav-text">
@@ -366,11 +263,7 @@ docker run -p 8080:8080 text-summarizer
                         Text Summarizer Journey: Serving the Model
                     </span>
                 </a>
-                
 
-                <!-- NEWER POST LINK LOGIC -->
-                
-                <!-- Otherwise, link to the chronologically newer post (standard behavior) -->
                 <a href="posts/student-performance-prediction-when-simple-isnt-always-better.html" class="nav-link next-link">
                     <span class="nav-text">
                         <span class="nav-label">Newer Post</span>
@@ -378,9 +271,8 @@ docker run -p 8080:8080 text-summarizer
                     </span>
                     <span class="arrow">→</span>
                 </a>
-                
             </nav>
-        </div> <!-- Close navigation container -->
+        </div>
 
     </div>
 
@@ -390,17 +282,14 @@ docker run -p 8080:8080 text-summarizer
         </div>
     </footer>
 
-    <!-- Prism JS for Code Highlighting -->
+    <!-- Prism.js for code highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-
-    <!-- ADD THIS LINE TO LOAD THE PYTHON LANGUAGE -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 
-    <!-- ===== Mobile TOC Start ===== -->
+    <!-- Mobile TOC -->
     <button id="mobile-toc-toggle" class="mobile-toc-toggle" aria-label="Table of contents">
         <i class="fas fa-list-ul"></i>
     </button>
-
     <div id="mobile-toc-overlay" class="mobile-toc-overlay">
         <div class="mobile-toc-panel">
             <div class="mobile-toc-header">
@@ -412,21 +301,16 @@ docker run -p 8080:8080 text-summarizer
             <div id="mobile-toc-container" class="mobile-toc-container"></div>
         </div>
     </div>
-    <!-- ===== Mobile TOC End ===== -->
 
-    <!-- ===== Style Switcher Start ===== -->
+    <!-- Theme toggle -->
     <div class="theme-toggle-container">
-        <div id="theme-toggle-icon" class="theme-icon">
-            <i class="fas"></i>
-        </div>
+        <div id="theme-toggle-icon" class="theme-icon"><i class="fas"></i></div>
     </div>
-    <!-- ===== Style Switcher End ===== -->
 
-    <!-- ===== Search Feature Start ===== -->
+    <!-- Search -->
     <button id="search-fab" class="search-fab" aria-label="Search blog posts">
         <i class="fas fa-magnifying-glass"></i>
     </button>
-
     <div id="search-overlay" class="search-overlay">
         <div class="search-modal">
             <div class="search-header">
@@ -443,601 +327,12 @@ docker run -p 8080:8080 text-summarizer
             </div>
         </div>
     </div>
-    <!-- ===== Search Feature End ===== -->
 
+    <!-- Scripts -->
     <script src="js/search-index.js"></script>
     <script src="js/search.js"></script>
+    <script src="js/post-toc.js"></script>
     <script src="js/app.js"></script>
-
-    <style>
-        /* Modern 3-Column Post Layout Grid */
-        .post-layout {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 2rem;
-            max-width: 1550px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            box-sizing: border-box;
-            width: 100%;
-        }
-
-        /* Prevent horizontal overflow on the whole page */
-        .page-content {
-            overflow-x: hidden;
-        }
-
-        .post-center-column,
-        .post-content-main {
-            min-width: 0;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-        }
-
-        /* Adjustments for tablets and large desktop screens */
-        @media (min-width: 48rem) {
-            .post-layout {
-                display: grid !important;
-                grid-template-columns: 1fr 300px !important;
-                align-items: start;
-            }
-
-            .post-center-column {
-                grid-row: 1 / span 2;
-                grid-column: 1;
-            }
-
-            .post-sidebar-left {
-                grid-row: 2;
-                grid-column: 2;
-                margin-top: 2rem;
-            }
-
-            .post-sidebar-right {
-                grid-row: 1;
-                grid-column: 2;
-            }
-        }
-
-        @media (min-width: 75rem) {
-            .post-layout {
-                grid-template-columns: minmax(300px, 1fr) minmax(600px, 2.2fr) minmax(320px, 1.2fr) !important;
-                gap: 4rem;
-            }
-
-            .post-sidebar-left {
-                grid-row: 1;
-                grid-column: 1;
-                margin-top: 0;
-            }
-
-            .post-center-column {
-                grid-row: 1;
-                grid-column: 2;
-            }
-
-            .post-sidebar-right {
-                grid-row: 1;
-                grid-column: 3;
-            }
-        }
-
-        /* Sticky Sidebars */
-        .post-sidebar-left,
-        .post-sidebar-right {
-            position: sticky;
-            top: 2rem;
-            z-index: 5;
-            align-self: start;
-            max-height: calc(100vh - 4rem);
-            overflow-y: auto;
-            border-left: 1px solid transparent !important;
-        }
-
-        .post-sidebar-right {
-            border-left: 1px solid var(--border-color) !important;
-            padding-left: 1.5rem;
-        }
-
-        /* Optional custom scrollbar for sidebars */
-        .post-sidebar-left::-webkit-scrollbar,
-        .post-sidebar-right::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        .post-sidebar-left::-webkit-scrollbar-track,
-        .post-sidebar-right::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        .post-sidebar-left::-webkit-scrollbar-thumb,
-        .post-sidebar-right::-webkit-scrollbar-thumb {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-        }
-
-        html[data-theme='dark'] .post-sidebar-left::-webkit-scrollbar-track,
-        html[data-theme='dark'] .post-sidebar-right::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        html[data-theme='dark'] .post-sidebar-left::-webkit-scrollbar-thumb,
-        html[data-theme='dark'] .post-sidebar-right::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* TOC Styles */
-        #toc-container {
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .toc-list {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .toc-link {
-            display: block;
-            color: var(--text-color);
-            text-decoration: none;
-            line-height: 1.4;
-            padding: 0.25rem 0 0.25rem 0.5rem;
-            border-left: 2px solid transparent;
-            transition: all 0.2s ease-in-out;
-            opacity: 0.8;
-            word-break: break-word;
-            /* To prevent long headings from spilling over */
-        }
-
-        .toc-link:hover {
-            color: var(--link-color, #0077cc);
-            opacity: 1;
-        }
-
-        .toc-link.active {
-            font-weight: 600;
-            color: var(--link-color, #0077cc);
-            border-left: 2px solid var(--link-color, #0077cc);
-            background-color: rgba(0, 119, 204, 0.05);
-            opacity: 1;
-        }
-
-        /* Highlight styling for Images in TOC */
-        .toc-link-image {
-            font-style: italic;
-            font-size: 0.85em;
-        }
-
-        .toc-link i {
-            margin-right: 0.4rem;
-            color: gray;
-        }
-
-        /* ===== Mobile TOC Floating Button ===== */
-        .mobile-toc-toggle {
-            display: none;
-            /* Hidden by default — shown via JS + media query */
-        }
-
-        /* ===== Mobile TOC Overlay ===== */
-        .mobile-toc-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 999;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-        }
-
-        .mobile-toc-overlay.open {
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            animation: tocFadeIn 0.2s ease-out;
-        }
-
-        @keyframes tocFadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes tocSlideUp {
-            from {
-                transform: translateY(100%);
-            }
-
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        .mobile-toc-panel {
-            background: var(--bg-color);
-            border-radius: 16px 16px 0 0;
-            width: 100%;
-            max-width: 500px;
-            max-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
-            animation: tocSlideUp 0.3s ease-out;
-        }
-
-        .mobile-toc-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 1.25rem;
-            border-bottom: 1px solid var(--border-color);
-            flex-shrink: 0;
-        }
-
-        .mobile-toc-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .mobile-toc-close {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            color: var(--text-color);
-            cursor: pointer;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-
-        .mobile-toc-close:hover {
-            background: var(--card-bg-color);
-        }
-
-        .mobile-toc-container {
-            overflow-y: auto;
-            padding: 0.75rem 1.25rem 1.5rem;
-        }
-
-        .mobile-toc-container .toc-list {
-            list-style: none;
-            padding-left: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 0.15rem;
-        }
-
-        .mobile-toc-container .toc-link {
-            display: block;
-            color: var(--text-color);
-            text-decoration: none;
-            line-height: 1.4;
-            padding: 0.5rem 0.5rem 0.5rem 0.75rem;
-            border-left: 2px solid transparent;
-            border-radius: 0 6px 6px 0;
-            transition: all 0.15s ease;
-            font-size: 0.95rem;
-        }
-
-        .mobile-toc-container .toc-link:hover,
-        .mobile-toc-container .toc-link:active {
-            background: var(--card-bg-color);
-            color: var(--link-color);
-            border-left-color: var(--link-color);
-        }
-
-        /* ===== Mobile: hide sidebar TOC, show toggle, stack nav ===== */
-        @media (max-width: 48rem) {
-            /* Constrain all content to viewport */
-            .post-layout {
-                max-width: 100% !important;
-                padding: 0 1rem !important;
-            }
-
-            .post-center-column {
-                max-width: 100%;
-                overflow-x: hidden;
-            }
-
-            .post-content-main {
-                padding: 1rem 0 0 0 !important;
-            }
-
-            .post-content-main pre {
-                max-width: 100%;
-                overflow-x: auto;
-            }
-
-            .post-content-main img {
-                max-width: 100%;
-                height: auto;
-            }
-
-            .post-sidebar-left {
-                display: none !important;
-            }
-
-            .mobile-toc-toggle.has-toc {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: fixed;
-                bottom: 5.5rem;
-                right: 1.25rem;
-                z-index: 50;
-                width: 48px;
-                height: 48px;
-                border-radius: 50%;
-                border: 1px solid var(--border-color);
-                background: var(--card-bg-color);
-                color: var(--link-color);
-                font-size: 1.15rem;
-                cursor: pointer;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
-                transition: all 0.2s ease;
-            }
-
-            .mobile-toc-toggle.has-toc:hover,
-            .mobile-toc-toggle.has-toc:active {
-                border-color: var(--link-color);
-                box-shadow: 0 4px 16px rgba(0, 119, 204, 0.2);
-                transform: scale(1.05);
-            }
-
-            /* Stack prev/next navigation vertically */
-            .post-navigation {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-link {
-                width: 100%;
-            }
-
-            .next-link {
-                text-align: left;
-                justify-content: flex-start;
-            }
-
-            /* Right sidebar: remove desktop border and make compact */
-            .post-sidebar-right {
-                border-left: none !important;
-                padding-left: 0 !important;
-                position: static !important;
-                max-height: none !important;
-                overflow-y: visible !important;
-            }
-
-            /* Compact post info card on mobile */
-            .post-sidebar-right .competency-item-sidebar {
-                padding: 1rem;
-                border: 1px solid var(--border-color);
-                border-radius: 8px;
-                background: var(--card-bg-color);
-            }
-
-            .post-sidebar-right .competency-title-sidebar {
-                font-size: 1rem;
-                margin-bottom: 0.25rem;
-            }
-
-            /* GitHub button: compact */
-            .post-sidebar-right .sidebar-button {
-                margin-top: 0.75rem;
-                padding: 8px 12px;
-                font-size: 0.9rem;
-            }
-
-            /* Tighter tech tags on mobile */
-            .post-sidebar-right .tech-stack {
-                gap: 0.35rem;
-            }
-
-            .post-sidebar-right .tech-stack .tag {
-                font-size: 0.8rem;
-                padding: 3px 8px;
-                margin-bottom: 0;
-            }
-
-            /* Series nav box: compact on mobile */
-            .series-navigation-sidebar {
-                padding: 1rem;
-                margin-bottom: 1.5rem;
-            }
-        }
-    </style>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const mainContent = document.querySelector(".post-content-main");
-            const tocSection = document.getElementById("toc-section");
-            const tocContainer = document.getElementById("toc-container");
-
-            if (!mainContent || !tocSection || !tocContainer) return;
-
-            // Capture all headings and images within the post content
-            const elements = Array.from(mainContent.querySelectorAll("h1, h2, h3, h4, h5, h6, img"));
-
-            if (elements.length === 0) return;
-
-            tocSection.style.display = "block";
-
-            const tocList = document.createElement("ul");
-            tocList.className = "toc-list";
-
-            const links = new Map();
-            let activeLink = null;
-            let imgCounter = 1;
-
-            elements.forEach((el) => {
-                // Ensure target has an ID
-                if (!el.id) {
-                    if (el.tagName === "IMG") {
-                        el.id = "content-img-" + imgCounter++;
-                    } else {
-                        // Create URL-friendly slug from heading text
-                        let slug = el.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                        if (!slug) slug = "section-" + imgCounter++;
-                        // Ensure unique ID
-                        let origSlug = slug;
-                        let counter = 1;
-                        while (document.getElementById(slug)) {
-                            slug = origSlug + "-" + counter++;
-                        }
-                        el.id = slug;
-                    }
-                }
-
-                const li = document.createElement("li");
-                const a = document.createElement("a");
-                a.href = "#" + el.id;
-                a.className = "toc-link";
-
-                a.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    history.pushState(null, null, '#' + el.id);
-                    el.scrollIntoView({ behavior: 'smooth' });
-                });
-
-                if (el.tagName === "IMG") {
-                    const altText = el.alt ? el.alt : "Image";
-                    a.innerHTML = `<i class="fa-solid fa-image"></i> ${altText}`;
-                    a.classList.add("toc-link-image");
-                    a.style.marginLeft = "1rem"; // Indent images slightly
-                } else {
-                    a.textContent = el.textContent;
-                    // Indent based on heading level
-                    const level = parseInt(el.tagName.charAt(1));
-                    if (level > 2) {
-                        a.style.marginLeft = `${(level - 2) * 1}rem`;
-                    }
-                }
-
-                li.appendChild(a);
-                tocList.appendChild(li);
-                links.set(el, a);
-            });
-
-            tocContainer.appendChild(tocList);
-
-            // ===== Mobile TOC: clone into overlay =====
-            const mobileTocContainer = document.getElementById('mobile-toc-container');
-            const mobileTocToggle = document.getElementById('mobile-toc-toggle');
-            const mobileTocOverlay = document.getElementById('mobile-toc-overlay');
-            const mobileTocClose = document.getElementById('mobile-toc-close');
-
-            if (mobileTocContainer && mobileTocToggle) {
-                // Show the floating toggle button (CSS will only display it on mobile)
-                mobileTocToggle.classList.add('has-toc');
-
-                // Clone the TOC list into the mobile panel
-                const mobileList = tocList.cloneNode(true);
-                mobileTocContainer.appendChild(mobileList);
-
-                // Handle link clicks in mobile TOC
-                mobileList.querySelectorAll('.toc-link').forEach(mobileLink => {
-                    mobileLink.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const targetId = mobileLink.getAttribute('href').substring(1);
-                        const targetEl = document.getElementById(targetId);
-                        if (targetEl) {
-                            // Close overlay
-                            mobileTocOverlay.classList.remove('open');
-                            // Navigate
-                            history.pushState(null, null, '#' + targetId);
-                            setTimeout(() => {
-                                targetEl.scrollIntoView({ behavior: 'smooth' });
-                            }, 100);
-                        }
-                    });
-                });
-
-                // Toggle button opens overlay
-                mobileTocToggle.addEventListener('click', () => {
-                    mobileTocOverlay.classList.toggle('open');
-                });
-
-                // Close button
-                if (mobileTocClose) {
-                    mobileTocClose.addEventListener('click', () => {
-                        mobileTocOverlay.classList.remove('open');
-                    });
-                }
-
-                // Click backdrop to close
-                mobileTocOverlay.addEventListener('click', (e) => {
-                    if (e.target === mobileTocOverlay) {
-                        mobileTocOverlay.classList.remove('open');
-                    }
-                });
-            }
-
-            // Scrollspy logic
-            function updateScrollSpy() {
-                let currentActive = null;
-                let maxNegativeTop = -Infinity;
-                let elementWithMaxNegativeTop = null;
-
-                const OFFSET = 150; // pixels from top of viewport to consider "active"
-
-                for (const el of elements) {
-                    const rect = el.getBoundingClientRect();
-                    if (rect.top <= OFFSET) {
-                        if (rect.top > maxNegativeTop) {
-                            maxNegativeTop = rect.top;
-                            elementWithMaxNegativeTop = el;
-                        }
-                    }
-                }
-
-                currentActive = elementWithMaxNegativeTop;
-
-                // Check if user scrolled to the absolute bottom of the page
-                const isBottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 20;
-
-                // Highlight the very last element naturally if we're at the bottom
-                if (isBottom && elements.length > 0) {
-                    currentActive = elements[elements.length - 1];
-                } else if (!currentActive && elements.length > 0) {
-                    // Fallback: highlight the first item if none are past the offset and not at bottom
-                    currentActive = elements[0];
-                }
-
-                if (currentActive) {
-                    const targetLink = links.get(currentActive);
-                    if (targetLink && targetLink !== activeLink) {
-                        if (activeLink) activeLink.classList.remove("active");
-                        targetLink.classList.add("active");
-                        activeLink = targetLink;
-
-                        // Scroll TOC container if newly active item is out of view
-                        const linkRect = targetLink.getBoundingClientRect();
-                        const tocRect = tocSection.getBoundingClientRect();
-
-                        if (linkRect.bottom > tocRect.bottom || linkRect.top < tocRect.top) {
-                            targetLink.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        }
-                    }
-                }
-            }
-
-            window.addEventListener('scroll', updateScrollSpy, { passive: true });
-            // Initial call
-            updateScrollSpy();
-        });
-    </script>
 
 </body>
 

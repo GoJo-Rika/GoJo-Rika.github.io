@@ -1,0 +1,128 @@
+/* ===== Blog Page Styles ===== */
+
+/* Filter tag base */
+.filter-tag {
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.filter-tag.active {
+    border-color: var(--link-color, #0077cc);
+    background-color: #cceeff;
+    color: #000;
+}
+
+/* Desktop sidebar filter layout */
+#tag-filter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#tag-filter-container .filter-tag {
+    width: 100%;
+    text-align: left;
+    margin-right: 0;
+}
+
+/* Load more button */
+.load-more-btn {
+    padding: 10px 24px;
+    border: 2px solid var(--link-color, #0077cc);
+    border-radius: 6px;
+    background-color: transparent;
+    color: var(--link-color, #0077cc);
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.load-more-btn:hover {
+    background-color: var(--link-color, #0077cc);
+    color: #fff;
+}
+
+/* Blog heading row */
+.blog-heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.blog-heading-row .section-heading {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Mobile filter toggle (hidden on desktop) */
+.mobile-filter-toggle {
+    display: none;
+}
+
+/* Mobile filter panel (hidden by default) */
+.mobile-filter-panel {
+    display: none;
+}
+
+/* ===== Mobile / Tablet ===== */
+@media (max-width: 48rem) {
+    aside {
+        display: none !important;
+    }
+
+    .mobile-filter-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 8px 14px;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        background-color: var(--card-bg-color);
+        color: var(--text-color);
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+        font-family: inherit;
+    }
+
+    .mobile-filter-toggle i {
+        font-size: 0.85rem;
+        color: var(--link-color);
+    }
+
+    .mobile-filter-toggle:hover,
+    .mobile-filter-toggle.active {
+        border-color: var(--link-color);
+        color: var(--link-color);
+    }
+
+    .mobile-filter-panel.open {
+        display: block;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background-color: var(--card-bg-color);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        animation: filterSlideDown 0.25s ease-out;
+    }
+
+    @keyframes filterSlideDown {
+        from { opacity: 0; transform: translateY(-8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .mobile-tag-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .mobile-tag-container .filter-tag {
+        font-size: 0.85rem;
+        padding: 4px 10px;
+    }
+}

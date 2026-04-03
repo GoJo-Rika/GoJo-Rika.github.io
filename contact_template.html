@@ -5,33 +5,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Site Info -->
     <title>{{ name }} - Contact</title>
     <meta name="description" content="{{ name }} - Get In Touch">
     <meta name="author" content="{{ name }}">
 
-    <!-- Open Graph Tags -->
+    <!-- Open Graph -->
     <meta property="og:title" content="{{ name }} - Contact">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ base_url }}/contact.html">
     <meta property="og:image" content="{{ base_url }}/{{ image_path }}">
     <meta property="og:image:alt" content="{{ name }} Profile Image">
 
-    <!-- Preconnect for Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Custom Font -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/modern_normalize.css" />
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/modern_normalize.css">
     <link rel="stylesheet" href="css/html5bp.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/contact.css">
 
-    <!-- Set a theme color -->
     <meta name="theme-color" content="#fafafa">
 
     <!-- Favicon -->
@@ -40,10 +36,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Icon library -->
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 
 <body>
@@ -79,33 +75,15 @@
                 <section>
                     <h3 class="contact-subheading">Connect With Me On</h3>
                     <div class="contact-links">
-                        <!-- Loop through your social links from the JSON -->
                         {% for link in social_links %}
                         <a href="{{ link.url }}" class="contact-card" target="_blank" rel="noopener noreferrer">
                             <div class="contact-icon">
-                                <!-- A simple way to get a Font Awesome icon based on the label -->
-                                <!-- 
-                                {% if 'linkedin' in link.label|lower %}
-                                    <i class="fab fa-linkedin"></i>
-                                {% elif 'github' in link.label|lower %}
-                                    <i class="fab fa-github"></i>
-                                {% else %}
-                                    <i class="fas fa-link"></i>
-                                {% endif %}
-                                -->
-                            </div>
-
-                            <div class="contact-icon">
-                                <!-- This now uses the SVG data read by the Python script -->
                                 {% if link.svg_data %}
                                 {{ link.svg_data | safe }}
                                 {% else %}
-                                <!-- A fallback icon if an SVG path is missing -->
                                 <i class="fas fa-link"></i>
                                 {% endif %}
                             </div>
-
-
                             <div class="contact-label">{{ link.label }}</div>
                         </a>
                         {% endfor %}
@@ -113,10 +91,47 @@
                 </section>
 
                 <section>
-                    <h3 class="contact-subheading">Send Me An Email</h3>
-                    <p class="contact-intro">The best way to reach me is by email. I'm very responsive and will get back
-                        to you as soon as possible.</p>
-                    <a href="mailto:{{ contact.email }}" class="email-button">{{ contact.email }}</a>
+                    <h3 class="contact-subheading">Send Me A Message</h3>
+                    <p class="contact-intro">Have a project idea, a question, or just want to say hi? Fill out the form
+                        below and I'll get back to you as soon as possible.</p>
+
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="contact-name">Name</label>
+                            <input type="text" id="contact-name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email</label>
+                            <input type="email" id="contact-email" name="email" placeholder="your.email@example.com"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-subject">Subject</label>
+                            <input type="text" id="contact-subject" name="subject" placeholder="What's this about?">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-message">Message</label>
+                            <textarea id="contact-message" name="message" rows="5"
+                                placeholder="Tell me about your project or idea..." required></textarea>
+                        </div>
+                        <!-- Formspree honeypot -->
+                        <input type="text" name="_gotcha" style="display:none">
+                        <!-- Web3Forms honeypot -->
+                        <input type="checkbox" name="botcheck" style="display:none">
+                        <button type="submit" id="contact-submit" class="form-submit-btn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading" style="display:none;">
+                                <i class="fas fa-spinner fa-spin"></i> Sending...
+                            </span>
+                        </button>
+                    </form>
+
+                    <div id="form-status" class="form-status" style="display:none;"></div>
+
+                    <div class="email-fallback">
+                        <p>Or reach me directly at</p>
+                        <a href="mailto:{{ contact.email }}" class="email-button">{{ contact.email }}</a>
+                    </div>
                 </section>
             </main>
         </div>
@@ -128,130 +143,13 @@
         </div>
     </footer>
 
-    <!-- ===== Style Switcher & JS ===== -->
+    <!-- Theme toggle -->
     <div class="theme-toggle-container">
         <div id="theme-toggle-icon" class="theme-icon"><i class="fas"></i></div>
     </div>
+
+    <script src="js/contact.js"></script>
     <script src="js/app.js"></script>
-
-    <!-- ===== In-house CSS for this page ===== -->
-    <style>
-        /* Remove the extra white space by preventing the body grid from stretching */
-        body {
-            grid-template-rows: auto auto auto;
-        }
-
-        .contact-container {
-            max-width: 800px;
-            /* Center the content in a readable column */
-            display: block;
-            /* Override the grid layout for a single column */
-        }
-
-        .contact-intro {
-            text-align: center;
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .contact-subheading {
-            text-align: center;
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .contact-card {
-            background-color: var(--card-bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem 2rem;
-            width: 150px;
-            text-align: center;
-            text-decoration: none;
-            color: var(--text-color) !important;
-            transition: all 0.2s ease-in-out;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--link-color);
-        }
-
-        /* .contact-icon with font-awesome (no longer used) */
-        /* font-size: 2.5rem; margin-bottom: 0.75rem; color: var(--link-color); */
-
-        .contact-icon {
-            /* Use flexbox to perfectly center the SVG inside */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 48px;
-            /* Give the container a fixed height */
-            margin-bottom: 0.75rem;
-        }
-
-        /* This is the key: it targets and styles the SVG element itself */
-        .contact-icon svg {
-            height: 100%;
-            /* Make the SVG fill the container's height */
-            width: auto;
-            /* Let the width adjust automatically */
-            max-width: 48px;
-            /* Prevent wide icons from stretching too far */
-            fill: var(--link-color);
-            /* Make the icon's color match the theme */
-        }
-
-
-
-        .contact-label {
-            font-weight: 600;
-        }
-
-        .email-button {
-            display: block;
-            width: fit-content;
-            margin: 1rem auto;
-            padding: 12px 25px;
-            background-color: var(--link-color);
-            color: #fff !important;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.2s;
-        }
-
-        .email-button:hover {
-            background-color: var(--link-color-hover);
-        }
-
-        /* Mobile responsive: wrap contact cards into a grid */
-        @media (max-width: 48rem) {
-            .contact-links {
-                flex-wrap: wrap;
-            }
-
-            .contact-card {
-                width: calc(50% - 1rem);
-                /* 2 cards per row on tablets/small screens */
-            }
-        }
-
-        @media (max-width: 30rem) {
-            .contact-card {
-                width: 100%;
-                /* 1 card per row on very small screens */
-            }
-        }
-    </style>
 
 </body>
 
