@@ -58,14 +58,23 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.appendChild(toast);
 
         codeBlocks.forEach(block => {
+            // Create a wrapper for the code block
+            const wrapper = document.createElement('div');
+            wrapper.className = 'code-block-wrapper';
+            wrapper.style.position = 'relative';
+            
+            // Insert wrapper before block, then move block inside wrapper
+            block.parentNode.insertBefore(wrapper, block);
+            wrapper.appendChild(block);
+
             // Create the copy button using an icon
             const copyButton = document.createElement('button');
             copyButton.className = 'copy-code-btn';
             copyButton.innerHTML = '<i class="far fa-copy"></i>';
             copyButton.setAttribute('aria-label', 'Copy code to clipboard');
 
-            // Add the button to the pre block
-            block.appendChild(copyButton);
+            // Add the button to the wrapper instead of the pre block
+            wrapper.appendChild(copyButton);
 
             // Add the click event listener
             copyButton.addEventListener('click', () => {

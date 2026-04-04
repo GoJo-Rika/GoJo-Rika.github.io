@@ -60,8 +60,11 @@ projects_blog_db = data.get("projects_blog_db", {})
 all_blogs = []
 for project in projects_blog_db.values():
     github_url = project.get("github_url", "")
+    parent_techs = project.get("core_technologies", [])
     for blog in project.get("blogs", []):
         blog["github_url"] = github_url
+        blog["project_title"] = project["title"]
+        blog["core_technologies"] = parent_techs
         all_blogs.append(blog)
 
 featured_projects = []
@@ -79,15 +82,16 @@ data["featured_projects"] = featured_projects
 
 projects_for_resume = []
 for project in projects_blog_db.values():
-    projects_for_resume.append({
-        "title": project["title"],
-        "url": project.get("github_url", ""),
-        "summary": project.get("summary", {}).get("resume_page", ""),
-        "core_technologies": project.get("core_technologies", []),
-        "keywords": project.get("keywords", []),
-        "highlights": [],
-        "images": [],
-    })
+    if project.get("show_in_resume", True):
+        projects_for_resume.append({
+            "title": project["title"],
+            "url": project.get("github_url", ""),
+            "summary": project.get("summary", {}).get("resume_page", ""),
+            "core_technologies": project.get("core_technologies", []),
+            "keywords": project.get("keywords", []),
+            "highlights": [],
+            "images": [],
+        })
 data["projects"] = projects_for_resume
 
 # ---------------------------------------------------------------------------
@@ -196,12 +200,10 @@ sorted_tags = sorted(all_tags)
 # 8. Match featured projects to their starting blog post (Part 1)
 # ---------------------------------------------------------------------------
 for project in data.get("featured_projects", []):
-    github_url = project.get("github_url")
-    if github_url:
-        for post in reversed(blog_posts):
-            if post.get("github_url") == github_url and not post.get("previous_part_slug"):
-                project["blog_slug"] = post["slug"]
-                break
+    for post in reversed(blog_posts):
+        if post.get("project_title") == project["title"] and not post.get("previous_part_slug"):
+            project["blog_slug"] = post["slug"]
+            break
 
 # ---------------------------------------------------------------------------
 # 9. Render all page templates

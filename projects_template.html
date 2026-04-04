@@ -90,8 +90,10 @@
                                     </div>
                                 </div>
                                 <div class="project-links">
+                                    {% if project.github_url %}
                                     <a href="{{ project.github_url }}" class="project-button" target="_blank"
                                         rel="noopener noreferrer">View on GitHub</a>
+                                    {% endif %}
                                     {% if project.blog_slug %}
                                     <a href="posts/{{ project.blog_slug }}.html" class="project-button blog-link">Read
                                         the Story</a>

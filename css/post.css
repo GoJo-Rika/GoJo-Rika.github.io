@@ -52,9 +52,11 @@
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.9em;
   line-height: 1.5;
+  margin: 0;
+}
+
+.code-block-wrapper {
   margin: 1.5em 0;
-  position: relative !important;
-  /* Must stay relative for the copy button to anchor */
 }
 
 .post-content-main pre code {
@@ -142,7 +144,7 @@ aside .tech-stack {
 }
 
 /* ===== CUSTOM COPY-TO-CLIPBOARD BUTTON STYLING ===== */
-.post-content-main pre>.copy-code-btn {
+.code-block-wrapper>.copy-code-btn {
   position: absolute !important;
   top: 0.5rem !important;
   right: 0.5rem !important;
@@ -162,15 +164,15 @@ aside .tech-stack {
   z-index: 10;
 }
 
-.post-content-main pre:hover>.copy-code-btn {
+.code-block-wrapper:hover>.copy-code-btn {
   opacity: 1;
 }
 
-.post-content-main pre>.copy-code-btn:hover {
+.code-block-wrapper>.copy-code-btn:hover {
   background-color: rgba(128, 128, 128, 0.3);
 }
 
-.post-content-main pre>.copy-code-btn.copied {
+.code-block-wrapper>.copy-code-btn.copied {
   color: var(--link-color);
   opacity: 1;
 }

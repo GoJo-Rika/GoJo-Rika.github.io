@@ -33,15 +33,15 @@
   "about_me_full_prose": [
     {
       "type": "paragraph",
-      "content": "I'm an educator-turned-AI Engineer who has spent the last 8 years bridging the gap between complex technical concepts and real-world, production-ready applications. My journey is a blend of academia and industry—from mentoring over **300 students at Dorset College (achieving 92-96% project completion rates)** to architecting scalable backend systems as a developer. This dual perspective allows me to not only build effective AI solutions but also to clearly articulate *how* and *why* they work."
+      "content": "I'm an educator-turned-AI Engineer who has spent the last 8 years bridging the gap between complex technical concepts and real-world, production-ready applications. My journey is a blend of academia and industry\u2014from mentoring over **300 students at Dorset College (achieving 92-96% project completion rates)** to architecting scalable backend systems as a developer. This dual perspective allows me to not only build effective AI solutions but also to clearly articulate *how* and *why* they work."
     },
     {
       "type": "paragraph",
-      "content": "A guiding principle in my life and work comes from the Bhagavad Gita: **\"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions. Never consider yourself the cause of the results of your activities, nor be attached to inaction.\"** To me, this is a powerful reminder to focus on the process—to build with integrity and to solve problems with dedication, knowing the true reward is in the act of creation itself."
+      "content": "A guiding principle in my life and work comes from the Bhagavad Gita: **\"You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions. Never consider yourself the cause of the results of your activities, nor be attached to inaction.\"** To me, this is a powerful reminder to focus on the process\u2014to build with integrity and to solve problems with dedication, knowing the true reward is in the act of creation itself."
     },
     {
       "type": "paragraph",
-      "content": "This mindset extends to how I approach teamwork, where I am a firm believer in the \"1+1 philosophy.\" I believe the most robust and innovative solutions come not from one person carrying the entire burden, but from a collaborative effort where each member contributes their piece. It’s the difference between a single pillar and an arch, where multiple stones work together to create a structure far stronger than any single component."
+      "content": "This mindset extends to how I approach teamwork, where I am a firm believer in the \"1+1 philosophy.\" I believe the most robust and innovative solutions come not from one person carrying the entire burden, but from a collaborative effort where each member contributes their piece. It\u2019s the difference between a single pillar and an arch, where multiple stones work together to create a structure far stronger than any single component."
     },
     {
       "type": "subheading",
@@ -49,11 +49,11 @@
     },
     {
       "type": "paragraph",
-      "content": "I'm currently immersed in the rapidly evolving landscape of generative and agentic AI. I am actively developing advanced RAG (Retrieval-Augmented Generation) applications using LangChain and LangGraph, and exploring workflow automation with tools like n8n. My learning journey continues with building sophisticated multi-agent systems and integrating them with **MCP (Model Context Protocol) servers**—a new paradigm for AI tool use."
+      "content": "I'm currently immersed in the rapidly evolving landscape of generative and agentic AI. I am actively developing advanced RAG (Retrieval-Augmented Generation) applications using LangChain and LangGraph, and exploring workflow automation with tools like n8n. My learning journey continues with building sophisticated multi-agent systems and integrating them with **MCP (Model Context Protocol) servers**\u2014a new paradigm for AI tool use."
     },
     {
       "type": "paragraph",
-      "content": "Beyond the keyboard, I am always sharpening my foundational knowledge with essential texts like **\"Deep Learning\" by Ian Goodfellow** and **\"Hands-On Machine Learning\" by Aurélien Géron**. My passion for problem-solving extends into my hobbies, where I enjoy tackling **logic puzzles** (Sudoku, Kakuro), **speedcubing**, and playing **chess**. And, of course, I am on an endless quest for the **perfect espresso shot**."
+      "content": "Beyond the keyboard, I am always sharpening my foundational knowledge with essential texts like **\"Deep Learning\" by Ian Goodfellow** and **\"Hands-On Machine Learning\" by Aur\u00e9lien G\u00e9ron**. My passion for problem-solving extends into my hobbies, where I enjoy tackling **logic puzzles** (Sudoku, Kakuro), **speedcubing**, and playing **chess**. And, of course, I am on an endless quest for the **perfect espresso shot**."
     }
   ],
   "current_highlights": {
@@ -354,6 +354,7 @@
       },
       "image": "project_images/network_security_architecture_thumbnail.jpg",
       "featured": true,
+      "show_in_resume": true,
       "core_technologies": [
         "Python",
         "AWS",
@@ -380,20 +381,7 @@
           "title": "From Messy Data to Production MLOps: My Network Security Journey (Part 1)",
           "publish_date": "2025-09-08",
           "markdown_file": "network_security_blog_part_1_pipeline_foundation.md",
-          "content": "My journey began with a classic MLOps mistake: underestimating messy data. My model worked locally, but I spent weeks debugging failures until a breakthrough came from implementing rigorous **data validation schemas** and **drift detection**. This post covers the foundational engineering—modular architecture, custom logging, and experiment tracking—that's essential *before* you even think about the cloud. It’s the story of building a resilient pipeline from the ground up.",
-          "core_technologies": [
-            "Python",
-            "MLflow",
-            "Dagshub",
-            "AWS EC2",
-            "AWS ECR",
-            "AWS S3",
-            "Scikit-learn",
-            "MongoDB",
-            "FastAPI",
-            "Docker",
-            "GitHub Actions"
-          ],
+          "content": "My journey began with a classic MLOps mistake: underestimating messy data. My model worked locally, but I spent weeks debugging failures until a breakthrough came from implementing rigorous **data validation schemas** and **drift detection**. This post covers the foundational engineering\u2014modular architecture, custom logging, and experiment tracking\u2014that's essential *before* you even think about the cloud. It\u2019s the story of building a resilient pipeline from the ground up.",
           "keywords": [
             "MLOps",
             "End-to-End ML Pipeline",
@@ -414,19 +402,6 @@
           "publish_date": "2025-09-09",
           "markdown_file": "network_security_blog_part_2_cloud_deployment.md",
           "content": "With a working local pipeline, the \"easy\" part was next: deployment. This turned into a multi-day AWS nightmare. After successfully automating the CI/CD pipeline with GitHub Actions, the app was live but unreachable. The culprit? A single, critical line of code related to container networking. This post dives into the humbling, real-world challenges of cloud infrastructure, debugging EC2 security groups, and the final \"aha!\" moment that brought the entire system online.",
-          "core_technologies": [
-            "Python",
-            "MLflow",
-            "Dagshub",
-            "AWS EC2",
-            "AWS ECR",
-            "AWS S3",
-            "Scikit-learn",
-            "MongoDB",
-            "FastAPI",
-            "Docker",
-            "GitHub Actions"
-          ],
           "keywords": [
             "CI/CD automation",
             "Schema Validation",
@@ -441,8 +416,7 @@
           ],
           "previous_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-1"
         }
-      ]
-    },
+      ]    },
     "end-to-end-foodvision-mlops-pipeline": {
       "title": "End-to-End FoodVision MLOps Pipeline",
       "github_url": "https://github.com/GoJo-Rika/PyTorch-FoodVision-Mini",
@@ -452,6 +426,7 @@
       },
       "image": "project_images/effnet-feature-extraction-diagram.png",
       "featured": true,
+      "show_in_resume": true,
       "core_technologies": [
         "PyTorch",
         "FastAPI",
@@ -476,14 +451,6 @@
           "publish_date": "2025-09-12",
           "markdown_file": "pytorch-foodvision-mini-part-1-from-notebook-to-pipeline.md",
           "content": "My FoodVision Mini project started with a simple question in a Jupyter Notebook, but the answer required a real engineering journey. This post tells the story of how I tamed chaotic experiments with a systematic process, unlocked the true power of transfer learning through trial and error, and refactored a monolithic script into a robust, modular ML pipeline.",
-          "core_technologies": [
-            "PyTorch",
-            "FastAPI",
-            "Flask",
-            "torchvision",
-            "Python",
-            "TensorBoard"
-          ],
           "keywords": [
             "MLOps",
             "Computer Vision",
@@ -501,14 +468,6 @@
           "publish_date": "2025-09-13",
           "markdown_file": "pytorch-foodvision-mini-part-2-the-ui-challenge.md",
           "content": "A machine learning model is useless if no one can use it. This post covers the \"last mile\" problem: giving my PyTorch model an interactive body. This is the story of my struggle against frozen UIs, the architectural epiphany that led to a framework-agnostic core, and the final lessons learned while building identical apps in both Flask and FastAPI.",
-          "core_technologies": [
-            "PyTorch",
-            "FastAPI",
-            "Flask",
-            "torchvision",
-            "Python",
-            "TensorBoard"
-          ],
           "keywords": [
             "MLOps",
             "Computer Vision",
@@ -532,6 +491,7 @@
       },
       "image": "tech_icons/aws-sagemaker.svg",
       "featured": true,
+      "show_in_resume": true,
       "core_technologies": [
         "AWS SageMaker",
         "Scikit-learn",
@@ -568,15 +528,6 @@
           "publish_date": "2025-09-15",
           "markdown_file": "aws-sagemaker-blog-cloud-native-ml-reality-check.md",
           "content": "I thought taking a scikit-learn model to the cloud would be simple, but AWS SageMaker taught me more about cloud architecture and DevOps than I ever expected. This post details my entire journey, from battling IAM roles and structuring S3 buckets to mastering the SageMaker training patterns that finally bridged the gap between my local machine and a production-ready endpoint. It's a story of the struggles, the breakthroughs, and the hard-won lessons learned while building a real-world ML pipeline.",
-          "core_technologies": [
-            "AWS",
-            "AWS SageMaker",
-            "Scikit-learn",
-            "AWS S3",
-            "Python",
-            "MLOps",
-            "CloudWatch"
-          ],
           "keywords": [
             "AWS",
             "Amazon SageMaker",
@@ -610,6 +561,7 @@
       },
       "image": "tech_icons/hugging-face.svg",
       "featured": true,
+      "show_in_resume": true,
       "core_technologies": [
         "HuggingFace Transformers",
         "PyTorch",
@@ -645,17 +597,7 @@
           "title": "Text Summarizer Journey: The MLOps Blueprint (Part 1)",
           "publish_date": "2025-09-16",
           "markdown_file": "text-summarizer-journey-part-1-the-mlops-blueprint.md",
-          "content": "My Text Summarizer project started in a Jupyter notebook—a great place for experimentation, but a fragile foundation for a real application. This post details the journey of refactoring that initial script into a robust, production-ready MLOps pipeline, tackling the challenges of hardcoded paths, scattered configuration, and monolithic execution with a modular, component-based architecture.",
-          "core_technologies": [
-            "HuggingFace Transformers",
-            "PyTorch",
-            "FastAPI",
-            "Docker",
-            "Python",
-            "Weights & Biases",
-            "MLOps",
-            "NLP"
-          ],
+          "content": "My Text Summarizer project started in a Jupyter notebook\u2014a great place for experimentation, but a fragile foundation for a real application. This post details the journey of refactoring that initial script into a robust, production-ready MLOps pipeline, tackling the challenges of hardcoded paths, scattered configuration, and monolithic execution with a modular, component-based architecture.",
           "keywords": [
             "MLOps",
             "End-to-End ML",
@@ -673,16 +615,6 @@
           "publish_date": "2025-09-17",
           "markdown_file": "text-summarizer-journey-part-2-the-ml-engine-room.md",
           "content": "With a robust MLOps pipeline in place, this post dives into the core machine learning workflow of the Text Summarizer project. I explore each critical stage: transforming the raw SAMSum dataset for the model, fine-tuning a pre-trained Pegasus Transformer using a configuration-driven approach, and quantitatively evaluating its performance with ROUGE metrics.",
-          "core_technologies": [
-            "HuggingFace Transformers",
-            "PyTorch",
-            "FastAPI",
-            "Docker",
-            "Python",
-            "Weights & Biases",
-            "MLOps",
-            "NLP"
-          ],
           "keywords": [
             "MLOps",
             "End-to-End ML",
@@ -705,16 +637,6 @@
           "publish_date": "2025-09-18",
           "markdown_file": "text-summarizer-journey-part-3-serving-the-model.md",
           "content": "The final step in our MLOps journey is making the trained model useful. This post covers the \"last mile\" of deployment, showing how to wrap the text summarization model in a high-performance API using FastAPI. I then walk through creating a Dockerfile to containerize the entire application, ensuring a consistent and portable service that can be deployed anywhere.",
-          "core_technologies": [
-            "HuggingFace Transformers",
-            "PyTorch",
-            "FastAPI",
-            "Docker",
-            "Python",
-            "Weights & Biases",
-            "MLOps",
-            "NLP"
-          ],
           "keywords": [
             "MLOps",
             "End-to-End ML",
@@ -740,6 +662,7 @@
       },
       "image": "posts_assets/pipeline_workflow_diagram.png",
       "featured": true,
+      "show_in_resume": true,
       "core_technologies": [
         "AWS",
         "Python",
@@ -772,17 +695,6 @@
           "publish_date": "2025-09-19",
           "markdown_file": "student-performance-prediction-simple-isnt-always-better.md",
           "content": "A candid, in-depth account of developing an end-to-end Student Performance Prediction system. This post explores the journey from an experimental Jupyter Notebook to a production-ready, modular ML pipeline, covering the critical roles of custom logging, exception handling, and a component-based architecture. It also details the real-world challenges and hard-won lessons from deploying a Flask application on AWS.",
-          "core_technologies": [
-            "AWS",
-            "Python",
-            "Flask",
-            "Scikit-learn",
-            "Pandas",
-            "NumPy",
-            "AWS EC2",
-            "AWS Elastic Beanstalk",
-            "MLOps"
-          ],
           "keywords": [
             "Machine Learning",
             "MLOps",
@@ -810,6 +722,7 @@
       },
       "image": "project_images/financial-ai.jpg",
       "featured": true,
+      "show_in_resume": true,
       "core_technologies": [
         "Python",
         "Agno",
@@ -832,17 +745,6 @@
           "publish_date": "2025-09-20",
           "markdown_file": "financial-ai-blog-post-when-ai-agents-wouldn't-cooperate.md",
           "content": "My journey to build an AI financial analyst started with a single, confused bot that failed miserably. The solution wasn't a better model, but a better architecture: a coordinated team of AI specialists. Here's a deep dive into the code, the struggles, and the key lessons learned from building a multi-agent system with Agno and Groq.",
-          "core_technologies": [
-            "Python",
-            "Agno",
-            "Groq",
-            "Agentic AI",
-            "Multi-Agent Systems",
-            "FastAPI",
-            "DuckDuckGoTools",
-            "YFinanceTools",
-            "Google API"
-          ],
           "keywords": [
             "Multi-Agent AI System",
             "Financial Analysis",
@@ -864,6 +766,7 @@
       },
       "image": "project_images/video-summarizer-thumbnail.png",
       "featured": true,
+      "show_in_resume": true,
       "core_technologies": [
         "Python",
         "Streamlit",
@@ -888,15 +791,6 @@
           "publish_date": "2025-09-21",
           "markdown_file": "video-summarizer-blog-part-1.md",
           "content": "My journey to build an intelligent video analyst started with what seemed like a simple task: uploading a video. I quickly hit a wall with Google's asynchronous File API, a common real-world challenge that requires more than just basic code. This post covers the architectural decisions, the code for building a resilient video processing pipeline, and the \"aha!\" moment that made it all work, setting the stage for the AI agent.",
-          "core_technologies": [
-            "Python",
-            "Streamlit",
-            "Agno",
-            "Google Gemini",
-            "DuckDuckGo API",
-            "google-generativeai",
-            "python-dotenv"
-          ],
           "keywords": [
             "Agentic AI",
             "Multimodal AI",
@@ -916,15 +810,6 @@
           "publish_date": "2025-09-22",
           "markdown_file": "video-summarizer-blog-part-2.md",
           "content": "A robust pipeline is just the beginning; the real intelligence comes from the agent's 'brain.' This post is a deep dive into the art of prompt engineering, showing how carefully crafted instructions enable our `Agno` agent to not only analyze video with Google Gemini but also to autonomously use web search tools for a richer, more contextual analysis. See how the final pieces came together to create an intelligent video research assistant.",
-          "core_technologies": [
-            "Python",
-            "Streamlit",
-            "Agno",
-            "Google Gemini",
-            "DuckDuckGo API",
-            "google-generativeai",
-            "python-dotenv"
-          ],
           "keywords": [
             "Agentic AI",
             "Multimodal AI",
@@ -950,6 +835,7 @@
       },
       "image": "",
       "featured": false,
+      "show_in_resume": true,
       "core_technologies": [
         "AWS Bedrock",
         "AWS Lambda",
@@ -981,6 +867,7 @@
       },
       "image": "",
       "featured": false,
+      "show_in_resume": true,
       "core_technologies": [
         "Python",
         "Agno",
@@ -1007,6 +894,7 @@
       },
       "image": "",
       "featured": false,
+      "show_in_resume": true,
       "core_technologies": [
         "Python",
         "LangChain",
@@ -1024,25 +912,24 @@
         "Document Processing",
         "Semantic Search"
       ],
-      "blogs": []
-    }
+      "blogs": []    }
   },
   "volunteer_experience": [],
   "references": [],
   "awards_certifications": [
     {
-      "name": "Google Cloud Certified Professional Data Engineer",
-      "issuer": "Google Cloud",
+      "name": "",
+      "issuer": "",
       "date": null,
       "url": null
     }
   ],
   "_meta": {
-    "description": "Records of keys removed during the portfolio-mit_v1.json → portfolio.json migration (2026-03-27).",
+    "description": "Records of keys removed during the portfolio-mit_v1.json \u2192 portfolio.json migration (2026-03-27).",
     "removed_keys": {
-      "about_me": "Long-form chronological narrative (7 paragraphs). Redundant — rewritten as 'about_me_full_prose' which is the version used on the Home page.",
+      "about_me": "Long-form chronological narrative (7 paragraphs). Redundant \u2014 rewritten as 'about_me_full_prose' which is the version used on the Home page.",
       "tldr": "Two bullet-point summary lines. Not referenced by any HTML template.",
-      "technologies_used": "Flat list of tech names. Redundant — replaced by 'tech_stack_db' (with icons) and per-project 'core_technologies'.",
+      "technologies_used": "Flat list of tech names. Redundant \u2014 replaced by 'tech_stack_db' (with icons) and per-project 'core_technologies'.",
       "interests": "Was an empty array. Replaced by 'personal_interests' which has actual content.",
       "featured_projects": "Separate list of 7 featured projects. Merged into 'projects_blog_db' with a 'featured' boolean flag.",
       "projects": "Separate list of 10 projects for resume. Merged into 'projects_blog_db' with summary.resume_page.",
