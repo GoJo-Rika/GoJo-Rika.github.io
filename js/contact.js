@@ -15,11 +15,17 @@
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
+        var formData = new FormData(form);
+
+        var hCaptchaResponse = formData.get('h-captcha-response');
+        if (!hCaptchaResponse) {
+            showStatus('error', 'Please complete the CAPTCHA spam check before sending.');
+            return;
+        }
+
         btnText.style.display = 'none';
         btnLoading.style.display = 'inline';
         submitBtn.disabled = true;
-
-        var formData = new FormData(form);
 
         var primaryData = new FormData();
         for (var pair of formData.entries()) {
@@ -33,13 +39,16 @@
             headers: { 'Accept': 'application/json' }
         })
         .then(function (response) {
-            if (response.ok) {
+            return response.json();
+        })
+        .then(function (data) {
+            if (data && data.success) {
                 showStatus('success', 'Thank you! Your message has been sent successfully.');
                 form.reset();
-                return;
+            } else {
+                console.warn('Web3Forms failed. Falling back to Formspree...');
+                return sendFormspree(formData);
             }
-            console.warn('Web3Forms failed. Falling back to Formspree...');
-            return sendFormspree(formData);
         })
         .catch(function () {
             console.warn('Web3Forms network error. Falling back to Formspree...');
@@ -53,6 +62,9 @@
     });
 
     function sendFormspree(formData) {
+        formData.delete('h-captcha-response');
+        formData.delete('g-recaptcha-response');
+
         return fetch(FORMSPREE_URL, {
             method: 'POST',
             body: formData,

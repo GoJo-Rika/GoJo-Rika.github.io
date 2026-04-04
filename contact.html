@@ -146,10 +146,10 @@
                             <textarea id="contact-message" name="message" rows="5"
                                 placeholder="Tell me about your project or idea..." required></textarea>
                         </div>
-                        <!-- Formspree honeypot -->
+                        <!-- Formspree fallback honeypot -->
                         <input type="text" name="_gotcha" style="display:none">
-                        <!-- Web3Forms honeypot -->
-                        <input type="checkbox" name="botcheck" style="display:none">
+                        <!-- Web3Forms Native hCaptcha -->
+                        <div class="h-captcha" data-captcha="true" style="margin-bottom: 1.25rem;"></div>
                         <button type="submit" id="contact-submit" class="form-submit-btn">
                             <span class="btn-text">Send Message</span>
                             <span class="btn-loading" style="display:none;">
@@ -180,6 +180,7 @@
         <div id="theme-toggle-icon" class="theme-icon"><i class="fas"></i></div>
     </div>
 
+    <script src="https://web3forms.com/client/script.js" async defer></script>
     <script src="js/contact.js"></script>
     <script src="js/app.js"></script>
 
