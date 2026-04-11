@@ -94,6 +94,11 @@
                                     <a href="{{ project.github_url }}" class="project-button" target="_blank"
                                         rel="noopener noreferrer">View on GitHub</a>
                                     {% endif %}
+                                    {% if project.video_exists and project.video_url %}
+                                    <a href="{{ project.video_url }}" class="project-button video-link" target="_blank" rel="noopener noreferrer" title="Watch Video">
+                                        <i class="fa-solid fa-play"></i>
+                                    </a>
+                                    {% endif %}
                                     {% if project.blog_slug %}
                                     <a href="posts/{{ project.blog_slug }}.html" class="project-button blog-link">Read
                                         the Story</a>

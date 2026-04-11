@@ -76,7 +76,9 @@ for project in projects_blog_db.values():
             "summary": project.get("summary", {}).get("project_card", ""),
             "technologies": project.get("core_technologies", []),
             "github_url": project.get("github_url", ""),
-            "live_demo_url": None,
+            "live_demo_url": project.get("live_demo_url", None),
+            "video_url": project.get("video_url", ""),
+            "video_exists": project.get("video_exists", False),
         })
 data["featured_projects"] = featured_projects
 
@@ -174,6 +176,9 @@ for post in blog_posts:
     if md_filepath.exists():
         with md_filepath.open("r", encoding="utf-8") as f:
             markdown_content = f.read()
+
+        markdown_content = re.sub(r'\.(png|jpe?g)(?=[)""\'\s>])', '.webp', markdown_content, flags=re.IGNORECASE)
+
         post["detailed_content"] = markdown2.markdown(
             markdown_content, extras=["fenced-code-blocks", "code-friendly"]
         )

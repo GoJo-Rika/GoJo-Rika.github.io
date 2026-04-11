@@ -268,23 +268,45 @@ html[data-theme='dark'] .post-sidebar-right::-webkit-scrollbar-thumb {
 
 /* ===== Mobile breakpoint ===== */
 @media (max-width: 48rem) {
+    .page-content {
+        overflow-x: hidden;
+    }
+
     .post-layout {
         max-width: 100% !important;
+        width: 100% !important;
         padding: 0 1rem !important;
+        min-width: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;
     }
 
     .post-center-column {
         max-width: 100%;
+        min-width: 0;
         overflow-x: hidden;
     }
 
     .post-content-main {
         padding: 1rem 0 0 0 !important;
+        max-width: 100%;
+        min-width: 0;
+        overflow-x: hidden;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
-    .post-content-main pre {
+    .post-content-main pre,
+    .code-block-wrapper {
         max-width: 100%;
         overflow-x: auto;
+        box-sizing: border-box;
+    }
+
+    .post-content-main p > code,
+    .post-content-main li > code {
+        word-break: break-word;
+        white-space: pre-wrap;
     }
 
     .post-content-main img {

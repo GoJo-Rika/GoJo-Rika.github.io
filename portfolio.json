@@ -355,6 +355,8 @@
       "image": "project_images/network_security_architecture_thumbnail.jpg",
       "featured": true,
       "show_in_resume": true,
+      "video_exists": false,
+      "video_url": "",
       "core_technologies": [
         "Python",
         "AWS",
@@ -416,7 +418,8 @@
           ],
           "previous_part_slug": "from-messy-data-to-production-mlops-my-network-security-journey-part-1"
         }
-      ]    },
+      ]
+    },
     "end-to-end-foodvision-mlops-pipeline": {
       "title": "End-to-End FoodVision MLOps Pipeline",
       "github_url": "https://github.com/GoJo-Rika/PyTorch-FoodVision-Mini",
@@ -427,6 +430,8 @@
       "image": "project_images/effnet-feature-extraction-diagram.png",
       "featured": true,
       "show_in_resume": true,
+      "video_exists": false,
+      "video_url": "",
       "core_technologies": [
         "PyTorch",
         "FastAPI",
@@ -492,6 +497,8 @@
       "image": "tech_icons/aws-sagemaker.svg",
       "featured": true,
       "show_in_resume": true,
+      "video_exists": false,
+      "video_url": "",
       "core_technologies": [
         "AWS SageMaker",
         "Scikit-learn",
@@ -562,6 +569,8 @@
       "image": "tech_icons/hugging-face.svg",
       "featured": true,
       "show_in_resume": true,
+      "video_exists": false,
+      "video_url": "",
       "core_technologies": [
         "HuggingFace Transformers",
         "PyTorch",
@@ -663,6 +672,8 @@
       "image": "posts_assets/pipeline_workflow_diagram.png",
       "featured": true,
       "show_in_resume": true,
+      "video_exists": false,
+      "video_url": "",
       "core_technologies": [
         "AWS",
         "Python",
@@ -723,6 +734,8 @@
       "image": "project_images/financial-ai.jpg",
       "featured": true,
       "show_in_resume": true,
+      "video_exists": false,
+      "video_url": "",
       "core_technologies": [
         "Python",
         "Agno",
@@ -767,6 +780,8 @@
       "image": "project_images/video-summarizer-thumbnail.png",
       "featured": true,
       "show_in_resume": true,
+      "video_exists": false,
+      "video_url": "",
       "core_technologies": [
         "Python",
         "Streamlit",
@@ -836,6 +851,8 @@
       "image": "",
       "featured": false,
       "show_in_resume": true,
+      "video_exists": false,
+      "video_url": "",
       "core_technologies": [
         "AWS Bedrock",
         "AWS Lambda",
@@ -868,6 +885,8 @@
       "image": "",
       "featured": false,
       "show_in_resume": true,
+      "video_exists": false,
+      "video_url": "",
       "core_technologies": [
         "Python",
         "Agno",
@@ -895,6 +914,8 @@
       "image": "",
       "featured": false,
       "show_in_resume": true,
+      "video_exists": false,
+      "video_url": "",
       "core_technologies": [
         "Python",
         "LangChain",
@@ -912,7 +933,8 @@
         "Document Processing",
         "Semantic Search"
       ],
-      "blogs": []    }
+      "blogs": []
+    }
   },
   "volunteer_experience": [],
   "references": [],

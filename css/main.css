@@ -171,6 +171,7 @@ section {
 .page-header,
 .page-footer {
   background-color: var(--header-footer-bg-color);
+
   color: var(--text-color);
   /* This ensures text in header/footer also changes color */
   border-color: var(--border-color);

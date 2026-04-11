@@ -134,3 +134,20 @@ body.dark .tech-icons img {
 .project-button.blog-link:hover {
     filter: brightness(1.1);
 }
+
+.project-button.video-link {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--link-color);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.project-button.video-link i {
+    margin-left: 3px;
+}

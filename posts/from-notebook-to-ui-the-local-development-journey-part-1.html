@@ -96,7 +96,7 @@
 <p><strong>Problem #1: My experiments were chaotic and biased.</strong>
 My first attempt at a solution was to bring order to the chaos. I wrote a nested loop to systematically iterate through every combination of model (<code>EfficientNetB0</code>, <code>B2</code>, <code>B4</code>), dataset size, and training duration.</p>
 
-<p><img src="posts_assets/experiments-table.png" alt="A table showing the structured plan for all 8 experiments, varying model type, data size, and epochs." />
+<p><img src="posts_assets/experiments-table.webp" alt="A table showing the structured plan for all 8 experiments, varying model type, data size, and epochs." />
 <em>Moving from random tweaks to a structured experiment plan like this was the first step toward building a reliable model.</em></p>
 
 <p>This was a huge step forward! But it created a new problem: I was drowning in a sea of <code>print()</code> statements. Comparing the results of run #3 with run #17 was a nightmare of scrolling and squinting.</p>
@@ -111,7 +111,7 @@ for data_name, train_dataloader in train_dataloaders_dict.items():
 <p><strong>Problem #2: I couldn't visualize the story of my training.</strong>
 I realized I didn't just need results; I needed a narrative. I needed to see the learning curves to understand <em>how</em> each model was behaving. This is where TensorBoard came in. But my first attempt was, again, a mess. All my logs were jumbled into one confusing timeline.</p>
 
-<p><img src="posts_assets/tensorboard-accuracy-chart.png" alt="A screenshot of the TensorBoard dashboard showing accuracy curves for multiple experiments." />
+<p><img src="posts_assets/tensorboard-accuracy-chart.webp" alt="A screenshot of the TensorBoard dashboard showing accuracy curves for multiple experiments." />
 <em>TensorBoard made it easy to visually compare all eight experiments. The superiority of the <code>EffNetB2</code> model trained on 20% of the data (the top-performing line) became immediately obvious.</em></p>
 
 <p>The insight wasn't just to <em>use</em> TensorBoard, but to be deliberate about <em>how</em> I organized my logs. I wrote a small utility function to create a clean, timestamped directory structure for every single run, which made the above visualization possible.</p>
@@ -129,7 +129,7 @@ def create_writer(experiment_name, model_name, extra=None):
 
 <p>My experiments were now reliable, but the best model's accuracy was still just "okay." I knew the answer was <strong>Transfer Learning</strong>, but I soon learned that knowing the name of a technique is very different from implementing it correctly.</p>
 
-<p><img src="posts_assets/feature-extraction-diagram.png" alt="A diagram showing a large pre-trained model being adapted for a new, smaller task." />
+<p><img src="posts_assets/feature-extraction-diagram.webp" alt="A diagram showing a large pre-trained model being adapted for a new, smaller task." />
 <em>The core concept of feature extraction: keep the pre-trained 'backbone' (the feature learner) and only train a new, small 'head' (the classifier) on our specific data.</em></p>
 
 <p><strong>Problem #3: My GPU was crying and my training was slow.</strong>
@@ -137,7 +137,7 @@ My first attempt was naive. I loaded a pre-trained <code>EfficientNet</code>, sw
 
 <p>The "aha!" moment came after digging into how transfer learning truly works. I was trying to retrain the entire network. The solution was to <strong>freeze the backbone</strong>.</p>
 
-<p><img src="posts_assets/torchinfo-frozen-layers.png" alt="A screenshot of the torchinfo summary showing a massive reduction in trainable parameters." />
+<p><img src="posts_assets/torchinfo-frozen-layers.webp" alt="A screenshot of the torchinfo summary showing a massive reduction in trainable parameters." />
 <em>The proof is in the numbers. After freezing the backbone, the number of trainable parameters dropped from over 4 million to just 3,843, dramatically speeding up training.</em></p>
 
 <pre><code># The crucial insight: only train the tiny new part of the model
